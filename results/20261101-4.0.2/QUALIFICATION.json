@@ -1,0 +1,77 @@
+{
+  "release": "4.0.2",
+  "measured_as": "4.0.1a",
+  "passed": true,
+  "heavy": {
+    "campaign_finished": true,
+    "arm": "4.0.1a",
+    "tasks": 136,
+    "inference_retries": 0,
+    "memory_process_guard_passed": true,
+    "ranks_verified": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "short": {
+    "status": "PASS",
+    "cells": 20
+  },
+  "prefill": {
+    "status": "PASS",
+    "samples": 21
+  },
+  "vision": {
+    "jobs": 2,
+    "successful": 2,
+    "duplicate_join": true,
+    "budget": {
+      "reasoning_effort": "max",
+      "thinking_budget": 8192,
+      "final_answer_tokens": 32768
+    },
+    "elapsed_seconds": [
+      61.337,
+      61.316
+    ],
+    "first_attempt_successes": 2,
+    "repair_path_live_exercised": false,
+    "repair_protocol_covered_by_cpu_tests": true
+  },
+  "weight_full_byte_checks": [
+    {
+      "rank": 0,
+      "passed": true,
+      "entries": 143530,
+      "changed_entries": 46200,
+      "compared_bytes": 66697810760
+    },
+    {
+      "rank": 1,
+      "passed": true,
+      "entries": 143530,
+      "changed_entries": 46200,
+      "compared_bytes": 66697810760
+    },
+    {
+      "rank": 2,
+      "passed": true,
+      "entries": 143530,
+      "changed_entries": 46200,
+      "compared_bytes": 66637189704
+    },
+    {
+      "rank": 3,
+      "passed": true,
+      "entries": 143530,
+      "changed_entries": 46200,
+      "compared_bytes": 66637189704
+    }
+  ],
+  "runtime_restarts": 0,
+  "inference_retries": 0,
+  "model_process_swap_bytes": 0,
+  "note": "Kernel/source CPU regressions passed before live qualification; no new GPU inference during public export."
+}

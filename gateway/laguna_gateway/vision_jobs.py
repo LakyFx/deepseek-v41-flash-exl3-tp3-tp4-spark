@@ -165,7 +165,7 @@ class Ledger:
             db.execute('UPDATE jobs SET state=?,updated=?,result=? WHERE id=?',
                        (state,self.clock(),json.dumps(result,ensure_ascii=False),identity))
 
-    def backend(self, identity, backend_id):
+    def backend(self, identity, backend_id, attempt=None):
         with self.connect() as db:
             db.execute('UPDATE jobs SET backend_id=?,updated=? WHERE id=?',(backend_id,self.clock(),identity))
 
@@ -202,7 +202,7 @@ class Ledger:
             return bool(self.legacy_unknown(db) or db.execute(
                 "SELECT count(*) FROM jobs WHERE state='unknown'").fetchone()[0] >= self.max_running)
 
-    def not_dispatched(self, identity, code):
+    def not_dispatched(self, identity, code, attempt=None):
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             row=db.execute('''SELECT j.state,j.backend_id,d.body,d.receipt FROM jobs j
@@ -263,7 +263,15 @@ class Ledger:
 
 class Jobs:
     def __init__(self, path, engine, sender=None, control=None):
-        self.ledger, self.engine = Ledger(path,controlled=control is not None), engine
+        recovery=os.getenv('DGX_VISION_RECOVERY_ATTEMPTS','1')
+        if recovery not in {'1','2'}:
+            raise ValueError('DGX_VISION_RECOVERY_ATTEMPTS must be 1 or 2')
+        self.recovery_enabled=recovery=='2'
+        if self.recovery_enabled:
+            from .vision_recovery import RecoveryLedger
+            self.ledger=RecoveryLedger(path,controlled=control is not None)
+        else: self.ledger=Ledger(path,controlled=control is not None)
+        self.engine = engine
         self.control = control
         self.final_answer_tokens = int(os.getenv('DGX_VISION_FINAL_ANSWER_TOKENS', '0'))
         if not 0 <= self.final_answer_tokens <= 65536:
@@ -282,6 +290,37 @@ class Jobs:
         self.wake = asyncio.Event()
         self.runner = None
         self.active = {}
+        self.media_holds = {}  # recovery attempts retain physical admission until proof
+
+    def hold_media(self, row, release):
+        key=(row['id'],row['attempt'])
+        self.media_holds[key]=release
+        self.release_confirmed_media()
+
+    def release_confirmed_media(self):
+        if not self.recovery_enabled: return
+        for key,release in list(self.media_holds.items()):
+            attempts=self.ledger.attempts(key[0])
+            a=next((a for a in attempts if a['number']==key[1]),None)
+            legacy_done=False
+            if key[1]==0:
+                row=self.ledger.read(key[0])
+                legacy_done=row and row['state'] in {'succeeded','failed'}
+            if legacy_done or (a and a['state'] in {'succeeded','failed'} and a['receipt']):
+                self.media_holds.pop(key,None)
+                release()
+
+    async def restore_media_holds(self):
+        if not self.recovery_enabled or self.engine is None or os.getenv('DGX_MEDIA_SERIAL_REQUESTS')!='1': return
+        unknown=self.ledger.unknown()
+        if len(unknown)>self.ledger.max_running:
+            raise ValueError('More unknown image attempts than physical vision slots; reconciliation required')
+        gate=getattr(self.engine,'_media_request_gate',None)
+        if gate is None:
+            self.engine._media_request_gate=gate=asyncio.Semaphore(self.ledger.max_running)
+        for row in unknown:
+            await gate.acquire()
+            self.media_holds[(row['id'],row.get('attempt',0))]=gate.release
 
     async def start(self):
         self.lease = self.ledger.path.with_suffix('.lock').open('a')
@@ -289,6 +328,7 @@ class Jobs:
             import fcntl
             fcntl.flock(self.lease,fcntl.LOCK_EX|fcntl.LOCK_NB)
         self.ledger.recover()
+        await self.restore_media_holds()
         self.runner = asyncio.create_task(self.run())
 
     async def close(self):
@@ -349,6 +389,10 @@ class Jobs:
                     pass
                 continue
             identity = row['id']
+            if self.recovery_enabled:
+                from .vision_recovery import run_attempt
+                await run_attempt(self,row)
+                continue
             task = self.active[identity] = asyncio.create_task(self.sender(row))
             try:
                 done,_ = await asyncio.wait({task},timeout=max(0,row['deadline']-self.ledger.clock()))
@@ -379,28 +423,33 @@ class Jobs:
         dispatch = self.ledger.dispatch_for(row['id'])
         if self.control is not None and dispatch:
             if dispatch.get('pending'):
-                self.ledger.not_dispatched(row['id'],code)
+                self.ledger.not_dispatched(row['id'],code,attempt=row.get('attempt'))
+                self.release_confirmed_media()
                 self.wake.set()
                 return
             receipt = await self.control.terminate(dispatch)
             if receipt:
                 self.ledger.confirmed(row['id'],receipt,code)
+                self.release_confirmed_media()
                 self.wake.set()
 
     async def reconcile_unknown(self):
         while True:
+            self.release_confirmed_media()
             for row in self.ledger.unknown():
                 dispatch = self.ledger.dispatch_for(row['id'])
                 if not dispatch:
                     continue  # Legacy UNKNOWN needs its existing operator receipt.
                 try:
                     if dispatch.get('pending'):
-                        self.ledger.not_dispatched(row['id'],'vision_interrupted')
+                        self.ledger.not_dispatched(row['id'],'vision_interrupted',attempt=row.get('attempt'))
+                        self.release_confirmed_media()
                         self.wake.set()
                         continue
                     receipt = await self.control.cancel(dispatch)
                     if receipt:
                         self.ledger.confirmed(row['id'],receipt)
+                        self.release_confirmed_media()
                         self.wake.set()
                 except Exception:
                     log.warning('Vision cancellation receipt unavailable for %s',row['id'])
@@ -410,6 +459,9 @@ class Jobs:
         while True:
             row = self.ledger.status(identity,owner)
             if row['status'] in TERMINAL:
+                if self.recovery_enabled and row['status']=='unknown' and self.ledger.awaiting_repair(identity):
+                    await asyncio.sleep(0.1)
+                    continue
                 result = row['result']
                 # Recovery/queue expiry errors also use the OpenAI error envelope.
                 if 'status_code' not in result:
@@ -428,7 +480,8 @@ class Jobs:
                 # untracked generation on a backend lacking cancellation proof.
                 return {'status_code':503,'data':error('vision_control_unavailable',
                     'Vision cancellation control unavailable; image was not dispatched.',row['id']),'headers':{}}
-        return await collect(self.engine,row,lambda backend:self.ledger.backend(row['id'],backend),dispatch)
+        return await collect(self.engine,row,lambda backend:self.ledger.backend(row['id'],backend,attempt=row.get('attempt')),dispatch,
+            on_hold=(lambda release:self.hold_media(row,release)) if self.recovery_enabled else None)
 
 
 def owner(request):

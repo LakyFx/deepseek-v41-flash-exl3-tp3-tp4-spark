@@ -1,3 +1,9 @@
+# Current TP4 recipe: 4.0.2
+
+**[TP4 4.0.2](DS41F-4.0.2.md)**, measured as combined 4.0.1a: source `v402`,
+launcher `tensorfold.tp4.v402.launch`, balanced401a-v1 weights, C16/R48/9M/3.5GiB.
+[Measured results](BENCHMARK-4.0.2.md). Previous recipes remain selectable below.
+
 # Choose a recipe
 
 **Choose hardware first:** [TP3 1.2.8](DS41F-1.2.8.md), C12/R48/7M/3 GiB/4K compute; or **[TP4 4.0.0](DS41F-4.0.0.md)**, current P3 production, C16/R48/9M/3.5 GiB/8K compute. TP4 has its own launcher, native rank preparation and switchless NCCL patches. [TP4 results](BENCHMARK-4.0.0.md). The 1.x and 4.x lines are independent; all recipes below are preserved.

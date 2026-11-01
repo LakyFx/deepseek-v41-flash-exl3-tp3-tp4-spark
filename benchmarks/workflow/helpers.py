@@ -11,13 +11,13 @@ def write(path,value):
     tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     tmp.replace(path)
 
-def validate_receipt(value,arm,campaign,profile,now=None):
+def validate_receipt(value,arm,campaign,profile,now=None,world_size=3):
     now=time.time() if now is None else now
     expected=hashlib.sha256(profile.read_bytes()).hexdigest()
     if (value.get('arm')!=arm or value.get('campaign_id')!=campaign
         or value.get('profile_sha256')!=expected or value.get('exclusive_window') is not True
         or value.get('public_api_closed') is not True or not value.get('engine_generation')
-        or value.get('ranks_verified')!=[0,1,2] or not value.get('user_go_reference')
+        or world_size not in (3,4) or value.get('ranks_verified')!=list(range(world_size)) or not value.get('user_go_reference')
         or not 0 <= now-value.get('created_epoch',0) <= 900):
         raise ValueError('fresh verified deployment/exclusive-window/GO receipt required')
 

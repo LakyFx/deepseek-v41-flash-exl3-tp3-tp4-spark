@@ -40,6 +40,16 @@ def test_portable_defaults_and_language_override(monkeypatch):
     assert settings.enforce_czech is False
 
 
+def test_explicit_402_profile_preserves_tp4_capacity(monkeypatch):
+    monkeypatch.setenv('LAGUNA_GATEWAY_API_KEY', 'offline-fixture-only')
+    monkeypatch.setenv('DS41F_GATEWAY_PROFILE', str(ROOT.parent/'tensorfold/tp4/v402/gateway-profile.json'))
+    settings = production_settings()
+    assert settings.max_concurrency == 16
+    assert settings.max_admitted_tokens == 8000000
+    assert settings.default_temperature == 0.6
+    assert settings.default_top_p == 0.95 and settings.default_top_k == 20
+
+
 def test_original_source_and_explicit_address_only_adaptations():
     manifest = json.loads((ROOT/'source-manifest.json').read_text())
     names = {p.name for p in (ROOT/'laguna_gateway').glob('*.py')}
@@ -87,6 +97,6 @@ def test_installed_profile_runs_authenticated_durable_vision(monkeypatch, tmp_pa
         assert app.state.settings.max_concurrency == 12
         assert app.state.vision_jobs.ledger.max_running == 2
         import os
-        assert os.environ['DS41F_RECIPE_VERSION'] == '1.2.6'
+        assert os.environ['DS41F_RECIPE_VERSION'] == '4.0.2'
         # This release changes scheduling without expiring existing job identities.
         assert os.environ['DGX_VISION_JOBS_REVISION'] == 'd021774d38c0e7c684e6da44f39f22e735deb14b'

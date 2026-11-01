@@ -13,8 +13,6 @@ from laguna_gateway.vision_jobs import Jobs, Ledger
 from test_vision_jobs import Fake, api, body, event
 
 
-
-
 def eventually(predicate, timeout=3):
     end = time.monotonic()+timeout
     while not predicate() and time.monotonic()<end:

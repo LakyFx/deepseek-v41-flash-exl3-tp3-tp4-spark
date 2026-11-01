@@ -21,6 +21,8 @@ TOPICS = [
     'retry budget', 'stream cancellation', 'incremental parser',
     'graph buffer lifetime', 'snapshot retention', 'fair scheduler',
     'content digest', 'network reconnect',
+    'transaction commit barrier', 'token budget admission',
+    'bounded buffer reuse', 'deterministic model verifier',
 ]
 CONCURRENCIES = (1, 3, 6, 12)
 
@@ -93,6 +95,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base-url', default='http://127.0.0.1:8003')
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--c16', action='store_true', help='Include the 4.0.2 C16 cell')
     parser.add_argument('--exclusive', action='store_true',
                         help='Confirm other ingress is CLOSED and backend is idle')
     args = parser.parse_args()
@@ -131,7 +134,7 @@ def main():
     cells = []
     try:
         for run in (1, 2):
-            for concurrency in CONCURRENCIES:
+            for concurrency in CONCURRENCIES + ((16,) if args.c16 else ()):
                 for kind in ('code', 'prose'):
                     get_health()
                     start = time.monotonic()

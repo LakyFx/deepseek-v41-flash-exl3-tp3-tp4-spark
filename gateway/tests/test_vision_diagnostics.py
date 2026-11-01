@@ -15,6 +15,16 @@ from test_vision_jobs import api, body
 A = 'vision_' + 'a' * 64
 B = 'vision_' + 'b' * 64
 
+def test_two_attempts_keep_separate_bounded_private_evidence(armed):
+    first=Diagnostics.open(A,'first',attempt=1)
+    assert first is not None
+    before=first.path.read_bytes()
+    second=Diagnostics.open(A,'second',attempt=2)
+    assert second is not None and second.path!=first.path
+    assert first.path.read_bytes()==before
+    assert json.loads(second.path.read_bytes())['attempt']==2
+    assert Diagnostics.open(A,'third',attempt=3) is None
+
 
 def event(content='', reasoning='', finish=None):
     return ('data: '+json.dumps({'choices':[{'delta':{'content':content,

@@ -1,0 +1,24 @@
+{
+  "release": "4.0.2",
+  "measured_as": "4.0.1a combined A",
+  "source_commit": "d741768dd93316e323514852d77e918886d31bf5",
+  "native_binaries": {
+    "tensorfold-native": "46be5e51f0ae597d15777eff8eb75f49dcb103c6716c6f1aeb962d241823bf20",
+    "tf-dsv41-lanes": "a569eb4d86d430230878f422b6f107fd7bacd2dbe71dcac45c0414d1f26c2c28",
+    "tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18",
+    "tf-dsv41-check": "4c48a81df2bb9676fffbb0bfd56c4e286577b5e9cd82e4d79c442ac794221891",
+    "tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2"
+  },
+  "source_manifest_sha256": "dee0aef8c6e092190daec3386c49375e74597d38b9b2e816806c32104a904dfe",
+  "capacity": {
+    "concurrency": 16,
+    "rows": 48,
+    "kv_tokens": 9000000,
+    "checkpoints_gib": 3.5,
+    "chunk_tokens": 8192,
+    "kv_quantum_tokens": 2048,
+    "context_tokens": 401408
+  },
+  "changed_at_publication": false,
+  "clock_mhz": 2200
+}

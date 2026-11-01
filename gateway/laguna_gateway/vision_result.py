@@ -83,7 +83,7 @@ class Collector:
         return {'status_code':200,'data':data,'headers':{}}
 
 
-async def collect(engine, row, on_backend, dispatch=None):
+async def collect(engine, row, on_backend, dispatch=None, on_hold=None):
     from .engine import GatewayError
     handle = None
     iterator = None
@@ -97,18 +97,47 @@ async def collect(engine, row, on_backend, dispatch=None):
         body['stream_options'] = {'include_usage':True}
         handle = (await engine.begin_stream(body, vision_dispatch=dispatch)
                   if dispatch is not None else await engine.begin_stream(body))
+        if on_hold is not None:
+            release=getattr(handle,'media_release',None)
+            if release is not None:
+                # Closing HTTP is not a physical termination proof. Transfer the
+                # existing admission lease to this durable attempt until receipt.
+                handle.media_release=None
+                on_hold(release)
         on_backend(handle.upstream_request_id)
         if handle.response.status_code >= 400:
             await handle.response.aread()
-            # A rejected request is never an excuse for a second inference.
-            return {'status_code':422,'data':error('vision_provider_rejected',
-                'Provider rejected this vision job. Do not submit another generation automatically.',row['id']),'headers':{}}
-        diagnostics = Diagnostics.open(row['id'], handle.upstream_request_id, dispatch)
+            status=handle.response.status_code
+            hints={400:'Check image format and request parameters.',401:'Operator must check backend authentication.',
+                403:'Backend access was denied.',413:'Image/request exceeds the accepted size.',
+                422:'Backend could not process this image/request.',429:'Backend admission is currently full.',
+                503:'The vision backend is unavailable.'}
+            data=error('vision_provider_rejected',hints.get(status,'The vision backend rejected this request.'),row['id'])
+            data['error']['upstream_status']=status
+            # Only machine codes, never raw messages (may contain URLs, credentials,
+            # image data or internal paths). HTTP status remains available even if
+            # the backend returned HTML or a malformed body.
+            try:
+                provider=handle.response.json().get('error',{})
+                code=provider.get('code') if isinstance(provider,dict) else None
+                if isinstance(code,str) and re.fullmatch(r'[a-zA-Z0-9_.-]{1,80}',code):
+                    data['error']['upstream_code']=code
+            except (ValueError,AttributeError): pass
+            return {'status_code':422,'data':data,'headers':{}}
+        diagnostics = Diagnostics.open(row['id'], handle.upstream_request_id, dispatch, attempt=row.get('attempt'))
         result = Collector(diagnostics=diagnostics)
         iterator = engine.iter_stream(handle)
         async for chunk in iterator:
             result.feed(chunk)
+            if row.get('attempt') and result.repetitive and not result.done:
+                from .vision_recovery import RecoveryRequired
+                raise RecoveryRequired('vision_output_repetitive')
+        if row.get('attempt') and (not result.done or result.pending.strip() or result.finish not in {'stop','length','content_filter','end_turn','completed'}):
+            from .vision_recovery import RecoveryRequired
+            raise RecoveryRequired('vision_output_incomplete')
         response = result.result(row['id'])
+        if row.get('attempt'):
+            response['_termination']={'kind':'terminal_stream','attempt':row['attempt']}
         result_status = response['status_code']
         outcome = 'success'
         response['headers'] = engine._response_headers(handle.prepared,queue_wait_seconds=handle.queue_wait_seconds)

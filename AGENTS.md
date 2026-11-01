@@ -1,3 +1,14 @@
+# Current TP4: 4.0.2 (measured as combined 4.0.1a)
+
+Use docs/DS41F-4.0.2.md, tensorfold/tp4/v402/profile.json and source recipe v402.
+Stage with tensorfold.tp4.v402.build and launch with tensorfold.tp4.v402.launch.
+All four ranks require the new binaries AND balanced401a-v1 rank caches; old
+4.0.0 caches are incompatible. Preserve C16/R48/9M/3.5 GiB/chunk8192, the
+controllers, measured cost prior, final kernels and MAX/8K vision recovery.
+Previous release instructions below apply only when selecting that release.
+Keep old recipes/results intact; never commit operator data or credentials.
+Publication does not authorize a live deployment or benchmark.
+
 # Select TP3 or TP4 explicitly
 
 TP3 **1.2.8 / AF-4K** and TP4 **4.0.0 / P3** are separate supported recipes.

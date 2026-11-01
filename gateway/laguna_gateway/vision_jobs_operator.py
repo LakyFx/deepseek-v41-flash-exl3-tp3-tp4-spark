@@ -21,6 +21,10 @@ def reconcile(ledger, identity, receipt):
             'Operator verified termination. This completed job will not be dispatched again.',identity)}
         db.execute("UPDATE jobs SET state='failed',updated=?,result=? WHERE id=?",
                    (ledger.clock(),json.dumps(result),identity))
+        if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='vision_attempts'").fetchone():
+            # An operator receipt terminates the logical job, never queues a repair.
+            db.execute("UPDATE vision_attempts SET state='failed',updated=?,result=?,receipt=? WHERE job_id=? AND state='unknown'",
+                       (ledger.clock(),json.dumps(result),json.dumps(receipt),identity))
 
 
 def main():

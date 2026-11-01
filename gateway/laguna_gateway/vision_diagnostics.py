@@ -43,13 +43,15 @@ def _pattern(text):
 
 class Diagnostics:
     @classmethod
-    def open(cls, identity, native_id, dispatch=None):
+    def open(cls, identity, native_id, dispatch=None, attempt=None):
         root = os.getenv('DGX_VISION_DIAGNOSTICS_DIR')
         if not root:
             return None
         try:
             if not IDENTITY.fullmatch(identity):
                 raise ValueError('Invalid diagnostic job identity')
+            if attempt not in (None,1,2):
+                raise ValueError('Invalid bounded vision attempt')
             directory = Path(root)
             if not directory.is_absolute():
                 raise ValueError('Absolute diagnostic directory required')
@@ -72,13 +74,13 @@ class Diagnostics:
                 return None
             if identity not in ids:
                 return None
-            return cls(directory, identity, native_id, dispatch)
+            return cls(directory, identity, native_id, dispatch, attempt)
         except Exception as exc:
             log.warning('Vision diagnostics unavailable (%s)', type(exc).__name__)
             return None
 
-    def __init__(self, directory, identity, native_id, dispatch):
-        self.path = directory/(identity+'.json')
+    def __init__(self, directory, identity, native_id, dispatch, attempt=None):
+        self.path = directory/(identity+('.attempt2' if attempt==2 else '')+'.json')
         # Existing evidence is never overwritten by another generation.
         fd = os.open(self.path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
         os.close(fd)
@@ -88,6 +90,7 @@ class Diagnostics:
         self.events = 0
         self.write_failed = False
         self.record = dict(schema='tensorfold.vision-diagnostics.v1', job_id=identity,
+            attempt=attempt,
             native_request_id=native_id, gateway_pid=os.getpid(),
             gateway_release=str(Path(__file__).resolve().parents[1]),
             started_epoch=time.time(), status='observing', trigger=None)

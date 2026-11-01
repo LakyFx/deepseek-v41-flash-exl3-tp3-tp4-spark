@@ -52,7 +52,9 @@ class NativeControl:
                     'expires': math.ceil(row['deadline'])}
         # Persist BEFORE the HTTP POST: cancellation can seal an ID even when
         # the gateway dies between the POST and the first response headers.
-        ledger.dispatch(row['id'], dispatch)
+        if 'attempt' in row:
+            ledger.dispatch(row['id'], dispatch, attempt=row['attempt'])
+        else: ledger.dispatch(row['id'], dispatch)
         return dispatch
 
     async def cancel(self, dispatch):

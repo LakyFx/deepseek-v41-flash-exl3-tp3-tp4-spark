@@ -20,32 +20,34 @@ def campaign_for(c):
     return FROZEN['campaign_id']+(FROZEN['continuation_C10_C12'] if c>=10 else '')
 
 
-def inputs():
+def inputs(max_concurrency=12):
     rows=[]
-    for c in range(1,13):
+    for c in range(1,max_concurrency+1):
         for i in range(c):
             body=body_for(campaign_for(c),c,i)
             rows.append(dict(concurrency=c,replica=i,sha256=hashlib.sha256(json.dumps(body,sort_keys=True,ensure_ascii=False).encode()).hexdigest()))
-    if rows!=FROZEN['initial_inputs']:
+    if rows[:len(FROZEN['initial_inputs'])]!=FROZEN['initial_inputs']:
         raise ValueError('Initial workload changed: refuse unmatched benchmark')
     return rows
 
 
 def run(args):
-    rows=inputs()
+    maximum=getattr(args,'max_concurrency',12)
+    rows=inputs(maximum)
     if not args.run:
         return dict(prepared=True,model_requests=0,initial_inputs=rows)
     if not args.exclusive or not all([args.port,args.receipt,args.profile,args.output,args.arm]):
         raise ValueError('--run requires --exclusive, port, receipt, profile, output and arm')
     receipt=json.loads(args.receipt.read_bytes())
-    validate_receipt(receipt,args.arm,FROZEN['campaign_id'],args.profile)
+    validate_receipt(receipt,args.arm,FROZEN['campaign_id'],args.profile,
+                     world_size=getattr(args,'world_size',3))
     args.output.mkdir(parents=True,exist_ok=False)
     write(args.output/'receipt.json',receipt)
     write(args.output/'initial-inputs.json',rows)
     client=Client(args.port,armed=True,journal=lambda value:write(args.output/'owned.json',value))
     results=[];request_count=0
     try:
-        for c in range(1,13):
+        for c in range(1,maximum+1):
             before=client.require_idle();barrier=threading.Barrier(c)
             def task(i):
                 barrier.wait()
@@ -65,7 +67,7 @@ def run(args):
             if not cell['native']['coverage_verified']:
                 raise ValueError('Counter coverage mismatch; retain result and stop')
             results.append(dict(C=c,**cell['summary']))
-            write(args.output/'summary.json',dict(arm=args.arm,cells=results,complete=c==12))
+            write(args.output/'summary.json',dict(arm=args.arm,cells=results,complete=c==maximum))
             print(json.dumps(results[-1]),flush=True)
         return dict(complete=True,tasks=sum(r['total'] for r in results),correct=sum(r['correct'] for r in results),model_requests=request_count,api_changed=False)
     except BaseException as exc:
@@ -79,6 +81,8 @@ def main():
     p.add_argument('--run',action='store_true');p.add_argument('--exclusive',action='store_true')
     p.add_argument('--arm');p.add_argument('--port',type=int);p.add_argument('--profile',type=Path)
     p.add_argument('--receipt',type=Path);p.add_argument('--output',type=Path)
+    p.add_argument('--max-concurrency',type=int,choices=[12,16],default=12)
+    p.add_argument('--world-size',type=int,choices=[3,4],default=3)
     print(json.dumps(run(p.parse_args()),indent=2))
 
 

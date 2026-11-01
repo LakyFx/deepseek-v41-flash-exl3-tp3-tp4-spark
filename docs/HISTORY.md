@@ -1,3 +1,13 @@
+# 4.0.2 - 1 November 2026
+
+Publish the qualified combined 4.0.1a production payload as 4.0.2. Retain
+H2/D1/K1/S1r6/M1 decode improvements, add balanced whole-block gate/up weights,
+dead-checkpoint batching, bounded first-continuation placement and durable
+confirmed-cancellation vision recovery. Same target weights/quantization and
+existing smart controllers. 136/136 C1-C16 tasks; 20 short cells; 21 cold-prefill
+samples; two concurrent vision successes. [Recipe](DS41F-4.0.2.md) and
+[evidence](BENCHMARK-4.0.2.md). All earlier content follows unchanged.
+
 # Tuning history
 
 ## 4.0.0 - 31 October 2026 - TP4 line
