@@ -30,6 +30,9 @@ confirmed-cancellation vision recovery to the existing controllers.
 - **[Full results, sampling settings and metric definitions](docs/BENCHMARK-4.0.2.md)** - [numeric evidence](results/20261101-4.0.2/) - [offline audit](tools/audit_402.py)
 - [Model weights](https://huggingface.co/LakyFx/DeepSeek-V4.1-Flash-1017-EXL3-3.5bpw-TensorFold) - [TP3 1.2.8 recipe](docs/DS41F-1.2.8.md) - [all previous recipes](docs/RECIPES.md)
 
+**Source-only kernel builds:** [Triton generators and AOT rebuild instructions](docs/AOT-SOURCE-REBUILD.md)
+for the original TP3 kit and TP3 1.2.8, including the files requested in issue #1.
+
 ## Preserved releases and previous README
 
 # DeepSeek V4.1 Flash on 3 or 4 DGX Sparks

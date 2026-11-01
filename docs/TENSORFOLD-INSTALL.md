@@ -1,5 +1,8 @@
 # Prepare and run the two TensorFold TP3 recipes
 
+**Build GPU kernels from source:** [Triton AOT generators, exact commands and
+PTX comparison](AOT-SOURCE-REBUILD.md), including the original TP3 set and 1.2.8.
+
 **Current recipes:** [TP3 1.2.8](DS41F-1.2.8.md) and **[TP4 4.0.0](DS41F-4.0.0.md)**. The TP3 launcher below remains three-rank-only. TP4 has separate native caches, Engram ownership, AOT assets and a switchless NCCL library.
 
 For the latest **1.2.8 / AF-4K TP3** build, use [its exact installation guide](DS41F-1.2.8.md). It retains the pinned 1017 weights but requires its own source and prefill kernel set. Earlier procedures remain below.

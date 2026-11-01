@@ -1,5 +1,8 @@
 # TF351 short-prefill AOT repair, 14 October 2026
 
+The exact missing generator sources, unchanged compiler and reproducible PTX
+comparison commands are now published in the [AOT source rebuild guide](AOT-SOURCE-REBUILD.md).
+
 The deployed TF351 TP3 kit is now included in this recipe. The fix adds **six `_hc_mix_pf` Triton AOT variants**: row buckets 4, 5 and 6, each for `WORLD=1, POSTED=0` and `WORLD=3, POSTED=1`. The manifest grows from **536 to 542 variants**. Weights, native serving executables, speculation/cache policy, TP3, C8, round rows 16, MAX reasoning, 401,408 request context and **10M shared KV pool** were unchanged in the deployment.
 
 ## Evidence and root cause

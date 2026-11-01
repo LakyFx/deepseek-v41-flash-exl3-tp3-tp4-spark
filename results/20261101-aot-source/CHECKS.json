@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-01",
+  "scope": "CPU-only Triton source rebuild; no inference benchmark",
+  "source_signature_entries": 566,
+  "compiled_entries": 566,
+  "recorded_ptx_checks": 212,
+  "recorded_ptx_matches": 212,
+  "unique_recorded_ptx_hashes": 195,
+  "requested_hc_ptx_matches": 6,
+  "v128_addition_cubin_matches": 24,
+  "base_cubin_matches": 0,
+  "base_entries": 542,
+  "regression_tests_passed": 26,
+  "gpu_execution": false,
+  "production_changes": false,
+  "toolchain": {
+    "python": "3.12.3",
+    "triton": "3.8.0",
+    "torch_imports": "2.11.0+cpu",
+    "architecture": "aarch64",
+    "target": "cuda:121:32"
+  },
+  "evidence_sha256": {
+    "REBUILD-V128.json": "0f394b1d4a712a8642d7ddd4622a367ee2e03033f429404c25344eec05914c8e",
+    "COMPARISON-V128.json": "091ce1e62639f8ecd28d4b18f9f3ad97eb7b8e7ebbf1f9d0903bcf644f6e90f5",
+    "REBUILD-HC.json": "32416dba004b8f3a16631dbf83fa3bd50405ac59299faa98ea4c5ff15ac1fb22",
+    "COMPARISON-HC.json": "5c288fdf0aafd8d019443c5144c86e8d285b936386f861b46d1be391c15e8110"
+  }
+}

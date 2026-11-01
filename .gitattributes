@@ -33,3 +33,7 @@ results/20261030-1.2.8/** -text -whitespace
 results/20261031-4.0.0/** -text -whitespace
 
 results/20261101-4.0.2/** -text -whitespace
+
+# Historical AOT generator hashes bind exact source bytes.
+tools/dsv41-tp3/** -text -whitespace
+python-reference/** -text -whitespace

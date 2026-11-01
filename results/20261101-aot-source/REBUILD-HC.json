@@ -1,0 +1,14 @@
+{
+  "recipe": "hc-prefill",
+  "target": "cuda:121:32",
+  "triton": "3.8.0",
+  "entries": 6,
+  "unique_rebuilt_cubins": 6,
+  "cubin_matches": 0,
+  "recorded_ptx_checks": 6,
+  "recorded_ptx_matches": 6,
+  "mismatched_entries": 6,
+  "gpu_execution": false,
+  "historical_debug_paths": true,
+  "status": "REBUILD_DIFFERS_NOT_GPU_QUALIFIED"
+}

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "triton": "3.8.0",
+  "target": "cuda:121:32",
+  "files": {
+    "tools/dsv41-tp3/tp3_triton_kernels.py": "4301f70b936fd7e8cac6ce4406f6ad372296d626660dedbb015fbc5a3fc85596",
+    "tools/dsv41-tp3/compile_triton.py": "3c8c5481863b4b6a008d735df913d756c8488ae210a14dc777599e0a12c7f0fa",
+    "tools/dsv41-tp3/seed_triton_cases.py": "49954192f9e9883c846b45f1f57c33c2ce8bd00deab8a0db866ce4cdcbe5335c",
+    "tools/dsv41-tp3/base-cases.json": "d1e78a20b145578d74b23bb2e138fe3c0d3900a71601c3ad97a4f644004a193b",
+    "tools/dsv41-tp3/v128-cases.json": "2329911980af008fc01987b46010e15cc6c05aa62f5257adbbf517e9a1f8c300",
+    "python-reference/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "python-reference/src/tensorfold/families/deepseek_v41/cuda/kernels.py": "723c3af1c9c1608f7c6439eb4e05d1cadfc7e633727a3b71f10552a67dd4a530",
+    "python-reference/src/tensorfold/families/deepseek_v41/cuda/markov.py": "e3c3b44dbfcf98de4b2a8ef9fcf6f5ffe0261cc8b7ff414d0e797bb4010b0f7d",
+    "python-reference/src/tensorfold/cuda/exl3/prefill.py": "ee0c4e8d80adbc3aff8fd94aa0aef65a247d2709282f010ca045f17f202446a8",
+    "tensorfold/prefill-128/kernels.py": "72701d9bbfecbc4753a137b1ba0105948d1b237f9499c46d3b5e841ac7afda7d",
+    "tensorfold/prefill-128/payload.tar.gz": "bd0719d08daa267fbe16eac0be4c5601de67ed0aba995484859dc3a8cfdbe583",
+    "tensorfold/hc-prefill/COMPILE-CASES.json": "4b259740799727c52380e764a33b5cfa25c6fe72f0f371d3100906a142a9746b",
+    "tensorfold/hc-prefill/COMPILE-PROVENANCE.json": "269e3bfb5b16bb889d02c89e0915e71777fc300f3d78c9078e38613280dfc25a",
+    "tensorfold/hc-prefill/PATCH.json": "a1a74168f017c1b4c965f823f73e2e2a9d8e4d4aa0ee665586051c654697375d",
+    "tools/dsv41-tp3/rebuild.py": "466fb368c2a6ad7dbf90d5c6792dc134951feb5fea9e584570abff1ae3d86a30",
+    "tools/dsv41-tp3/debug_paths.py": "5c11bea5c2d00f748f906344ef7ce789a8410ff08e6b25820aaba092bc74994e",
+    "python-reference/NOTICE": "e8e70c99e9e80d92f807603aad9bbb94bf4dcfcdc62f8bc39f0c385ae27ad267",
+    "python-reference/LICENSES/MIT.txt": "be6a9ee4462784a762b21790954b8e76c4dcacc9fb6da2a40d03a8a9bddec93e"
+  },
+  "reference_archive": "tensorfold/artifacts/tensorfold-rope-reference.tar.gz",
+  "reference_archive_sha256": "3bb9295bd2809aa0c611082eac3d1e652abee166b804f741473f9010bd3d0405",
+  "base_aot_sha256": "d2a74f96ead50f86f7fcaab2905dee651bd6e27d3c831ee5c4fef1f07130b684",
+  "v128_aot_sha256": "26e1d216a947901da1c69d75e8c2570b9068cf2a72fb2d85d2653414462fa8be"
+}

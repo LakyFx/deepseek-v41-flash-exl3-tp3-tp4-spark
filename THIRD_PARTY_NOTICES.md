@@ -17,6 +17,14 @@ Our integration license does not relicense upstream source, libraries or weights
 
 The vendored source is included for reproducible installation and review. Selective ports, source hashes, publication adjustments and measured settings are recorded under `runtime/` and `config/`. Research-only links do not imply that their engine or weight pack is installed.
 
+## Browsable Triton AOT generators
+
+`python-reference/src/` contains byte-identical browsing copies from the pinned
+TensorFold reference archive, under the retained Apache-2.0 license at
+`python-reference/LICENSE`. They are upstream source, not newly authored kernels.
+`tools/dsv41-tp3/tp3_triton_kernels.py` identifies its TP3 compatibility adaptation
+and upstream arithmetic. The rebuild/comparison tooling preserves those credits.
+
 ## 1.2.8 prefill assets
 
 The added content-addressed source objects and `tensorfold/prefill-128/` retain

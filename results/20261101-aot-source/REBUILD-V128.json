@@ -1,0 +1,15 @@
+{
+  "recipe": "v128",
+  "target": "cuda:121:32",
+  "triton": "3.8.0",
+  "entries": 566,
+  "unique_rebuilt_cubins": 469,
+  "cubin_matches": 24,
+  "recorded_ptx_checks": 212,
+  "recorded_ptx_matches": 212,
+  "mismatched_entries": 542,
+  "gpu_execution": false,
+  "historical_debug_paths": true,
+  "status": "REBUILD_DIFFERS_NOT_GPU_QUALIFIED",
+  "method": "Rehash and recompare existing source-build artifacts; no recompilation or GPU execution"
+}

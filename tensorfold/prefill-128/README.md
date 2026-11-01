@@ -1,5 +1,8 @@
 # AF / 1.2.8 prefill kernels
 
+[Source rebuild commands for all base and 24 added attention variants](../../docs/AOT-SOURCE-REBUILD.md)
+are now available, with explicit cases and PTX/binary comparisons.
+
 The archive contains the exact measured merged AOT manifest, 19 new cubins
 (24 masked-attention launch entries), and the EXL3 prompt MoE auxiliary cubin.
 All original AOT entries are retained; original cubins come from the existing
