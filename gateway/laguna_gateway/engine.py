@@ -2537,6 +2537,7 @@ class GatewayEngine:
         request_body: dict[str, Any],
         *,
         _context_retry: bool = False,
+        vision_dispatch=None,
     ) -> ResponsesStreamHandle:
         prepared = await self.prepare_responses(
             request_body,
@@ -2580,6 +2581,8 @@ class GatewayEngine:
                 if self.settings.deepseek_v41_vllm:
                     upstream_body["stream_options"] = {"include_usage": True}
                 self._apply_thinking_budget(upstream_body, upstream_body["max_tokens"])
+                if vision_dispatch is not None and 'thinking_budget' in prepared.body:
+                    upstream_body['thinking_budget'] = prepared.body['thinking_budget']
                 path = "/v1/chat/completions"
             else:
                 upstream_body = upstream_responses_body
@@ -2594,12 +2597,19 @@ class GatewayEngine:
                     else "request_id"
                 )
                 upstream_body[request_id_field] = upstream_request_id
+            if vision_dispatch is not None:
+                upstream_request_id = vision_dispatch['request_id']
+                upstream_body['request_id'] = upstream_request_id
+                upstream_body['dgx_vision_control'] = vision_dispatch
+            else:
+                upstream_body.pop('dgx_vision_control', None)
             request = client.build_request("POST", path, json=upstream_body)
             started = time.monotonic()
             request_submitted = True
             response = await client.send(request, stream=True)
             if (
                 self.settings.responses_context_retry
+                and vision_dispatch is None
                 and not _context_retry
                 and response.status_code == 400
             ):

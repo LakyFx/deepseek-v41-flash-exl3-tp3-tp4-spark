@@ -267,12 +267,12 @@ def test_contaminated_history_stops_before_gpu_but_clean_main_remains_max(api):
     assert fake.calls[-1]['reasoning_effort']=='max' and not fake.calls[-1].get('stream')
 
 
-def test_agent_tools_and_image_history_bypass_job_path(api):
+def test_agent_tools_and_image_history_share_job_path(api):
     client,fake,_=api
     request=body(tools=[{'type':'function','function':{'name':'inspect','parameters':{'type':'object'}}}])
     request.pop('reasoning_effort')
     response=client.post('/v1/chat/completions',json=request)
-    assert response.status_code==200 and 'x-dgx-vision-job-id' not in response.headers
+    assert response.status_code==200 and 'x-dgx-vision-job-id' in response.headers
     assert fake.calls[-1]['reasoning_effort']=='max'
     request=body()
     request['messages'] += [{'role':'assistant','content':'Prior'},{'role':'user','content':'Continue'}]

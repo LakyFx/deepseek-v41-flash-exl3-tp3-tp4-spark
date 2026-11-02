@@ -1,7 +1,7 @@
-"""Durable standalone-image jobs behind the existing Chat Completions API.
+"""Durable image jobs behind Chat Completions and Responses.
 
-Enabled only by DGX_VISION_JOBS_DB. No agent/tool/image-history requests are
-rerouted. Accepted work outlives an HTTP client; interrupted dispatch never
+Enabled only by DGX_VISION_JOBS_DB. Image-bearing agent turns retain their full
+history and tool protocol. Accepted work outlives an HTTP client; interrupted dispatch never
 replays. An owned UNKNOWN reserves its slot until a native termination receipt;
 legacy dispatches without that contract retain operator reconciliation.
 """
@@ -22,6 +22,7 @@ from .vision_control import seconds, confirms_termination
 
 log = logging.getLogger(__name__)
 TERMINAL = {'succeeded', 'failed', 'unknown'}
+API_FIELD = '_dgx_vision_api'
 
 
 def repeated(text):
@@ -36,7 +37,7 @@ def repeated(text):
 
 
 def contaminated(body):
-    for message in body.get('messages') or []:
+    for message in body.get('messages') or body.get('input') or []:
         if isinstance(message, dict) and message.get('role') == 'assistant':
             for field in ('reasoning', 'reasoning_content'):
                 value = message.get(field)
@@ -63,6 +64,8 @@ class AdmissionError(ValueError):
 
 
 class Ledger:
+    attempt_limit = 0
+
     def __init__(self, path, clock=time.time, controlled=False):
         self.path, self.clock = Path(path), clock
         self.controlled = controlled
@@ -80,6 +83,8 @@ class Ledger:
             db.execute('CREATE INDEX IF NOT EXISTS jobs_lookup ON jobs(owner,fingerprint,created)')
             db.execute('''CREATE TABLE IF NOT EXISTS vision_dispatch (
                 job_id TEXT PRIMARY KEY, body TEXT NOT NULL, receipt TEXT)''')
+        from .vision_storage import VisionStorage
+        self.storage = VisionStorage(self)
 
     @contextmanager
     def connect(self):
@@ -89,6 +94,8 @@ class Ledger:
             with db:
                 yield db
         finally:
+            if db.total_changes and hasattr(self, 'storage'):
+                self.storage.cached = None
             db.close()
 
     def accept(self, owner, body, key=None, *, generation_body=None):
@@ -115,19 +122,23 @@ class Ledger:
                 raise AdmissionError('Backend termination awaits confirmation; do not resubmit accepted jobs')
             if db.execute("SELECT count(*) FROM jobs WHERE state IN ('queued','running')").fetchone()[0] >= 64:
                 raise AdmissionError('Vision queue is full; no new job accepted')
-            count, size = db.execute('SELECT count(*), coalesce(sum(length(body)+coalesce(length(result),0)),0) FROM jobs').fetchone()
-            if count >= 4096 or size + len(raw.encode()) > 512*1024*1024:
-                raise AdmissionError('Retained vision ledger reached its storage limit; operator review required')
+            if not self.storage.make_room(db, self.storage.charge(len(raw.encode())), new_job=True):
+                raise AdmissionError('Vision active storage has no reserved capacity; no job accepted. '
+                                     'Check vision_jobs.storage in /health; active work remains protected.')
             db.execute('INSERT INTO jobs VALUES (?,?,?,?,?,?,?,?,NULL,NULL)',
                        (identity,owner,fingerprint,'queued',now,now,now+self.queue_timeout,raw))
         return identity, True
 
-    def read(self, identity, owner=None):
+    def read(self, identity, owner=None, *, include_body=True):
         with self.connect() as db:
             row = db.execute('SELECT * FROM jobs WHERE id=?', (identity,)).fetchone()
         if row is None or (owner is not None and row['owner'] != owner):
             return None
-        return dict(row)
+        row = dict(row)
+        if include_body and not row['body']:
+            with self.connect() as db:
+                row['body'] = self.storage.hydrate(db, identity)['job']
+        return row
 
     def recover(self):
         with self.connect() as db:
@@ -239,7 +250,7 @@ class Ledger:
                        (self.clock(),json.dumps(result),identity))
 
     def status(self, identity, owner):
-        row = self.read(identity,owner)
+        row = self.read(identity,owner,include_body=False)
         if row is None:
             return None
         if row['state']=='queued' and row['deadline']<=self.clock():
@@ -249,7 +260,7 @@ class Ledger:
                 db.execute("UPDATE jobs SET state='failed',updated=?,result=? WHERE id=? AND state='queued' AND deadline<=?",
                            (self.clock(),json.dumps(error('queue_deadline','Job expired before dispatch')),
                             identity,self.clock()))
-            row=self.read(identity,owner)
+            row=self.read(identity,owner,include_body=False)
         return {'job_id':identity,'status':row['state'],'accepted':True,'retryable':False,
                 'elapsed_seconds':round(max(0,self.clock()-row['created']),3),
                 'deadline':row['deadline'],'backend_request_id':row['backend_id'],
@@ -259,6 +270,10 @@ class Ledger:
     def counts(self):
         with self.connect() as db:
             return dict(db.execute('SELECT state,count(*) FROM jobs GROUP BY state').fetchall())
+
+    def capacity(self):
+        with self.connect() as db:
+            return self.storage.status(db)
 
 
 class Jobs:
@@ -300,7 +315,7 @@ class Jobs:
     def release_confirmed_media(self):
         if not self.recovery_enabled: return
         for key,release in list(self.media_holds.items()):
-            attempts=self.ledger.attempts(key[0])
+            attempts=self.ledger.attempts(key[0],include_body=False)
             a=next((a for a in attempts if a['number']==key[1]),None)
             legacy_done=False
             if key[1]==0:
@@ -328,6 +343,9 @@ class Jobs:
             import fcntl
             fcntl.flock(self.lease,fcntl.LOCK_EX|fcntl.LOCK_NB)
         self.ledger.recover()
+        # Finish the initial bounded sweep before declaring the worker ready.
+        # Subsequent sweeps have their own task and never delay dispatch.
+        await asyncio.to_thread(self.ledger.storage.maintenance)
         await self.restore_media_holds()
         self.runner = asyncio.create_task(self.run())
 
@@ -344,21 +362,40 @@ class Jobs:
                 'max_tokens':self.thinking_budget+self.final_answer_tokens}
 
     def generation_body(self, body):
-        # Jobs admits standalone image questions only. Main-agent tool/history
-        # requests never reach this method; their text reasoning is independent.
-        if not self.final_answer_tokens or (not self.force_reasoning and body.get('reasoning_effort') != 'medium'):
+        # The same operator-selected vision profile applies to every image turn.
+        # Text-only agent requests do not enter Jobs.
+        responses = body.get(API_FIELD) == 'responses'
+        effort = (body.get('reasoning') or {}).get('effort') if responses else body.get('reasoning_effort')
+        if not self.final_answer_tokens or (not self.force_reasoning and effort != 'medium'):
             return body
         result = dict(body)
         result.pop('max_completion_tokens', None)
-        result['max_tokens'] = self.thinking_budget + self.final_answer_tokens
+        result['max_output_tokens' if responses else 'max_tokens'] = self.thinking_budget + self.final_answer_tokens
         result['thinking_budget'] = self.thinking_budget
         if self.force_reasoning:
-            result['reasoning_effort'] = self.reasoning_effort
+            result.pop('thinking', None)
+            result.pop('thinking_token_budget', None)
+            kwargs = dict(result.get('chat_template_kwargs') or {})
+            for name in ('enable_thinking','thinking_mode','thinking','reasoning_effort'):
+                kwargs.pop(name,None)
+            if kwargs: result['chat_template_kwargs'] = kwargs
+            else: result.pop('chat_template_kwargs',None)
+            if responses:
+                result.pop('reasoning_effort', None)
+                result['reasoning'] = {**(body.get('reasoning') or {}), 'effort': self.reasoning_effort}
+            else:
+                result.pop('reasoning', None)
+                result['reasoning_effort'] = self.reasoning_effort
         return result
 
-    def accept(self, owner, body, key=None):
+    def accept(self, owner, body, key=None, *, api='chat_completions'):
         if self.runner.done():
             raise AdmissionError('Vision worker stopped; no job accepted')
+        if api not in {'chat_completions', 'responses'}:
+            raise AdmissionError('Unsupported image API')
+        body = dict(body)
+        body.pop(API_FIELD, None)  # Never trust a client-selected internal protocol.
+        if api == 'responses': body[API_FIELD] = api
         identity, created = self.ledger.accept(owner,body,key, generation_body=self.generation_body(body))
         self.wake.set()
         log.info('Vision job %s %s',identity,'accepted; waiting' if created else 'existing; no resubmission')
@@ -366,6 +403,7 @@ class Jobs:
 
     async def run(self):
         workers = [asyncio.create_task(self.work()) for _ in range(self.ledger.max_running)]
+        workers.append(asyncio.create_task(self.maintain_storage()))
         if self.control is not None:
             workers.append(asyncio.create_task(self.reconcile_unknown()))
         try:
@@ -374,6 +412,11 @@ class Jobs:
             for worker in workers:
                 worker.cancel()
             await asyncio.gather(*workers, return_exceptions=True)
+
+    async def maintain_storage(self):
+        while True:
+            await asyncio.sleep(60)
+            await asyncio.to_thread(self.ledger.storage.maintenance)
 
     async def work(self):
         while True:
@@ -493,7 +536,7 @@ def job_headers(identity):
             'X-Should-Retry':'false','Cache-Control':'no-store'}
 
 
-async def stream_result(jobs, identity, principal, heartbeat):
+async def stream_result(jobs, identity, principal, heartbeat, *, api='chat_completions'):
     """SSE comments are transport progress, never model/assistant messages."""
     task = asyncio.create_task(jobs.wait(identity,principal))
     try:
@@ -505,14 +548,30 @@ async def stream_result(jobs, identity, principal, heartbeat):
                 break
         result = task.result()
         if result['status_code'] != 200:
+            if api == 'responses':
+                detail = result['data']['error']
+                failure = {'id':'resp_'+identity,'object':'response','status':'failed',
+                           'output':[],'error':detail}
+                yield ('data: '+json.dumps({'type':'response.failed','sequence_number':0,'response':failure})+'\n\n').encode()
+                yield b'data: [DONE]\n\n'
+                return
             yield ('data: '+json.dumps(result['data'])+'\n\n').encode()
         else:
             data = result['data']
+            if data.get('object') == 'response':
+                from .vision_protocol import response_events
+                for frame in response_events(data):
+                    yield frame
+                yield b'data: [DONE]\n\n'
+                return
             chunk = {k:data[k] for k in ('id','created','model')}
+            delta = dict(data['choices'][0]['message'])
+            if delta.get('tool_calls'):
+                delta['tool_calls'] = [{'index':i,**call} for i,call in enumerate(delta['tool_calls'])]
             chunk.update(object='chat.completion.chunk', choices=[{'index':0,
-                'delta':data['choices'][0]['message'],'finish_reason':None}])
+                'delta':delta,'finish_reason':None}])
             yield ('data: '+json.dumps(chunk,ensure_ascii=False)+'\n\n').encode()
-            chunk['choices'] = [{'index':0,'delta':{},'finish_reason':'stop'}]
+            chunk['choices'] = [{'index':0,'delta':{},'finish_reason':data['choices'][0]['finish_reason']}]
             yield ('data: '+json.dumps(chunk)+'\n\n').encode()
             if data.get('usage'):
                 chunk.update(choices=[],usage=data['usage'])

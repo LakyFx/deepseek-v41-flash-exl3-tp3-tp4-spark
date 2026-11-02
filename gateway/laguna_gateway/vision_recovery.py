@@ -2,14 +2,14 @@
 
 No retry until a complete terminal stream or a native cancellation receipt.
 The original request, sampling and output budgets remain immutable. Recovery adds
-one short user instruction, never the failed reasoning. No tool/history rerouting.
+one short system instruction, never the failed reasoning or a synthetic tool result.
 """
 import asyncio
 import copy
 import json
 import logging
 
-from .vision_jobs import Ledger, error
+from .vision_jobs import Ledger, AdmissionError, error, API_FIELD, standalone
 from .vision_control import confirms_termination
 
 log=logging.getLogger(__name__)
@@ -19,6 +19,8 @@ REPAIR_NOTE=('Please complete the same image-analysis request. A previous genera
              'produce a usable final answer. Inspect the image afresh, avoid repeating planning '
              'phrases, and give a clear final answer addressing the original question. '
              'State any visual uncertainty explicitly.')
+AGENT_REPAIR_NOTE=(REPAIR_NOTE+' Preserve the original agent instructions and tool-result history. '
+                  'Return a complete declared tool call if the next step requires a tool; never invent its result.')
 
 class RecoveryRequired(Exception):
     def __init__(self,code): self.code=code; super().__init__(code)
@@ -26,6 +28,14 @@ class RecoveryRequired(Exception):
 def repair_body(raw):
     body=json.loads(raw)
     body=copy.deepcopy(body)
+    if body.get(API_FIELD) == 'responses':
+        # Keep input/function_call_output pairing and the entire user prefix
+        # byte-for-byte. A repair must not append a user turn after a tool result.
+        body['instructions'] = (body.get('instructions') or '') + '\n\n' + AGENT_REPAIR_NOTE
+        return json.dumps(body,ensure_ascii=False,separators=(',',':'))
+    if not standalone(body):
+        body['messages'] = [*body['messages'], {'role':'system','content':AGENT_REPAIR_NOTE}]
+        return json.dumps(body,ensure_ascii=False,separators=(',',':'))
     for message in reversed(body['messages']):
         if message['role']=='user':
             if isinstance(message['content'],list):
@@ -45,7 +55,7 @@ def failure(identity,code,status=422):
     }
     return {'status_code':status,'headers':{},'data':error(code,messages.get(code,'Image analysis failed.'),identity)}
 
-def code_of(result): return result.get('data',{}).get('error',{}).get('code')
+def code_of(result): return (result.get('data',{}).get('error') or {}).get('code')
 
 class RecoveryLedger(Ledger):
     """Additive schema. Legacy dispatch remains the current-attempt compatibility view.
@@ -54,6 +64,7 @@ class RecoveryLedger(Ledger):
     callbacks. Original jobs.body is never rewritten. Legacy active/unknown work
     is reconciled by the existing contract; it is not silently replayed.
     """
+    attempt_limit = 2
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         if not self.controlled: raise ValueError('Vision recovery requires native cancellation control')
@@ -63,9 +74,15 @@ class RecoveryLedger(Ledger):
                 body TEXT NOT NULL, deadline REAL NOT NULL, dispatch TEXT, receipt TEXT,
                 result TEXT, created REAL NOT NULL, updated REAL NOT NULL,
                 PRIMARY KEY(job_id,number))''')
-    def attempts(self,identity):
+    def attempts(self,identity, *, include_body=True):
         with self.connect() as db:
-            return [dict(r) for r in db.execute('SELECT * FROM vision_attempts WHERE job_id=? ORDER BY number',(identity,))]
+            rows = [dict(r) for r in db.execute('SELECT * FROM vision_attempts WHERE job_id=? ORDER BY number',(identity,))]
+            if include_body and any(not r['body'] for r in rows):
+                archived = self.storage.hydrate(db, identity)
+                for row in rows:
+                    if not row['body']:
+                        row['body'] = archived['attempts'][str(row['number'])]
+            return rows
     def accept(self,owner,body,key=None,*,generation_body=None):
         identity,created=super().accept(owner,body,key,generation_body=generation_body)
         if created: return identity,created
@@ -80,6 +97,11 @@ class RecoveryLedger(Ledger):
             d=db.execute('SELECT body FROM vision_dispatch WHERE job_id=?',(identity,)).fetchone()
             if (row['state']=='failed' and not old and code_of(result) in REPAIRABLE and
                     row['deadline']>self.clock() and d and not json.loads(d['body']).get('pending')):
+                retained = self.storage.rows(db)[identity]['used']
+                extra = max(0, self.storage.charge(len(row['body'].encode()))-retained)
+                if not self.storage.make_room(db, extra):
+                    raise AdmissionError('Existing image job retained; storage cannot reserve its recovery. '
+                                         'Keep this job ID: '+identity)
                 db.execute('INSERT INTO vision_attempts VALUES (?,?,?,?,?,?,NULL,?,?,?)',
                     (identity,1,'unknown',row['body'],row['deadline'],d['body'],json.dumps(result),row['created'],self.clock()))
                 db.execute("UPDATE jobs SET state='unknown',updated=? WHERE id=?",(self.clock(),identity))
@@ -99,11 +121,9 @@ class RecoveryLedger(Ledger):
             if number>2: raise ValueError('Recovery attempt cap exceeded')
             deadline=old['deadline'] if old else now+self.job_timeout
             body=repair_body(row['body']) if old else row['body']
-            used=db.execute('SELECT coalesce(sum(length(cast(body as blob))+coalesce(length(cast(result as blob)),0)),0) FROM jobs').fetchone()[0]
-            used+=db.execute('SELECT coalesce(sum(length(cast(body as blob))+coalesce(length(cast(result as blob)),0)+coalesce(length(dispatch),0)+coalesce(length(receipt),0)),0) FROM vision_attempts').fetchone()[0]
-            # Reserve two retained result copies; no surprise unbounded ledger
-            # growth when image bodies are large or a retry adds a second body.
-            if used+len(body.encode())+8*1024*1024>512*1024*1024:
+            # Admission already reserves the original plus BOTH physical body
+            # copies and results. The same accounting applies at dispatch.
+            if not self.storage.make_room(db):
                 db.execute("UPDATE jobs SET state='failed',updated=?,result=? WHERE id=?",
                     (now,json.dumps(failure(row['id'],'vision_ledger_capacity',503)),row['id']))
                 return None
@@ -177,24 +197,24 @@ class RecoveryLedger(Ledger):
     def unknown(self):
         rows=super().unknown()
         for row in rows:
-            attempts=self.attempts(row['id'])
+            attempts=self.attempts(row['id'],include_body=False)
             if attempts: row['attempt']=attempts[-1]['number']
         return rows
     def confirmed(self,identity,receipt,code='vision_interrupted'):
-        attempts=self.attempts(identity)
+        attempts=self.attempts(identity,include_body=False)
         if not attempts: return super().confirmed(identity,receipt,code)
         a=attempts[-1]
         result=json.loads(a['result']) if a['result'] else failure(identity,code)
         return self.resolve(identity,a['number'],result,receipt)
     def not_dispatched(self,identity,code,attempt=None):
-        attempts=self.attempts(identity)
+        attempts=self.attempts(identity,include_body=False)
         if not attempts: return super().not_dispatched(identity,code)
         a=attempts[-1]
         if a['number']!=attempt or a['state']!='unknown': return False
         result=json.loads(a['result']) if a['result'] else failure(identity,code)
         return self.resolve(identity,a['number'],result,{'kind':'not_dispatched'})
     def awaiting_repair(self,identity):
-        attempts=self.attempts(identity)
+        attempts=self.attempts(identity,include_body=False)
         if not attempts: return False
         a=attempts[-1]
         result=json.loads(a['result']) if a['result'] else failure(identity,'vision_interrupted')
@@ -202,7 +222,7 @@ class RecoveryLedger(Ledger):
     def status(self,identity,owner):
         status=super().status(identity,owner)
         if status is not None:
-            attempts=self.attempts(identity)
+            attempts=self.attempts(identity,include_body=False)
             status.update(attempts=len(attempts),max_attempts=2,
                 recovery_pending=status['status'] in {'queued','unknown'} and bool(attempts))
         return status

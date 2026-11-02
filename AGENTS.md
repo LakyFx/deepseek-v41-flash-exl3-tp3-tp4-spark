@@ -1,3 +1,13 @@
+# Current TP4: 4.0.3
+
+Use docs/DS41F-4.0.3.md, tensorfold/tp4/v403/profile.json and source recipe v403.
+Stage with tensorfold.tp4.v403.build; launch with tensorfold.tp4.v403.launch.
+Upgrade all four ranks together. Preserve balanced401a-v1 weights, C16/R48/9M,
+3.5 GiB checkpoints, 8K compute and 2K physical quantum, smart KV/speculation
+and MAX/8K/32K vision. Keep the graph-statistics parent writable by rank0.
+Source-only publication does not authorize a live restart or benchmark.
+The older benchmark panel remains explicitly labeled 4.0.2.
+
 # Current TP4: 4.0.2 (measured as combined 4.0.1a)
 
 Use docs/DS41F-4.0.2.md, tensorfold/tp4/v402/profile.json and source recipe v402.

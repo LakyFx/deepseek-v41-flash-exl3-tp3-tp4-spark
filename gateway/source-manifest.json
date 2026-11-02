@@ -1,6 +1,6 @@
 {
   "schema": "ds41f.gateway-source/v1",
-  "source_revision": "d741768dd93316e323514852d77e918886d31bf5",
+  "source_revision": "6af7a7ca07be7def6f8e63c60e6ee15291fae949",
   "modules": {
     "__init__.py": {
       "production_sha256": "c86d50d5a8404a3be0ce18898bb095fa4924937b9c8a2a68a926a95880d4f92a",
@@ -8,8 +8,8 @@
       "adaptation": null
     },
     "app.py": {
-      "production_sha256": "7c28d685b1106d7257281d1bebf6dac78d37d6eb1f25a58ca51700de9435ceb4",
-      "public_sha256": "7c28d685b1106d7257281d1bebf6dac78d37d6eb1f25a58ca51700de9435ceb4",
+      "production_sha256": "204e96ac43d8f3ae75b5c8523c4a70693ecc3d5f6325156c19828c31102719c9",
+      "public_sha256": "204e96ac43d8f3ae75b5c8523c4a70693ecc3d5f6325156c19828c31102719c9",
       "adaptation": null
     },
     "auxiliary_vision.py": {
@@ -58,14 +58,14 @@
       "adaptation": null
     },
     "engine.py": {
-      "production_sha256": "49db58218f0f1ffba7900a99c249aa56aaf3a85229978f2bc299f0ca42b1e868",
-      "public_sha256": "49db58218f0f1ffba7900a99c249aa56aaf3a85229978f2bc299f0ca42b1e868",
+      "production_sha256": "36492653b1032582695ea5d7e4b34ff59bb73cbf59da4022e643a7ffc4959497",
+      "public_sha256": "36492653b1032582695ea5d7e4b34ff59bb73cbf59da4022e643a7ffc4959497",
       "adaptation": null
     },
     "lan_bridge.py": {
       "production_sha256": "adb88ce049635c97133c0f9c747345e514b6e9b65f56ec5e55a68afe771a91f5",
       "public_sha256": "7dd7587ff9ec2049ef301c6259fe8f60bfe5e1cba0e8f67dfd846ebc01ca2052",
-      "adaptation": "default upstream changed to loopback"
+      "adaptation": "Operator-owned optional bridge default replaced with loopback; logic unchanged."
     },
     "media_admission.py": {
       "production_sha256": "8ed780b895b4f95c251b3006e0c0c36f2a96df8fd12226bc59b3e5b1a395fee5",
@@ -120,7 +120,7 @@
     "tailscale_bridge.py": {
       "production_sha256": "21d1f4bb78f58aa19d649dab8566bb512b9aba2ae5ec24c02973e41d92ce7bb1",
       "public_sha256": "8c7d71b121806e9d40387321109b98d1a13269bf51b7489363392d80aebf8fad",
-      "adaptation": "default upstream changed to loopback"
+      "adaptation": "Operator-owned optional bridge default replaced with loopback; logic unchanged."
     },
     "transport.py": {
       "production_sha256": "ebac57d19cfab086892c0a1ac1a5f7046a7cd13c4639dee7263bc3b997218b1f",
@@ -143,8 +143,8 @@
       "adaptation": null
     },
     "vision_jobs.py": {
-      "production_sha256": "8c99a81917dc85088b09a18fc9ec9769c6e147e5a20b31ad96fcda69b9aaab60",
-      "public_sha256": "8c99a81917dc85088b09a18fc9ec9769c6e147e5a20b31ad96fcda69b9aaab60",
+      "production_sha256": "2ff779f61643f6d4bb394ddf9833c81618339451acd9bf3fb1134514fee1dea4",
+      "public_sha256": "2ff779f61643f6d4bb394ddf9833c81618339451acd9bf3fb1134514fee1dea4",
       "adaptation": null
     },
     "vision_jobs_operator.py": {
@@ -153,16 +153,37 @@
       "adaptation": null
     },
     "vision_recovery.py": {
-      "production_sha256": "deba302b72037df09fb30c9288a93c90f4e321dbe3fa59f70bf7a3abf4accf23",
-      "public_sha256": "deba302b72037df09fb30c9288a93c90f4e321dbe3fa59f70bf7a3abf4accf23",
+      "production_sha256": "90ad50ea9c41d60c5a3b94b53c335e3a7ddd40ffcab5f28f59f8e9cde5fe9f4b",
+      "public_sha256": "90ad50ea9c41d60c5a3b94b53c335e3a7ddd40ffcab5f28f59f8e9cde5fe9f4b",
       "adaptation": null
     },
     "vision_result.py": {
-      "production_sha256": "4553e7b55d9c13d75d6ac9eae41600096bfd27b7a7ac537085ae7b7df68a342c",
-      "public_sha256": "4553e7b55d9c13d75d6ac9eae41600096bfd27b7a7ac537085ae7b7df68a342c",
+      "production_sha256": "26997b6cf565688b95cae58f1af335904a5a3a29cc950c55ec37638a53997705",
+      "public_sha256": "26997b6cf565688b95cae58f1af335904a5a3a29cc950c55ec37638a53997705",
+      "adaptation": null
+    },
+    "test_media_admission.py": {
+      "production_sha256": "4a1a3176e990959636efbd5cf484d2eeb8e6a5d0f86d95a9ce14522da27945eb",
+      "public_sha256": "4a1a3176e990959636efbd5cf484d2eeb8e6a5d0f86d95a9ce14522da27945eb",
+      "adaptation": null
+    },
+    "test_media_history.py": {
+      "production_sha256": "003955fde54adfe1fb2143562f66c8c5a71bf682c4c9d5263d2c6f0d6516c72e",
+      "public_sha256": "003955fde54adfe1fb2143562f66c8c5a71bf682c4c9d5263d2c6f0d6516c72e",
+      "adaptation": null
+    },
+    "vision_protocol.py": {
+      "production_sha256": "abd0bf6e04859545970a6a02acc0b8a7dfc3c1b75bb3a1c981b03970c701f1bb",
+      "public_sha256": "abd0bf6e04859545970a6a02acc0b8a7dfc3c1b75bb3a1c981b03970c701f1bb",
+      "adaptation": null
+    },
+    "vision_storage.py": {
+      "production_sha256": "4dd43966455b2874e0efc8dec8c06f6e37bd60809350a84d449b01b357dae63a",
+      "public_sha256": "4dd43966455b2874e0efc8dec8c06f6e37bd60809350a84d449b01b357dae63a",
       "adaptation": null
     }
   },
-  "production_release": "4.0.1a",
-  "release": "4.0.2"
+  "production_release": "4.0.3",
+  "release": "4.0.3",
+  "recipe_version": "4.0.3"
 }

@@ -1,0 +1,48 @@
+{
+  "version": "4.0.3",
+  "source_revision": "6af7a7ca07be7def6f8e63c60e6ee15291fae949",
+  "scope": "9h21m observed mixed production workflow, not a paired benchmark",
+  "workflow": {
+    "input": 533618285,
+    "computed": 22501955.0,
+    "cached": 511116330.0,
+    "output": 4153732,
+    "finished": 5266.0,
+    "prefix_hit_percent": 95.78313644181065,
+    "spec_acceptance_percent": 79.77488097502429,
+    "max_concurrency": 13,
+    "offline_samples": 0,
+    "kv_moves": 83,
+    "adaptive_retention_decisions": 501
+  },
+  "graphs": {
+    "hits": 1694951,
+    "misses": 942,
+    "reuse_percent": 99.94445404279634,
+    "resident": 338,
+    "evictions": 0,
+    "control_seconds": 3.904595003,
+    "capture_host_seconds": 5.989057183,
+    "minimum_sampled_available_gib": 3.459228515625,
+    "eviction_pressure_exercised": false
+  },
+  "vision": {
+    "production_jobs": 33,
+    "succeeded": 33,
+    "median_seconds": 239.76671838760376,
+    "maximum_seconds": 662.4515519142151,
+    "incomplete_results": 0,
+    "nonterminal_count": 0,
+    "expired_payload_remaining_bytes": 0,
+    "archive_payload_bytes": 0
+  },
+  "model_restarts": 0,
+  "native_cuda_oom_fatal_errors_found": 0,
+  "known_limitations": {
+    "unsupported_structured_output_http400": 304,
+    "explicit_reason_count": 303,
+    "same_explicit_errors_in_previous_402_window": 458,
+    "client_disconnects": 14,
+    "note": "Structured output remains unsupported; these errors reach callers. Not introduced by 4.0.3. No caller fallback proven."
+  }
+}

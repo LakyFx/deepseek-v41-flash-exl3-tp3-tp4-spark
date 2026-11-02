@@ -1,0 +1,20 @@
+{
+  "version": "4.0.3",
+  "source_revision": "6af7a7ca07be7def6f8e63c60e6ee15291fae949",
+  "scope": "Offline public package, release boundary and existing gateway regression tests; production GPU qualification is separately documented.",
+  "passed": 258,
+  "skipped": 1,
+  "failed": 0,
+  "seconds": 27.979,
+  "model_requests": 0,
+  "services_touched": false,
+  "environment": {
+    "python": "3.11.9",
+    "dependencies": {
+      "pytest": "9.1.0",
+      "fastapi": "0.137.2",
+      "httpx": "0.28.1",
+      "anyio": "4.12.1"
+    }
+  }
+}

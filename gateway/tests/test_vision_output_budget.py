@@ -61,15 +61,15 @@ def test_policy_changes_never_resubmit_previously_accepted_input(tmp_path):
     assert json.loads(ledger.read(new)['body'])['max_tokens'] == 35840
 
 
-def test_medium_image_history_does_not_receive_standalone_override(api):
+def test_medium_image_history_receives_the_same_vision_override(api):
     client, fake, _ = api
     request = body(thinking_budget=3072)
     request['messages'] += [{'role':'assistant', 'content':'Prior observation'},
                             {'role':'user', 'content':'Continue the conversation'}]
     result = client.post('/v1/chat/completions', json=request)
     assert result.status_code == 200
-    assert 'x-dgx-vision-job-id' not in result.headers
-    assert fake.calls[-1]['max_tokens'] == 6144
+    assert 'x-dgx-vision-job-id' in result.headers
+    assert fake.calls[-1]['max_tokens'] == 35840
     assert fake.calls[-1]['thinking_budget'] == 3072
 
 

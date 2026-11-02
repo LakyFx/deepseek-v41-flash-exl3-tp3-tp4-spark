@@ -50,7 +50,7 @@ def test_explicit_jobs_endpoint_persists_effective_profile_before_dispatch(api):
 
 
 @pytest.mark.parametrize('kind', ['text', 'image_history', 'ordinary_image'])
-def test_main_task_keeps_its_explicit_reasoning_and_output_budget(api, kind):
+def test_agent_images_share_vision_budget_but_text_keeps_explicit_budget(api, kind):
     client, fake, _ = api
     request = body(reasoning_effort='max', thinking_budget=16384, max_tokens=131072)
     if kind == 'text':
@@ -62,10 +62,10 @@ def test_main_task_keeps_its_explicit_reasoning_and_output_budget(api, kind):
         request['tool_choice'] = 'none'  # Same ordinary route as the live A/B.
     response = client.post('/v1/chat/completions', json=request)
     assert response.status_code == 200
-    assert 'x-dgx-vision-job-id' not in response.headers
+    assert ('x-dgx-vision-job-id' in response.headers) == (kind != 'text')
     assert fake.calls[0]['reasoning_effort'] == 'max'
-    assert fake.calls[0]['thinking_budget'] == 16384
-    assert fake.calls[0]['max_tokens'] == 131072
+    assert fake.calls[0]['thinking_budget'] == (16384 if kind == 'text' else 8192)
+    assert fake.calls[0]['max_tokens'] == (131072 if kind == 'text' else 40960)
 
 
 def test_profile_update_does_not_replay_old_accepted_input(tmp_path):

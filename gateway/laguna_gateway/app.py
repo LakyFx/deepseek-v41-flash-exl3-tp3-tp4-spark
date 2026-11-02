@@ -28,6 +28,7 @@ from .auxiliary_vision import (
     apply_auxiliary_vision_policy,
 )
 from .vision_jobs import Jobs, AdmissionError, standalone, contaminated, owner, error, job_headers, stream_result
+from .media_admission import has_images
 
 logger = logging.getLogger(__name__)
 
@@ -614,11 +615,14 @@ def create_app(
         jobs = request.app.state.vision_jobs
         if jobs is not None:
             states = jobs.ledger.counts()
+            storage = jobs.ledger.capacity()
+            blocked = jobs.ledger.blocked() or not storage['available']
             payload['vision_jobs'] = {'enabled':True,'worker_alive':not jobs.runner.done(),
                 'states':states,'automatic_replay':False,
-                'ready':not jobs.runner.done() and not jobs.ledger.blocked(),
-                'blocked':jobs.ledger.blocked(),
-                'degraded':bool(states.get('unknown',0)),
+                'ready':not jobs.runner.done() and not blocked,
+                'blocked':blocked,
+                'degraded':bool(states.get('unknown',0)) or not storage['available'],
+                'storage':storage,
                 'termination_pending':states.get('unknown',0),
                 'automatic_reconciliation':jobs.control is not None,
                 'queue_timeout_seconds':jobs.ledger.queue_timeout,
@@ -754,12 +758,27 @@ def create_app(
             media_type=upstream.headers.get("content-type", "application/json"),
         )
 
-    def _accept_vision(request, body):
+    def _accept_vision(request, body, *, api='chat_completions'):
         jobs = request.app.state.vision_jobs
         key = request.headers.get('Idempotency-Key') or request.headers.get('X-Client-Request-Id')
         if key and len(key) > 256:
             raise AdmissionError('Idempotency key exceeds 256 characters')
-        return jobs.accept(owner(request),body,key)
+        if body.get('n', 1) != 1:
+            raise AdmissionError('Image jobs require n=1; no image generation was dispatched')
+        return jobs.accept(owner(request),body,key,api=api)
+
+    async def _vision_response(request, body, *, api='chat_completions'):
+        jobs = request.app.state.vision_jobs
+        try:
+            identity,_ = _accept_vision(request,body,api=api)
+        except AdmissionError as exc:
+            return JSONResponse(status_code=409,headers={'X-Should-Retry':'false'},content=error('job_not_accepted',str(exc)))
+        if bool(body.get('stream',False)):
+            return StreamingResponse(stream_result(jobs,identity,owner(request),resolved_settings.stream_heartbeat_seconds,api=api),
+                media_type='text/event-stream',headers={**job_headers(identity),'X-Accel-Buffering':'no'})
+        result = await _nonstream_until_disconnect(request,lambda:jobs.wait(identity,owner(request)))
+        return JSONResponse(status_code=result['status_code'],content=result['data'],
+            headers={**result['headers'],**job_headers(identity)})
 
     @app.post('/v1/vision/jobs')
     async def vision_job_submit(request: Request) -> Response:
@@ -801,20 +820,11 @@ def create_app(
             return JSONResponse(status_code=422,headers={'X-Should-Retry':'false'},
                 content=error('repetitive_reasoning_history',
                 'Assistant reasoning history contains a repetition loop. Stop retrying this context; start a clean conversation with a factual handoff.'))
-        if jobs is not None and standalone(body):
-            # Validate model/options before durable admission. Reasoning effort,
-            # image bytes and requested budgets retain the existing policy.
+        if jobs is not None and has_images(body):
+            # History and tool definitions remain intact; only this image turn
+            # receives the common vision profile and durable recovery contract.
             engine.normalise_request(body)
-            try:
-                identity,_ = _accept_vision(request,body)
-            except AdmissionError as exc:
-                return JSONResponse(status_code=409,headers={'X-Should-Retry':'false'},content=error('job_not_accepted',str(exc)))
-            if bool(body.get('stream',False)):
-                return StreamingResponse(stream_result(jobs,identity,owner(request),resolved_settings.stream_heartbeat_seconds),
-                    media_type='text/event-stream',headers={**job_headers(identity),'X-Accel-Buffering':'no'})
-            result = await _nonstream_until_disconnect(request,lambda:jobs.wait(identity,owner(request)))
-            return JSONResponse(status_code=result['status_code'],content=result['data'],
-                headers={**result['headers'],**job_headers(identity)})
+            return await _vision_response(request,body)
         if not bool(body.get("stream", False)):
             result = await _nonstream_until_disconnect(
                 request, lambda: engine.complete(body)
@@ -857,6 +867,14 @@ def create_app(
             return _openai_error(401, "invalid API key", "invalid_api_key")
         body = await _json_body(request)
         engine: GatewayEngine = request.app.state.engine
+        jobs = request.app.state.vision_jobs
+        if jobs is not None and has_images(body):
+            if contaminated(body):
+                return JSONResponse(status_code=422,headers={'X-Should-Retry':'false'},
+                    content=error('repetitive_reasoning_history',
+                        'Assistant reasoning history contains a repetition loop. Start a clean conversation with a factual handoff.'))
+            engine.normalise_responses_request(body)
+            return await _vision_response(request,body,api='responses')
         if not bool(body.get("stream", False)):
             result = await _nonstream_until_disconnect(
                 request, lambda: engine.complete_responses(body)

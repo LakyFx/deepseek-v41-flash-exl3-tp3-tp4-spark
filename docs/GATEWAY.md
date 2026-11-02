@@ -1,3 +1,7 @@
+**Current TP4 gateway package: 4.0.3.** Use the matching
+[4.0.3 profile and upgrade notes](DS41F-4.0.3.md#gateway-upgrade); the historical
+configuration and older release notes below remain available.
+
 # Production gateway 1.2.6 and durable vision jobs
 
 **TP4 4.0.0:** use the same package and retained private state with [the TP4 environment example](../tensorfold/tp4/gateway.env.example). Set `DS41F_GATEWAY_PROFILE` to the installed [TP4 JSON profile](../tensorfold/tp4/gateway-profile.json) for C16 and 8M reserved-token admission, routing text/vision to the four-rank head. Native KV is 9M. Plain capacity environment variables do not override the portable entrypoint's JSON. The existing TP3 settings remain unchanged. [Complete TP4 installation](DS41F-4.0.0.md).

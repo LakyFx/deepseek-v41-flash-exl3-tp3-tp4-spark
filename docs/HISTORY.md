@@ -1,3 +1,12 @@
+# 4.0.3 - 2 November 2026
+
+Production stability update: Smart CUDA Graph Controller, finite image-payload
+retention with unified accounting, durable image-bearing agent turns, bounded
+HTTP arenas and the ARM64 statistics-worker correction. Same weights, smart KV
+and speculation controllers, C16/R48/9M/3.5 GiB and kernels.
+[Recipe](DS41F-4.0.3.md) - [short qualification and live audit](BENCHMARK-4.0.3.md).
+All historical releases and measurements are retained below.
+
 # 4.0.2 - 1 November 2026
 
 Publish the qualified combined 4.0.1a production payload as 4.0.2. Retain

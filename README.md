@@ -1,4 +1,14 @@
-# TensorFold TP4 4.0.2 - DeepSeek 1017 on four DGX Sparks
+# TensorFold TP4 4.0.3 - DeepSeek 1017 on four DGX Sparks
+
+**Current production update: [4.0.3](docs/DS41F-4.0.3.md).** Adds the
+**Smart CUDA Graph Controller**, bounded HTTP memory and repaired durable
+vision retention/admission, including images inside agent histories.
+Preserves Smart KV cache, Smart Adaptive speculation and C16/R48/9M/3.5 GiB.
+[4.0.3 short tests and live audit](docs/BENCHMARK-4.0.3.md).
+
+## Preserved 4.0.2 benchmark and release
+
+The following artwork and benchmark table were measured on **4.0.2**.
 
 [![LakyFX TensorFold 4.0.2: cold prefill, code/prose and full-concurrency workflow medians](assets/4.0.2-X.png)](assets/4.0.2-master-4K.png)
 

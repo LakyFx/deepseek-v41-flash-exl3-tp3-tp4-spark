@@ -1,0 +1,16 @@
+{
+  "version": "4.0.3",
+  "source_commit": "6af7a7ca07be7def6f8e63c60e6ee15291fae949",
+  "source_tree_sha256": "6a21ac8e4b9536f7997e2c1999b1d9fb97c541f47051ec9cffdbcf19da7ed404",
+  "native_binaries": {
+    "tensorfold-native": "fbf1c3ca0c9f44583fc7b237499de5ac4cbbd7b3916f43796f2f453f97228b6a",
+    "tf-dsv41-lanes": "9ab51e3c8f0b09a256255136953c3846cc46d04f95b6fa844331a1d9a14097f2",
+    "tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18",
+    "tf-dsv41-check": "a7716c1579daf93faef8a8025ceb44aa21c7d7a1a177d5318beb5b0d18aa9723",
+    "tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2"
+  },
+  "unchanged_weight_layout": "balanced401a-v1",
+  "source_delta_files": 19,
+  "production_bundle_sha256": "f1906cbccf18b722d947ded7dfb3ab84fa0923666aa89c9fc0b3b31b5115eef8",
+  "qualification": "Existing Chat/Responses/standalone vision checks and20 short cells passed; production generation unchanged during read-only audit."
+}

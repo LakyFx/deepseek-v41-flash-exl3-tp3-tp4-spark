@@ -1,3 +1,10 @@
+# Current TP4 recipe: 4.0.3
+
+**[TP4 4.0.3](DS41F-4.0.3.md)**: source `v403`, launcher
+`tensorfold.tp4.v403.launch`. Smart CUDA Graph Controller and durable vision
+repairs; unchanged balanced401a-v1 weights, C16/R48/9M/3.5 GiB.
+[Qualification and live operation](BENCHMARK-4.0.3.md). Previous recipes follow.
+
 # Current TP4 recipe: 4.0.2
 
 **[TP4 4.0.2](DS41F-4.0.2.md)**, measured as combined 4.0.1a: source `v402`,
