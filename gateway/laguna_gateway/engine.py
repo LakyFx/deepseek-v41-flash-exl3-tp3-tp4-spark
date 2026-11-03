@@ -40,6 +40,8 @@ from .compaction import (
     measured_prefix_to_remove,
     truncate_responses_tool_outputs,
 )
+from .thinking_selector import top_level_thinking
+from .internal_json import prepare_internal_json, validate_internal_json
 from .config import Settings
 from .media_history import compact_image_history
 from .media_admission import media_request, media_close
@@ -935,6 +937,15 @@ class GatewayEngine:
         kwargs = body.get("chat_template_kwargs")
         if not isinstance(kwargs, dict):
             kwargs = {}
+        if self.settings.deepseek_v41_vllm and "thinking" in body:
+            try:
+                top_switch = top_level_thinking(body, kwargs)
+            except ValueError as exc:
+                raise GatewayError(400, str(exc), code="invalid_thinking_selector") from exc
+            # Media keeps the mandatory MAX vision profile from 4.0.3.
+            if top_switch is not None and not self._contains_media_input(body):
+                kwargs = dict(kwargs)
+                kwargs["thinking"] = top_switch
         kwargs_effort = str(kwargs.get("reasoning_effort") or "").strip().lower()
         if kwargs.get("thinking") is False:
             kwargs_thinking_disabled = True
@@ -3277,6 +3288,7 @@ class GatewayEngine:
             "response_format": checkpoint_response_format(material),
         }
         self._apply_internal_thinking(body, enabled=False)
+        body = prepare_internal_json(body, enabled=self.settings.tensorfold_internal_json)
         admission_tokens = (
             await self.token_count(body) + budget
         )
@@ -3316,6 +3328,8 @@ class GatewayEngine:
             raise RuntimeError("checkpoint model returned invalid JSON") from exc
         if not str(content).strip():
             raise RuntimeError("checkpoint model returned empty output")
+        if self.settings.tensorfold_internal_json:
+            validate_internal_json(str(content), checkpoint_response_format(material)["json_schema"]["schema"])
         return str(content)
 
     async def _responses_checkpoint_json_completion(
@@ -3657,6 +3671,7 @@ class GatewayEngine:
                     },
                 }
                 self._apply_internal_thinking(request, enabled=False)
+                request = prepare_internal_json(request, enabled=self.settings.tensorfold_internal_json)
                 profile = self._upstream_profile(request)
                 input_tokens = await self.token_count(request, upstream_profile=profile)
                 budget = self.settings.chat_context_limit(vision=profile == "vision")

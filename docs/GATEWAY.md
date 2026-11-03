@@ -1,3 +1,9 @@
+**Current TP4 gateway package: 4.0.4.** Use the matching
+[4.0.4 profile and upgrade notes](DS41F-4.0.4.md#gateway).
+Gateway-owned JSON requests use strict validated instructions on this native
+backend; public constrained-generation contracts remain explicit. All existing
+vision reliability controls remain enabled. Historical notes follow.
+
 **Current TP4 gateway package: 4.0.3.** Use the matching
 [4.0.3 profile and upgrade notes](DS41F-4.0.3.md#gateway-upgrade); the historical
 configuration and older release notes below remain available.

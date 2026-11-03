@@ -109,6 +109,7 @@ class Settings:
     # vLLM-compatible generation API does not implement vLLM abort endpoints.
     upstream_abort_mode: str = "legacy"
     deepseek_v41_vllm: bool = False
+    tensorfold_internal_json: bool = False
     responses_checkpoint_mode: str = "off"
     responses_checkpoint_shadow_sample_rate: float = 1.0
     responses_checkpoint_max_tokens: int = 4_096
@@ -269,6 +270,7 @@ class Settings:
                 "LAGUNA_GATEWAY_QWEN_RESPONSES_THINKING_BUDGET", False
             ),
             deepseek_v41_vllm=_env_bool("LAGUNA_GATEWAY_DEEPSEEK_V41_VLLM", False),
+            tensorfold_internal_json=_env_bool("LAGUNA_GATEWAY_TENSORFOLD_INTERNAL_JSON", False),
             qwen_native_vllm=_env_bool("LAGUNA_GATEWAY_QWEN_NATIVE_VLLM", False),
             upstream_abort_mode=os.getenv(
                 "LAGUNA_GATEWAY_UPSTREAM_ABORT_MODE", "legacy"

@@ -1,3 +1,13 @@
+# 4.0.4 - 3 November 2026
+
+Promoted unchanged qualified B to production. A compatibility/recovery baseline
+plus guarded EXL3 mid-M/WC kernels; preserved Smart CUDA Graph, Smart KV and
+Smart Adaptive speculation. Included internal gateway JSON repair. Exact source,
+five native tools, six additive cubins, gold flyer, two short passes for seven
+versions, zero-hit cold prefill and C1-C16 heavy qualification are published.
+[Recipe](DS41F-4.0.4.md) - [measurements](BENCHMARK-4.0.4.md).
+All previous releases remain below.
+
 # 4.0.3 - 2 November 2026
 
 Production stability update: Smart CUDA Graph Controller, finite image-payload

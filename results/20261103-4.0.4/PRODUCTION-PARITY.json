@@ -1,0 +1,34 @@
+{
+  "version": "4.0.4",
+  "measured_as": "4.0.4-B",
+  "native_source_commit": "4c6488e77cee660bd2d5f941444dd08fe5c83df1",
+  "gateway_source_commit": "16a3835df49b287c91dd87f2955bf959ffa6c800",
+  "source_tree_sha256": "3d0180ae3c99429857053e10f1df23b820d9d16d9fc82bdf7936af2aafb3ecb4",
+  "native_binaries": {
+    "tensorfold-native": "5772a1280a5f1b77002288cef3316157b620be6100fea0e41ef98265731cd1c1",
+    "tf-dsv41-lanes": "ee80bdcf46483f357bb495dd9595533865e6f764c1a1d6d4dfe145a33b0745a1",
+    "tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18",
+    "tf-dsv41-check": "2ba3be6dc9420f4d0df116ad4226c87925a8fcf68328aae423353ba485323264",
+    "tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2"
+  },
+  "source_delta_files": 16,
+  "weight_layout": "balanced401a-v1",
+  "candidate_archive_sha256": "906b470ecb10f67d88151b34b732f237a7a7b23aa78fe1c8a75564bbe0977ef7",
+  "production_profile_sha256": "fd8b02772b5a5d717b8c5f471de21abf6cbc8baff3bd800a9002206691ead4e2",
+  "computational_assets_unchanged": true,
+  "full_heavy_correct": 136,
+  "full_heavy_tasks": 136,
+  "functional_checks": {
+    "image_chat": true,
+    "image_responses": true,
+    "image_jobs": true,
+    "internal_json": true,
+    "cancel_then_answer": true
+  },
+  "vision": {
+    "reasoning_effort": "max",
+    "thinking_tokens": 8192,
+    "final_tokens": 32768,
+    "parallel": 2
+  }
+}

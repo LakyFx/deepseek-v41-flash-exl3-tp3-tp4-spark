@@ -57,10 +57,22 @@ def audit():
     require(parity['source_commit'] == spec['source_commit'] == payload['source_commit'], 'Source revision')
     require(parity['native_binaries'] == profile['historical_native_binaries'], 'Production binaries')
     gateway = load(ROOT/'gateway/source-manifest.json')
+    historical = None
+    if gateway['release'] != '4.0.3':
+        # A newer installable gateway must not invalidate frozen 4.0.3 evidence.
+        history = ROOT/'gateway/history/4.0.3.tar.gz'
+        pin = load(ROOT/'gateway/history/FILES.json')['files']['4.0.3.tar.gz']
+        require(patch.digest(history.read_bytes()) == pin, 'Historical gateway archive')
+        with tarfile.open(history) as stream:
+            historical = {m.name:stream.extractfile(m).read() for m in stream if m.isfile()}
+        gateway = json.loads(historical['source-manifest.json'])
     require(gateway['source_revision'] == parity['source_commit'], 'Gateway source revision')
-    require({p.name for p in (ROOT/'gateway/laguna_gateway').glob('*.py')} == set(gateway['modules']), 'Gateway completeness')
+    names = ({p.name for p in (ROOT/'gateway/laguna_gateway').glob('*.py')} if historical is None
+             else {Path(n).name for n in historical if n.startswith('laguna_gateway/')})
+    require(names == set(gateway['modules']), 'Gateway completeness')
     for name, record in gateway['modules'].items():
-        raw = (ROOT/'gateway/laguna_gateway'/name).read_bytes()
+        raw = ((ROOT/'gateway/laguna_gateway'/name).read_bytes() if historical is None
+               else historical['laguna_gateway/'+name])
         require(patch.digest(raw) == record['public_sha256'], 'Gateway bytes: '+name)
         if not record['adaptation']:
             require(record['production_sha256'] == record['public_sha256'], 'Gateway parity: '+name)

@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "rank": 0,
+      "samples": 579,
+      "min_available_gib": 11.60003662109375,
+      "max_model_swap_kib": 0,
+      "max_model_cgroup_swap_bytes": 0,
+      "host_swapout_pages_delta": 14,
+      "distinct_pids": 1,
+      "max_memory_full_avg10": 0.0
+    },
+    {
+      "rank": 1,
+      "samples": 579,
+      "min_available_gib": 13.44635009765625,
+      "max_model_swap_kib": 0,
+      "max_model_cgroup_swap_bytes": 0,
+      "host_swapout_pages_delta": 1,
+      "distinct_pids": 1,
+      "max_memory_full_avg10": 0.0
+    },
+    {
+      "rank": 2,
+      "samples": 579,
+      "min_available_gib": 13.15045166015625,
+      "max_model_swap_kib": 0,
+      "max_model_cgroup_swap_bytes": 0,
+      "host_swapout_pages_delta": 1,
+      "distinct_pids": 1,
+      "max_memory_full_avg10": 0.0
+    },
+    {
+      "rank": 3,
+      "samples": 579,
+      "min_available_gib": 8.842041015625,
+      "max_model_swap_kib": 0,
+      "max_model_cgroup_swap_bytes": 0,
+      "host_swapout_pages_delta": 2,
+      "distinct_pids": 1,
+      "max_memory_full_avg10": 0.0
+    }
+  ],
+  "note": "Tiny host-wide swapout counters include unrelated processes; model VmSwap and model cgroup swap remained zero."
+}

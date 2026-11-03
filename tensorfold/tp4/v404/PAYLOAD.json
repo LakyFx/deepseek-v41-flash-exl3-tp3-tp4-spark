@@ -1,0 +1,23 @@
+{
+  "schema": "ds41f.tp4-payload.v1",
+  "version": "4.0.4",
+  "source_tree_sha256": "3d0180ae3c99429857053e10f1df23b820d9d16d9fc82bdf7936af2aafb3ecb4",
+  "files": {
+    "native/early.cubin": "db1e7a5c17fbf38a0f9d6a268629705ca3ea9417ea173db05f92554b24a981b4",
+    "native/greedy_head.cubin": "34bd3326cf68460598e1897c4d180930ddb21c854100dd07c354f4cb507fc1dc",
+    "native/tensorfold-native": "5772a1280a5f1b77002288cef3316157b620be6100fea0e41ef98265731cd1c1",
+    "native/tf-dsv41-check": "2ba3be6dc9420f4d0df116ad4226c87925a8fcf68328aae423353ba485323264",
+    "native/tf-dsv41-lanes": "ee80bdcf46483f357bb495dd9595533865e6f764c1a1d6d4dfe145a33b0745a1",
+    "native/tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2",
+    "native/tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18",
+    "kit/cubins/404-grouped-l10.cubin": "6acb28ac3c1fd81f379f2948b753ce9fa789b1d9df3fecaee856e3d1270e3a6d",
+    "kit/cubins/404-grouped-l11.cubin": "142b2e04dc605677127dfea6479c21fca829f2b2b87ed50bc8072f0b50b9e6aa",
+    "kit/cubins/404-midm-l10.cubin": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+    "kit/cubins/404-midm-l11.cubin": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+    "kit/cubins/404-unpack-l10.cubin": "b1a273c6792cb993772879d364be716f001047891a8258fdb917c31acd9668ce",
+    "kit/cubins/404-unpack-l11.cubin": "edadcec1a0a545765744ac793f80dada46dfab45da90b18aa99a62252a475658"
+  },
+  "archive_sha256": "f9c07f120476f915fa528f18ca3f76b33ca5d3e4e9313c5d4bf6c0cdc74b0780",
+  "source_commit": "4c6488e77cee660bd2d5f941444dd08fe5c83df1",
+  "measured_as": "4.0.4-B"
+}

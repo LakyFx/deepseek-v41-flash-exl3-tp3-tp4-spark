@@ -1,3 +1,11 @@
+# Current TP4 recipe: 4.0.4
+
+**[4.0.4](DS41F-4.0.4.md)**, qualified as B: source v404, exact ARM64 payload,
+guarded EXL3 kernels, efficient long histories, DeepSeek thinking compatibility,
+reported-CUDA-error supervision and fixed internal gateway JSON. All three
+smart controllers and C16/R48/9M/3.5 GiB are preserved.
+[Measurements and candidate comparison](BENCHMARK-4.0.4.md). Previous recipes follow.
+
 # Current TP4 recipe: 4.0.3
 
 **[TP4 4.0.3](DS41F-4.0.3.md)**: source `v403`, launcher

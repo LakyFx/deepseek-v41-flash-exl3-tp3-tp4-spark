@@ -39,3 +39,6 @@ tools/dsv41-tp3/** -text -whitespace
 python-reference/** -text -whitespace
 
 results/20261102-4.0.3/** -text -whitespace
+
+results/20261103-4.0.4/** -text -whitespace
+gateway/history/** binary

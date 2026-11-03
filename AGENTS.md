@@ -1,3 +1,15 @@
+# Current TP4: 4.0.4
+
+Read docs/DS41F-4.0.4.md and docs/BENCHMARK-4.0.4.md. Source recipe v404;
+stage with tensorfold.tp4.v404.build and launch with tensorfold.tp4.v404.launch.
+Qualified 4.0.4-B compute is unchanged under public name 4.0.4. Preserve
+balanced401a-v1, C16/adaptive R48/9M/3.5 GiB, smart graph/KV/speculation,
+8K logical prefill/2K physical quantum, MAX/8K/32K vision and all six new kit
+cubins. TF404_VARIANT=b; policy-control and weight-file-cache advice are off.
+Use the matching gateway internal JSON contract; do not remove public caller
+response_format fields. Upgrade all four ranks together. Publication alone
+does not authorize a live deployment or benchmark. Historical guidance follows.
+
 # Current TP4: 4.0.3
 
 Use docs/DS41F-4.0.3.md, tensorfold/tp4/v403/profile.json and source recipe v403.

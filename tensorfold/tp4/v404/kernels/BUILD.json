@@ -1,0 +1,36 @@
+{
+  "arch": "sm_121",
+  "cuda_version": "13.0.2",
+  "artifacts": [
+    {
+      "file": "midm-l10.cubin",
+      "sha256": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+      "bytes": 6476048
+    },
+    {
+      "file": "grouped-l10.cubin",
+      "sha256": "6acb28ac3c1fd81f379f2948b753ce9fa789b1d9df3fecaee856e3d1270e3a6d",
+      "bytes": 9469584
+    },
+    {
+      "file": "unpack-l10.cubin",
+      "sha256": "b1a273c6792cb993772879d364be716f001047891a8258fdb917c31acd9668ce",
+      "bytes": 381632
+    },
+    {
+      "file": "midm-l11.cubin",
+      "sha256": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+      "bytes": 6476048
+    },
+    {
+      "file": "grouped-l11.cubin",
+      "sha256": "142b2e04dc605677127dfea6479c21fca829f2b2b87ed50bc8072f0b50b9e6aa",
+      "bytes": 9492512
+    },
+    {
+      "file": "unpack-l11.cubin",
+      "sha256": "edadcec1a0a545765744ac793f80dada46dfab45da90b18aa99a62252a475658",
+      "bytes": 382560
+    }
+  ]
+}

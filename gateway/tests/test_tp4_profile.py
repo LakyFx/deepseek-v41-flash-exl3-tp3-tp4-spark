@@ -18,3 +18,15 @@ def test_tp4_profile_is_effective_and_tp3_default_is_preserved(monkeypatch):
     assert selected.max_model_len == before.max_model_len == 401408
     monkeypatch.delenv('DS41F_GATEWAY_PROFILE')
     assert ds41f_gateway.production_settings() == before
+
+
+def test_404_profile_enables_native_internal_json_and_respects_override(monkeypatch):
+    root = Path(__file__).resolve().parents[2]
+    monkeypatch.setenv('LAGUNA_GATEWAY_API_KEY', 'local-test-key')
+    monkeypatch.setenv('DS41F_GATEWAY_PROFILE', str(root/'tensorfold/tp4/v404/gateway-profile.json'))
+    monkeypatch.delenv('LAGUNA_GATEWAY_TENSORFOLD_INTERNAL_JSON', raising=False)
+    selected = ds41f_gateway.production_settings()
+    assert selected.tensorfold_internal_json is True
+    assert selected.max_concurrency == 16 and selected.max_admitted_tokens == 8000000
+    monkeypatch.setenv('LAGUNA_GATEWAY_TENSORFOLD_INTERNAL_JSON', '0')
+    assert ds41f_gateway.production_settings().tensorfold_internal_json is False

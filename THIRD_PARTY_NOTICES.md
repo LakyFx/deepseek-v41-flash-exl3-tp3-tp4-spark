@@ -1,3 +1,13 @@
+## TensorFold 4.0.4 selective backports
+
+Long-history accumulation, thinking selectors, fatal-CUDA supervision and
+guarded EXL3 mid-M/WC kernels adapt ashhart/TensorFold work at revision
+45fcab6c2fddd88ff2da2e0d86b5123d88796a06. See
+[the 4.0.4 source credits](docs/DS41F-4.0.4.md#verification-and-attribution) and
+tensorfold/tp4/v404/kernels/PROVENANCE.json. Apache-2.0 notices, exact donor
+files and LICENSE.TensorFold are retained alongside adapted CUDA source.
+Existing community, AdaSpark and NCCL credits follow unchanged.
+
 # Third-party code and attribution
 
 Our integration license does not relicense upstream source, libraries or weights. Read [SOURCES.md](docs/SOURCES.md) for project links, pinned revisions, the original recipe, named contributors and studied alternatives.

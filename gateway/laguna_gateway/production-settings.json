@@ -77,5 +77,6 @@
   "pool_timeout_seconds": 30.0,
   "health_timeout_seconds": 5.0,
   "stream_heartbeat_seconds": 15.0,
-  "max_request_bytes": 67108864
+  "max_request_bytes": 67108864,
+  "tensorfold_internal_json": false
 }

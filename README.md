@@ -1,3 +1,44 @@
+# TensorFold TP4 4.0.4 - more kernel polish, smarter control
+
+[![LakyFX TensorFold 4.0.4: three smart controllers, code/prose decode and full-concurrency workflow medians](assets/4.0.4-X.png)](assets/4.0.4-master-4K.png)
+
+**Current production recipe: 4.0.4.** DeepSeek 1017, four DGX Sparks,
+switchless TP4, mixed EXL3 **~3.51 bpw routed experts**.
+
+**Smart CUDA Graph Controller · Smart KV Cache Controller · Smart Adaptive
+Speculative Controller.** Selective kernel refinements inspired by
+[ashhart/TensorFold](https://github.com/ashhart/TensorFold), efficient long
+agent histories and improved compatibility/recovery complete this update.
+Same balanced weights, **C16 / adaptive R48 / 9M KV / 3.5 GiB checkpoints**.
+
+Cold 64K prefill: **4,277 tok/s median**, three samples, **zero KV hits**.
+
+| Concurrency | Code sum tok/s | Prose sum tok/s | MAX median/task tok/s | MAX median total tok/s |
+| --- | ---: | ---: | ---: | ---: |
+| **C1** | **115.4** | **88.6** | 86.5 | **86.5** |
+| **C3** | **186.6** | **152.6** | 48.8 | **146.5** |
+| **C6** | **245.9** | **200.5** | 29.6 | **177.8** |
+| **C12** | **310.1** | **265.2** | 19.1 | **228.8** |
+| **C16** | **331.7** | **287.5** | 16.3 | **260.3** |
+
+**Code/prose:** thinking OFF, greedy, warm pass 2, 512 tokens/request; sum of
+individual native decode rates. **MAX workflow:** thinking MAX, non-greedy;
+both columns use the same actual full-concurrency intervals, excluding
+completed-thread tails. Per task is concurrent total divided by active tasks.
+These are separate protocols, not SparkDash/RigMark scores or peak TPS.
+
+**136/136 frozen agent/tool workflow tasks correct across C1-C16.** The matched
+short screen measured **+3.9% code wall throughput at C6, +2.6% at C12**, and
+**+1.19% overall fixed-output throughput** versus 4.0.3. Cold prefill remains
+about 4.28K tok/s. Controller adaptation starts immediately and follows actual
+workload history; there is no fixed hours-long learning period.
+
+- **[Install 4.0.4](docs/DS41F-4.0.4.md)** - [exact profile](tensorfold/tp4/v404/profile.json) - [source recipe](tensorfold/variants/recipes/v404.json)
+- **[All measurements, settings and metric definitions](docs/BENCHMARK-4.0.4.md)** - [numeric exports](results/20261103-4.0.4/) - [offline audit](tools/audit_404.py)
+- [Model weights](https://huggingface.co/LakyFx/DeepSeek-V4.1-Flash-1017-EXL3-3.5bpw-TensorFold) - [TP3 1.2.8](docs/DS41F-1.2.8.md) - [retained recipes](docs/RECIPES.md)
+
+## Preserved 4.0.3 release and previous results
+
 # TensorFold TP4 4.0.3 - DeepSeek 1017 on four DGX Sparks
 
 **Current production update: [4.0.3](docs/DS41F-4.0.3.md).** Adds the
