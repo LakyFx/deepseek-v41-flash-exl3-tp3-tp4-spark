@@ -125,7 +125,12 @@ class Release400(unittest.TestCase):
         self.assertNotIn('NCCL_MAX_NCHANNELS', actual)
 
     def test_gateway_profile_changes_only_the_two_capacity_fields(self):
-        base = json.loads((ROOT/'gateway/laguna_gateway/production-settings.json').read_bytes())
+        # Current package defaults follow the latest release. The explicit TP3
+        # profile preserves this older capacity baseline; JSON flags were added
+        # later and are outside the frozen 4.0.0 two-field capacity contract.
+        base = json.loads((ROOT/'tensorfold/tp3/v130/gateway-profile.json').read_bytes())
+        for key in ('tensorfold_internal_json', 'tensorfold_client_json'):
+            base.pop(key)
         selected = json.loads((launch.HERE/'gateway-profile.json').read_bytes())
         changed = {k for k in base if base[k] != selected[k]}
         self.assertEqual(changed, {'max_concurrency', 'max_admitted_tokens'})

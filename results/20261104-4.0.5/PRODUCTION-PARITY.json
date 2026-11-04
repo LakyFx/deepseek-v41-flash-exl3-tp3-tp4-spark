@@ -1,0 +1,70 @@
+{
+  "version": "4.0.5",
+  "native_source_commit": "2ec1aafd4563025a307814b5d8c668bf23c8f182",
+  "native_source_tree_sha256": "1ebb92311aa9198c9ca69db01b3a40d0b561fe70bae02b9c909b7c9df3c9cc85",
+  "native_binaries": {
+    "tensorfold-native": "7e2ff461296de017708d16809744c479f5c1d5c7d52e53c645d3a4aa7bbbd9e2",
+    "tf-dsv41-lanes": "5f4aeb7ddd0aa7fd8cb5879c4706fb486d67c7d8e722e39fb317955e7319c27c",
+    "tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18",
+    "tf-dsv41-check": "cb96d3d4aed04d59227d659f483e2d4d497f5a67b1a414cac77bbd7a5dc1d700",
+    "tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2"
+  },
+  "newly_built_executables": [
+    "tensorfold-native",
+    "tf-dsv41-lanes",
+    "tf-dsv41-check"
+  ],
+  "inherited_support_tools": [
+    "tf-dsv41-plan",
+    "tf-dsv41-load"
+  ],
+  "source_delta": [
+    {
+      "path": "zig/src/core/engine_api.zig",
+      "before": "198ec7a4b25bf13a62c55e70116c4112e79cf326e21a55525250280926a4c925",
+      "after": "f23b14381983953fc9b4aeb25570a23d4e0e3eaf887148876b8381c9aa25d2e5"
+    },
+    {
+      "path": "zig/src/core/lane_host.zig",
+      "before": "a7e845eb836a9b6e9f8aec6076ddd45258103e9de8c8ea6734ca12c368f1bdb2",
+      "after": "7d0b01e099f5f4c0653eacedd41fdd44bf9bc11414e2885cde0d2b9f8ecb5ebf"
+    },
+    {
+      "path": "zig/src/families/dsv41/lanes.zig",
+      "before": "0fec9bc0237433cb3e7b299e8f2c945272538712bec8e26c427317cd8c4155c5",
+      "after": "61d5d1c0c363c8875ee17a5fc584d95cade349987162f95379ad9ae53277ff12"
+    },
+    {
+      "path": "zig/src/server/prompt.zig",
+      "before": "9a3f360224a1b0f0d19d07b070652b09776fbbcb294587ae305818a89eb93798",
+      "after": "5f4fdfccbdecfe93d05367c7b43662a386e939b741f9859cfadd419ea376e3e1"
+    },
+    {
+      "path": "zig/src/server/root.zig",
+      "before": "864f0bd64385ca32be8b6276c2e746e49a20bc86a0d04b2f4baed63b32369997",
+      "after": "f5bc82ba358b19355fc721085d4081c265ad57a458dca2f9c26f74cf84525516"
+    },
+    {
+      "path": "zig/src/families/dsv41/smart_graph_build.zig",
+      "before": "332b35016ce00ef9f3ea411faab7247651c4f514b4a12a741803eed983474f86",
+      "after": "9f9af6d011ea432bebf7dfb445317d0230997b227c8418e8f121cf927aebb5b4"
+    },
+    {
+      "path": "zig/src/core/image_key.zig",
+      "before": null,
+      "after": "9731837bd7d80ab7beec84bb6292db25d254149fe54ee1a8b1b19a8f762e0a0e"
+    },
+    {
+      "path": "zig/src/core/lane_host_image_test.zig",
+      "before": null,
+      "after": "75f2f89fe2a6d1903b12fff3553b75f95249cb114ed527da2ecb60ab069137c8"
+    }
+  ],
+  "image_patch_sha256": "c0af0ad93728295751081d671951f997715b21e7ff789f74de5a1f01f42a2247",
+  "gateway_module_source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2",
+  "gateway_packaging_source_revision": "2ec1aafd4563025a307814b5d8c668bf23c8f182",
+  "controller_algorithms_unchanged_from_404": true,
+  "weights_unchanged": true,
+  "kernels_unchanged": true,
+  "public_adaptations": "Explicit operator addresses/paths, versioned portable staging and launch; compiled measured executables are unchanged."
+}

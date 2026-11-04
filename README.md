@@ -1,3 +1,34 @@
+## Compatibility update: TP4 4.0.5 + TP3 1.3.0
+
+[![LakyFX DeepSeek1017 TP3 and TP4 compatibility update](assets/LakyFX-TP3-1.3.0-TP4-4.0.5-X.png)](assets/LakyFX-TP3-1.3.0-TP4-4.0.5-X-4K.png)
+
+**Current TP4: 4.0.5. Current TP3: 1.3.0.** Same Smart KV Cache Controller,
+Smart Adaptive Speculation and Smart CUDA Graph Controller; new image-aware
+prefix-cache reuse and validated JSON compatibility on both topologies.
+The tested 4.0.4/B kernels and TP4 compute settings are preserved.
+
+| TP4 4.0.5 result | Measured value | Scope |
+|---|---:|---|
+| Fast code / prose, C16 | **336.49 / 293.64 tok/s** | Pass 2, sum of native per-request decode rates; thinking OFF, greedy |
+| Heavy workflow, C16 | **268.00 tok/s total / 16.75 per task** | Pass 2, median during actual full C16; MAX thinking |
+| Cold 64K prefill | **4,288.66 tok/s** | Median of 3 inputs, zero cached tokens |
+| JSON / image-cache checks | **11/11 / 6/6 + 4/4** | JSON, single-image and two-image cases |
+
+[**TP4 4.0.5 install and exact recipe**](docs/DS41F-4.0.5.md) ·
+[**TP3 1.3.0 install**](docs/DS41F-1.3.0.md) ·
+[All measured passes and conditions](docs/BENCHMARK-4.0.5.md) ·
+[Machine-readable results](results/20261104-4.0.5)
+
+The fast sum is not a simultaneous aggregate median. Heavy full-load medians
+exclude fill/drain and tool gaps; the report also retains full-workflow wall
+throughput. Both TP4 heavy passes completed 135/136 tasks correctly, with each
+failure retained. The flyer labels TP3 short results as 1.2.9 native and TP3
+heavy as historical 1.2.5/K2a; it does not claim a new 1.3.0 heavy measurement.
+JSON uses validation and bounded repair, not native constrained decoding.
+
+Earlier release notes, recipes, benchmarks and artwork remain below.
+
+
 ## TP3 update: 1.3.0 — image-aware cache, Smart CUDA Graphs and JSON compatibility
 
 **Current TP3: 1.3.0. Current TP4: 4.0.4.** Independent recipes; choose your topology explicitly.

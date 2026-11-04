@@ -1,3 +1,12 @@
+## Image-bearing prefix cache, TP4 4.0.5
+
+Original patch by GitHub **hteak**, [issue #2](https://github.com/LakyFx/deepseek-v41-flash-exl3-tp3-tp4-spark/issues/2).
+LakyFx integration adds namespace/history regressions and TP3/TP4 qualification.
+The unmodified patch, hash and related image-cache credits are preserved in
+tensorfold/tp4/v405/IMAGE-CACHE-CREDITS.txt and imgcache-1.2.8.diff.txt.
+Existing TensorFold and ExLlamaV3 licenses/attribution remain unchanged.
+
+
 ## Image-bearing prefix cache, TP3 1.3.0
 
 Primary patch: GitHub **hteak**, issue #2, original patch preserved with SHA256

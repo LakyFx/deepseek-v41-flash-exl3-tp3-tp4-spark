@@ -203,7 +203,9 @@
       "adaptation": null
     }
   },
-  "production_release": "1.3.0",
-  "release": "1.3.0",
-  "recipe_version": "1.3.0"
+  "production_release": "4.0.5",
+  "release": "4.0.5",
+  "recipe_version": "4.0.5",
+  "packaging_source_revision": "2ec1aafd4563025a307814b5d8c668bf23c8f182",
+  "module_source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2"
 }

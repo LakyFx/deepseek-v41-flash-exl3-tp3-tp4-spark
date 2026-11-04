@@ -42,3 +42,5 @@ results/20261102-4.0.3/** -text -whitespace
 
 results/20261103-4.0.4/** -text -whitespace
 gateway/history/** binary
+
+results/20261104-4.0.5/** -text -whitespace

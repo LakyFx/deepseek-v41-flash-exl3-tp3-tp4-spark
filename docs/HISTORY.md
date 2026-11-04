@@ -1,3 +1,12 @@
+## 2026-11-04 — TP4 4.0.5
+
+Published the exact owner-approved production candidate: 4.0.4/B compute plus
+hteak issue2 image-aware prefix cache and the qualified 1.3.0 JSON gateway.
+Three short passes, cold 64K, two C1-C 16 heavy passes, JSON/image/cancellation
+checks and source/binary hashes are preserved. Added the combined gold flyer
+with explicit TP3 historical measurement provenance. See [release](DS41F-4.0.5.md).
+
+
 ## 2026-11-04 — TP3 1.3.0
 
 Published qualified TP3 1.2.9 native transfer plus 1.3.0 JSON gateway. Includes

@@ -9,7 +9,7 @@ from laguna_gateway.app import create_app as _create_app
 from laguna_gateway.config import Settings
 
 SOURCE_REVISION = '43a32ca791c5f60e560d72eec718254dc04283f2'
-RECIPE_VERSION = '1.3.0'
+RECIPE_VERSION = '4.0.5'
 # Preserve the production job namespace and implicit deduplication identities.
 VISION_JOBS_REVISION = 'd021774d38c0e7c684e6da44f39f22e735deb14b'
 

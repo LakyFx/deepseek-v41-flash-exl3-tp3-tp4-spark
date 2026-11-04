@@ -1,3 +1,11 @@
+## Current four-Spark release: 4.0.5
+
+Use [TP4 4.0.5](DS41F-4.0.5.md), exact source v405 and the versioned TP4
+stager/launcher. TP3 remains [1.3.0](DS41F-1.3.0.md), source v130. Each keeps its
+own topology/capacity and explicit gateway profile. Older recipes remain valid
+historical selections; never mix TP3/TP4 rank caches or launcher commands.
+
+
 ## Current three-Spark release: 1.3.0
 
 Use [1.3.0](DS41F-1.3.0.md), source v130 and the versioned TP3 launcher. Native

@@ -1,0 +1,27 @@
+{
+  "schema": "ds41f.tp4-payload.v1",
+  "version": "4.0.5",
+  "source_tree_sha256": "1ebb92311aa9198c9ca69db01b3a40d0b561fe70bae02b9c909b7c9df3c9cc85",
+  "source_commit": "2ec1aafd4563025a307814b5d8c668bf23c8f182",
+  "archive_sha256": "a7e30fbed6185224034e585ee5e139c8cd63ebf782b7cccf19932397262020ac",
+  "files": {
+    "kit/cubins/404-grouped-l10.cubin": "6acb28ac3c1fd81f379f2948b753ce9fa789b1d9df3fecaee856e3d1270e3a6d",
+    "kit/cubins/404-grouped-l11.cubin": "142b2e04dc605677127dfea6479c21fca829f2b2b87ed50bc8072f0b50b9e6aa",
+    "kit/cubins/404-midm-l10.cubin": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+    "kit/cubins/404-midm-l11.cubin": "86fc60fc849de1a293c7f7e76a3140416eba54944aa72eaaaa58f485681d51f7",
+    "kit/cubins/404-unpack-l10.cubin": "b1a273c6792cb993772879d364be716f001047891a8258fdb917c31acd9668ce",
+    "kit/cubins/404-unpack-l11.cubin": "edadcec1a0a545765744ac793f80dada46dfab45da90b18aa99a62252a475658",
+    "native/early.cubin": "db1e7a5c17fbf38a0f9d6a268629705ca3ea9417ea173db05f92554b24a981b4",
+    "native/greedy_head.cubin": "34bd3326cf68460598e1897c4d180930ddb21c854100dd07c354f4cb507fc1dc",
+    "native/tensorfold-native": "7e2ff461296de017708d16809744c479f5c1d5c7d52e53c645d3a4aa7bbbd9e2",
+    "native/tf-dsv41-check": "cb96d3d4aed04d59227d659f483e2d4d497f5a67b1a414cac77bbd7a5dc1d700",
+    "native/tf-dsv41-lanes": "5f4aeb7ddd0aa7fd8cb5879c4706fb486d67c7d8e722e39fb317955e7319c27c",
+    "native/tf-dsv41-load": "3e94a8c987ca9ed9ae75e269aaca8cb48dfd236250ea0443d1e99bf201f026f2",
+    "native/tf-dsv41-plan": "f4529e0911a7078aa9ec8d9de31f07f178987d4d1c8e6ac74ad81e4151965b18"
+  },
+  "inherited_tools": [
+    "tf-dsv41-plan",
+    "tf-dsv41-load"
+  ],
+  "inherited_assets": "Unchanged exact 4.0.4/B CUDA kernels and prefill assets."
+}

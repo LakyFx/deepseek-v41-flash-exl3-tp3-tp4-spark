@@ -1,3 +1,13 @@
+## 4.0.5 / 1.3.0 JSON and image compatibility
+
+The current package defaults to TP4 C16. Use
+`DS41F_GATEWAY_PROFILE=/RECIPE/tensorfold/tp3/v130/gateway-profile.json` and
+`DS41F_RECIPE_VERSION=1.3.0` for TP3 C12. For TP4 use the v405 profile.
+Both retain the same JSON modules, namespace, MAX/8192/32768 vision and C2.
+The entrypoint version and capacity defaults differ; operator secrets and
+the durable jobs DB stay in private state. See [4.0.5](DS41F-4.0.5.md).
+
+
 ## 1.3.0 explicit JSON compatibility
 
 The current package defaults to TP3 C12. Use an explicit `DS41F_GATEWAY_PROFILE`

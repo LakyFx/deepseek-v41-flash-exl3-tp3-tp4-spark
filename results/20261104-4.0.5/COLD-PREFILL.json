@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "label": "4.0.5",
+  "samples": [
+    {
+      "case_id": "65536-1",
+      "prompt_tokens": 65536,
+      "cached_tokens": 0,
+      "prefill_seconds": 15.281228958,
+      "prefill_tps": 4288.66030213432,
+      "elapsed_seconds": 15.387708891998045,
+      "post_prefill_first_token_seconds": 2.72e-06,
+      "token_sha256": "241db6c937cb52c075a319e340f5e05ebb711f457aae73f949970101cbecf1f3",
+      "body_sha256": "49ab0899702ed206c7ec3920d717d40680b8aa3bd019b820e16238d33808f347"
+    },
+    {
+      "case_id": "65536-2",
+      "prompt_tokens": 65536,
+      "cached_tokens": 0,
+      "prefill_seconds": 15.282440716,
+      "prefill_tps": 4288.320250533468,
+      "elapsed_seconds": 15.365904866019264,
+      "post_prefill_first_token_seconds": 1.952e-06,
+      "token_sha256": "0b0b5ea493590b4a91cd996269841e7312a676b081bcf74b7f8061ddc8f463c9",
+      "body_sha256": "fd4a58c82ac68ca2cc1c7980314c5df3f277a8c9f71e51ce4a1d21eec2d6aae0"
+    },
+    {
+      "case_id": "65536-3",
+      "prompt_tokens": 65536,
+      "cached_tokens": 0,
+      "prefill_seconds": 15.279841091,
+      "prefill_tps": 4289.049840878349,
+      "elapsed_seconds": 15.365291925962083,
+      "post_prefill_first_token_seconds": 3.408e-06,
+      "token_sha256": "a05b4ec9f141d4d521ed534791a0620f34ce6518de24466b007fc58aed64dbbc",
+      "body_sha256": "e45502dcc6b04adc045bf809dce6e038a4d22cf7bfe3821e867669ee98d18b36"
+    }
+  ],
+  "median_prefill_tps": 4288.66030213432,
+  "cached_tokens": 0
+}

@@ -1,0 +1,2733 @@
+{
+  "method": "Median of all valid full-concurrency native rolling2s gauges; all C tasks must stream for the ENTIRE 2s window plus0.5s margin on each boundary. Per task is the median concurrent average (same-window total / C), not a cross-request distribution median. Excludes startup/prefill/tool gaps and completion tails; no speed threshold/cherry-picking.",
+  "historical_404": [
+    {
+      "concurrency": 1,
+      "total": 86.5,
+      "per_task": 86.5,
+      "samples": 13,
+      "selected": [
+        {
+          "total": 105.5,
+          "per_task": 105.5
+        },
+        {
+          "total": 119.0,
+          "per_task": 119.0
+        },
+        {
+          "total": 85.0,
+          "per_task": 85.0
+        },
+        {
+          "total": 83.5,
+          "per_task": 83.5
+        },
+        {
+          "total": 87.0,
+          "per_task": 87.0
+        },
+        {
+          "total": 81.5,
+          "per_task": 81.5
+        },
+        {
+          "total": 85.5,
+          "per_task": 85.5
+        },
+        {
+          "total": 78.0,
+          "per_task": 78.0
+        },
+        {
+          "total": 78.5,
+          "per_task": 78.5
+        },
+        {
+          "total": 87.0,
+          "per_task": 87.0
+        },
+        {
+          "total": 87.5,
+          "per_task": 87.5
+        },
+        {
+          "total": 86.5,
+          "per_task": 86.5
+        },
+        {
+          "total": 139.0,
+          "per_task": 139.0
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "total": 132.25,
+      "per_task": 66.125,
+      "samples": 8,
+      "selected": [
+        {
+          "total": 150.5,
+          "per_task": 75.25
+        },
+        {
+          "total": 144.0,
+          "per_task": 72.0
+        },
+        {
+          "total": 149.5,
+          "per_task": 74.75
+        },
+        {
+          "total": 116.0,
+          "per_task": 58.0
+        },
+        {
+          "total": 132.5,
+          "per_task": 66.25
+        },
+        {
+          "total": 132.0,
+          "per_task": 66.0
+        },
+        {
+          "total": 111.5,
+          "per_task": 55.75
+        },
+        {
+          "total": 122.0,
+          "per_task": 61.0
+        }
+      ]
+    },
+    {
+      "concurrency": 3,
+      "total": 146.5,
+      "per_task": 48.833333333333336,
+      "samples": 7,
+      "selected": [
+        {
+          "total": 141.5,
+          "per_task": 47.166666666666664
+        },
+        {
+          "total": 145.0,
+          "per_task": 48.333333333333336
+        },
+        {
+          "total": 149.0,
+          "per_task": 49.666666666666664
+        },
+        {
+          "total": 146.5,
+          "per_task": 48.833333333333336
+        },
+        {
+          "total": 150.0,
+          "per_task": 50.0
+        },
+        {
+          "total": 142.5,
+          "per_task": 47.5
+        },
+        {
+          "total": 147.0,
+          "per_task": 49.0
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "total": 162.75,
+      "per_task": 40.6875,
+      "samples": 10,
+      "selected": [
+        {
+          "total": 170.0,
+          "per_task": 42.5
+        },
+        {
+          "total": 157.5,
+          "per_task": 39.375
+        },
+        {
+          "total": 164.0,
+          "per_task": 41.0
+        },
+        {
+          "total": 159.5,
+          "per_task": 39.875
+        },
+        {
+          "total": 161.5,
+          "per_task": 40.375
+        },
+        {
+          "total": 157.5,
+          "per_task": 39.375
+        },
+        {
+          "total": 159.0,
+          "per_task": 39.75
+        },
+        {
+          "total": 164.0,
+          "per_task": 41.0
+        },
+        {
+          "total": 164.5,
+          "per_task": 41.125
+        },
+        {
+          "total": 178.0,
+          "per_task": 44.5
+        }
+      ]
+    },
+    {
+      "concurrency": 5,
+      "total": 171.0,
+      "per_task": 34.2,
+      "samples": 11,
+      "selected": [
+        {
+          "total": 213.0,
+          "per_task": 42.6
+        },
+        {
+          "total": 175.5,
+          "per_task": 35.1
+        },
+        {
+          "total": 168.5,
+          "per_task": 33.7
+        },
+        {
+          "total": 169.0,
+          "per_task": 33.8
+        },
+        {
+          "total": 176.0,
+          "per_task": 35.2
+        },
+        {
+          "total": 171.0,
+          "per_task": 34.2
+        },
+        {
+          "total": 161.0,
+          "per_task": 32.2
+        },
+        {
+          "total": 169.0,
+          "per_task": 33.8
+        },
+        {
+          "total": 174.5,
+          "per_task": 34.9
+        },
+        {
+          "total": 166.0,
+          "per_task": 33.2
+        },
+        {
+          "total": 175.5,
+          "per_task": 35.1
+        }
+      ]
+    },
+    {
+      "concurrency": 6,
+      "total": 177.75,
+      "per_task": 29.625,
+      "samples": 10,
+      "selected": [
+        {
+          "total": 213.0,
+          "per_task": 35.5
+        },
+        {
+          "total": 152.5,
+          "per_task": 25.416666666666668
+        },
+        {
+          "total": 174.5,
+          "per_task": 29.083333333333332
+        },
+        {
+          "total": 180.0,
+          "per_task": 30.0
+        },
+        {
+          "total": 181.5,
+          "per_task": 30.25
+        },
+        {
+          "total": 174.5,
+          "per_task": 29.083333333333332
+        },
+        {
+          "total": 181.5,
+          "per_task": 30.25
+        },
+        {
+          "total": 175.5,
+          "per_task": 29.25
+        },
+        {
+          "total": 174.5,
+          "per_task": 29.083333333333332
+        },
+        {
+          "total": 192.0,
+          "per_task": 32.0
+        }
+      ]
+    },
+    {
+      "concurrency": 7,
+      "total": 192.0,
+      "per_task": 27.428571428571427,
+      "samples": 15,
+      "selected": [
+        {
+          "total": 188.5,
+          "per_task": 26.928571428571427
+        },
+        {
+          "total": 246.5,
+          "per_task": 35.214285714285715
+        },
+        {
+          "total": 178.5,
+          "per_task": 25.5
+        },
+        {
+          "total": 166.0,
+          "per_task": 23.714285714285715
+        },
+        {
+          "total": 186.0,
+          "per_task": 26.571428571428573
+        },
+        {
+          "total": 187.5,
+          "per_task": 26.785714285714285
+        },
+        {
+          "total": 202.0,
+          "per_task": 28.857142857142858
+        },
+        {
+          "total": 185.5,
+          "per_task": 26.5
+        },
+        {
+          "total": 194.0,
+          "per_task": 27.714285714285715
+        },
+        {
+          "total": 201.0,
+          "per_task": 28.714285714285715
+        },
+        {
+          "total": 191.5,
+          "per_task": 27.357142857142858
+        },
+        {
+          "total": 192.0,
+          "per_task": 27.428571428571427
+        },
+        {
+          "total": 200.0,
+          "per_task": 28.571428571428573
+        },
+        {
+          "total": 209.0,
+          "per_task": 29.857142857142858
+        },
+        {
+          "total": 197.0,
+          "per_task": 28.142857142857142
+        }
+      ]
+    },
+    {
+      "concurrency": 8,
+      "total": 200.0,
+      "per_task": 25.0,
+      "samples": 12,
+      "selected": [
+        {
+          "total": 254.0,
+          "per_task": 31.75
+        },
+        {
+          "total": 200.5,
+          "per_task": 25.0625
+        },
+        {
+          "total": 192.5,
+          "per_task": 24.0625
+        },
+        {
+          "total": 203.5,
+          "per_task": 25.4375
+        },
+        {
+          "total": 193.5,
+          "per_task": 24.1875
+        },
+        {
+          "total": 207.0,
+          "per_task": 25.875
+        },
+        {
+          "total": 199.5,
+          "per_task": 24.9375
+        },
+        {
+          "total": 217.5,
+          "per_task": 27.1875
+        },
+        {
+          "total": 187.0,
+          "per_task": 23.375
+        },
+        {
+          "total": 190.5,
+          "per_task": 23.8125
+        },
+        {
+          "total": 190.0,
+          "per_task": 23.75
+        },
+        {
+          "total": 206.0,
+          "per_task": 25.75
+        }
+      ]
+    },
+    {
+      "concurrency": 9,
+      "total": 204.5,
+      "per_task": 22.72222222222222,
+      "samples": 12,
+      "selected": [
+        {
+          "total": 299.0,
+          "per_task": 33.22222222222222
+        },
+        {
+          "total": 266.5,
+          "per_task": 29.61111111111111
+        },
+        {
+          "total": 200.5,
+          "per_task": 22.27777777777778
+        },
+        {
+          "total": 194.0,
+          "per_task": 21.555555555555557
+        },
+        {
+          "total": 209.5,
+          "per_task": 23.27777777777778
+        },
+        {
+          "total": 204.0,
+          "per_task": 22.666666666666668
+        },
+        {
+          "total": 192.0,
+          "per_task": 21.333333333333332
+        },
+        {
+          "total": 207.0,
+          "per_task": 23.0
+        },
+        {
+          "total": 201.0,
+          "per_task": 22.333333333333332
+        },
+        {
+          "total": 192.5,
+          "per_task": 21.38888888888889
+        },
+        {
+          "total": 205.0,
+          "per_task": 22.77777777777778
+        },
+        {
+          "total": 213.0,
+          "per_task": 23.666666666666668
+        }
+      ]
+    },
+    {
+      "concurrency": 10,
+      "total": 210.5,
+      "per_task": 21.05,
+      "samples": 11,
+      "selected": [
+        {
+          "total": 279.0,
+          "per_task": 27.9
+        },
+        {
+          "total": 270.5,
+          "per_task": 27.05
+        },
+        {
+          "total": 207.5,
+          "per_task": 20.75
+        },
+        {
+          "total": 211.5,
+          "per_task": 21.15
+        },
+        {
+          "total": 199.5,
+          "per_task": 19.95
+        },
+        {
+          "total": 209.0,
+          "per_task": 20.9
+        },
+        {
+          "total": 210.5,
+          "per_task": 21.05
+        },
+        {
+          "total": 216.0,
+          "per_task": 21.6
+        },
+        {
+          "total": 202.0,
+          "per_task": 20.2
+        },
+        {
+          "total": 204.5,
+          "per_task": 20.45
+        },
+        {
+          "total": 216.5,
+          "per_task": 21.65
+        }
+      ]
+    },
+    {
+      "concurrency": 11,
+      "total": 225.0,
+      "per_task": 20.454545454545453,
+      "samples": 15,
+      "selected": [
+        {
+          "total": 291.0,
+          "per_task": 26.454545454545453
+        },
+        {
+          "total": 251.0,
+          "per_task": 22.818181818181817
+        },
+        {
+          "total": 225.0,
+          "per_task": 20.454545454545453
+        },
+        {
+          "total": 244.0,
+          "per_task": 22.181818181818183
+        },
+        {
+          "total": 252.5,
+          "per_task": 22.954545454545453
+        },
+        {
+          "total": 242.0,
+          "per_task": 22.0
+        },
+        {
+          "total": 233.5,
+          "per_task": 21.227272727272727
+        },
+        {
+          "total": 235.0,
+          "per_task": 21.363636363636363
+        },
+        {
+          "total": 216.5,
+          "per_task": 19.681818181818183
+        },
+        {
+          "total": 214.0,
+          "per_task": 19.454545454545453
+        },
+        {
+          "total": 210.5,
+          "per_task": 19.136363636363637
+        },
+        {
+          "total": 221.5,
+          "per_task": 20.136363636363637
+        },
+        {
+          "total": 207.0,
+          "per_task": 18.818181818181817
+        },
+        {
+          "total": 212.5,
+          "per_task": 19.318181818181817
+        },
+        {
+          "total": 215.0,
+          "per_task": 19.545454545454547
+        }
+      ]
+    },
+    {
+      "concurrency": 12,
+      "total": 228.75,
+      "per_task": 19.0625,
+      "samples": 14,
+      "selected": [
+        {
+          "total": 285.5,
+          "per_task": 23.791666666666668
+        },
+        {
+          "total": 286.0,
+          "per_task": 23.833333333333332
+        },
+        {
+          "total": 224.5,
+          "per_task": 18.708333333333332
+        },
+        {
+          "total": 205.0,
+          "per_task": 17.083333333333332
+        },
+        {
+          "total": 229.5,
+          "per_task": 19.125
+        },
+        {
+          "total": 237.0,
+          "per_task": 19.75
+        },
+        {
+          "total": 233.5,
+          "per_task": 19.458333333333332
+        },
+        {
+          "total": 231.5,
+          "per_task": 19.291666666666668
+        },
+        {
+          "total": 226.5,
+          "per_task": 18.875
+        },
+        {
+          "total": 223.5,
+          "per_task": 18.625
+        },
+        {
+          "total": 234.0,
+          "per_task": 19.5
+        },
+        {
+          "total": 208.5,
+          "per_task": 17.375
+        },
+        {
+          "total": 228.0,
+          "per_task": 19.0
+        },
+        {
+          "total": 209.0,
+          "per_task": 17.416666666666668
+        }
+      ]
+    },
+    {
+      "concurrency": 13,
+      "total": 235.75,
+      "per_task": 18.134615384615387,
+      "samples": 14,
+      "selected": [
+        {
+          "total": 303.5,
+          "per_task": 23.346153846153847
+        },
+        {
+          "total": 292.0,
+          "per_task": 22.46153846153846
+        },
+        {
+          "total": 294.0,
+          "per_task": 22.615384615384617
+        },
+        {
+          "total": 251.5,
+          "per_task": 19.346153846153847
+        },
+        {
+          "total": 199.0,
+          "per_task": 15.307692307692308
+        },
+        {
+          "total": 216.0,
+          "per_task": 16.615384615384617
+        },
+        {
+          "total": 243.5,
+          "per_task": 18.73076923076923
+        },
+        {
+          "total": 229.5,
+          "per_task": 17.653846153846153
+        },
+        {
+          "total": 235.0,
+          "per_task": 18.076923076923077
+        },
+        {
+          "total": 228.0,
+          "per_task": 17.53846153846154
+        },
+        {
+          "total": 229.5,
+          "per_task": 17.653846153846153
+        },
+        {
+          "total": 236.5,
+          "per_task": 18.192307692307693
+        },
+        {
+          "total": 243.0,
+          "per_task": 18.692307692307693
+        },
+        {
+          "total": 219.5,
+          "per_task": 16.884615384615383
+        }
+      ]
+    },
+    {
+      "concurrency": 14,
+      "total": 229.0,
+      "per_task": 16.357142857142858,
+      "samples": 13,
+      "selected": [
+        {
+          "total": 280.5,
+          "per_task": 20.035714285714285
+        },
+        {
+          "total": 304.0,
+          "per_task": 21.714285714285715
+        },
+        {
+          "total": 228.0,
+          "per_task": 16.285714285714285
+        },
+        {
+          "total": 229.0,
+          "per_task": 16.357142857142858
+        },
+        {
+          "total": 241.0,
+          "per_task": 17.214285714285715
+        },
+        {
+          "total": 230.0,
+          "per_task": 16.428571428571427
+        },
+        {
+          "total": 210.5,
+          "per_task": 15.035714285714286
+        },
+        {
+          "total": 240.0,
+          "per_task": 17.142857142857142
+        },
+        {
+          "total": 221.5,
+          "per_task": 15.821428571428571
+        },
+        {
+          "total": 226.0,
+          "per_task": 16.142857142857142
+        },
+        {
+          "total": 220.5,
+          "per_task": 15.75
+        },
+        {
+          "total": 254.0,
+          "per_task": 18.142857142857142
+        },
+        {
+          "total": 220.0,
+          "per_task": 15.714285714285714
+        }
+      ]
+    },
+    {
+      "concurrency": 15,
+      "total": 248.0,
+      "per_task": 16.533333333333335,
+      "samples": 19,
+      "selected": [
+        {
+          "total": 306.5,
+          "per_task": 20.433333333333334
+        },
+        {
+          "total": 283.5,
+          "per_task": 18.9
+        },
+        {
+          "total": 303.5,
+          "per_task": 20.233333333333334
+        },
+        {
+          "total": 264.0,
+          "per_task": 17.6
+        },
+        {
+          "total": 227.5,
+          "per_task": 15.166666666666666
+        },
+        {
+          "total": 236.0,
+          "per_task": 15.733333333333333
+        },
+        {
+          "total": 256.0,
+          "per_task": 17.066666666666666
+        },
+        {
+          "total": 274.0,
+          "per_task": 18.266666666666666
+        },
+        {
+          "total": 261.5,
+          "per_task": 17.433333333333334
+        },
+        {
+          "total": 248.0,
+          "per_task": 16.533333333333335
+        },
+        {
+          "total": 266.0,
+          "per_task": 17.733333333333334
+        },
+        {
+          "total": 225.5,
+          "per_task": 15.033333333333333
+        },
+        {
+          "total": 251.5,
+          "per_task": 16.766666666666666
+        },
+        {
+          "total": 240.5,
+          "per_task": 16.033333333333335
+        },
+        {
+          "total": 242.5,
+          "per_task": 16.166666666666668
+        },
+        {
+          "total": 231.0,
+          "per_task": 15.4
+        },
+        {
+          "total": 231.0,
+          "per_task": 15.4
+        },
+        {
+          "total": 230.0,
+          "per_task": 15.333333333333334
+        },
+        {
+          "total": 229.5,
+          "per_task": 15.3
+        }
+      ]
+    },
+    {
+      "concurrency": 16,
+      "total": 260.25,
+      "per_task": 16.265625,
+      "samples": 16,
+      "selected": [
+        {
+          "total": 312.0,
+          "per_task": 19.5
+        },
+        {
+          "total": 306.5,
+          "per_task": 19.15625
+        },
+        {
+          "total": 307.0,
+          "per_task": 19.1875
+        },
+        {
+          "total": 260.0,
+          "per_task": 16.25
+        },
+        {
+          "total": 244.5,
+          "per_task": 15.28125
+        },
+        {
+          "total": 264.5,
+          "per_task": 16.53125
+        },
+        {
+          "total": 266.0,
+          "per_task": 16.625
+        },
+        {
+          "total": 242.5,
+          "per_task": 15.15625
+        },
+        {
+          "total": 248.5,
+          "per_task": 15.53125
+        },
+        {
+          "total": 261.5,
+          "per_task": 16.34375
+        },
+        {
+          "total": 260.5,
+          "per_task": 16.28125
+        },
+        {
+          "total": 252.0,
+          "per_task": 15.75
+        },
+        {
+          "total": 264.5,
+          "per_task": 16.53125
+        },
+        {
+          "total": 234.5,
+          "per_task": 14.65625
+        },
+        {
+          "total": 245.0,
+          "per_task": 15.3125
+        },
+        {
+          "total": 215.5,
+          "per_task": 13.46875
+        }
+      ]
+    }
+  ],
+  "runs": {
+    "pass1": [
+      {
+        "concurrency": 1,
+        "total": 88.5,
+        "per_task": 88.5,
+        "samples": 11,
+        "selected": [
+          {
+            "total": 109.5,
+            "per_task": 109.5
+          },
+          {
+            "total": 101.0,
+            "per_task": 101.0
+          },
+          {
+            "total": 79.5,
+            "per_task": 79.5
+          },
+          {
+            "total": 83.0,
+            "per_task": 83.0
+          },
+          {
+            "total": 89.5,
+            "per_task": 89.5
+          },
+          {
+            "total": 80.5,
+            "per_task": 80.5
+          },
+          {
+            "total": 78.0,
+            "per_task": 78.0
+          },
+          {
+            "total": 88.5,
+            "per_task": 88.5
+          },
+          {
+            "total": 83.0,
+            "per_task": 83.0
+          },
+          {
+            "total": 139.0,
+            "per_task": 139.0
+          },
+          {
+            "total": 131.5,
+            "per_task": 131.5
+          }
+        ]
+      },
+      {
+        "concurrency": 2,
+        "total": 137.25,
+        "per_task": 68.625,
+        "samples": 6,
+        "selected": [
+          {
+            "total": 141.0,
+            "per_task": 70.5
+          },
+          {
+            "total": 139.0,
+            "per_task": 69.5
+          },
+          {
+            "total": 145.0,
+            "per_task": 72.5
+          },
+          {
+            "total": 114.5,
+            "per_task": 57.25
+          },
+          {
+            "total": 118.0,
+            "per_task": 59.0
+          },
+          {
+            "total": 135.5,
+            "per_task": 67.75
+          }
+        ]
+      },
+      {
+        "concurrency": 3,
+        "total": 149.0,
+        "per_task": 49.666666666666664,
+        "samples": 7,
+        "selected": [
+          {
+            "total": 164.5,
+            "per_task": 54.833333333333336
+          },
+          {
+            "total": 149.0,
+            "per_task": 49.666666666666664
+          },
+          {
+            "total": 151.0,
+            "per_task": 50.333333333333336
+          },
+          {
+            "total": 143.5,
+            "per_task": 47.833333333333336
+          },
+          {
+            "total": 153.0,
+            "per_task": 51.0
+          },
+          {
+            "total": 126.5,
+            "per_task": 42.166666666666664
+          },
+          {
+            "total": 147.5,
+            "per_task": 49.166666666666664
+          }
+        ]
+      },
+      {
+        "concurrency": 4,
+        "total": 162.25,
+        "per_task": 40.5625,
+        "samples": 10,
+        "selected": [
+          {
+            "total": 182.5,
+            "per_task": 45.625
+          },
+          {
+            "total": 160.0,
+            "per_task": 40.0
+          },
+          {
+            "total": 164.5,
+            "per_task": 41.125
+          },
+          {
+            "total": 171.5,
+            "per_task": 42.875
+          },
+          {
+            "total": 154.0,
+            "per_task": 38.5
+          },
+          {
+            "total": 153.5,
+            "per_task": 38.375
+          },
+          {
+            "total": 158.0,
+            "per_task": 39.5
+          },
+          {
+            "total": 144.5,
+            "per_task": 36.125
+          },
+          {
+            "total": 166.0,
+            "per_task": 41.5
+          },
+          {
+            "total": 174.5,
+            "per_task": 43.625
+          }
+        ]
+      },
+      {
+        "concurrency": 5,
+        "total": 175.75,
+        "per_task": 35.15,
+        "samples": 10,
+        "selected": [
+          {
+            "total": 180.0,
+            "per_task": 36.0
+          },
+          {
+            "total": 197.0,
+            "per_task": 39.4
+          },
+          {
+            "total": 158.0,
+            "per_task": 31.6
+          },
+          {
+            "total": 174.5,
+            "per_task": 34.9
+          },
+          {
+            "total": 179.5,
+            "per_task": 35.9
+          },
+          {
+            "total": 171.5,
+            "per_task": 34.3
+          },
+          {
+            "total": 178.5,
+            "per_task": 35.7
+          },
+          {
+            "total": 177.0,
+            "per_task": 35.4
+          },
+          {
+            "total": 170.0,
+            "per_task": 34.0
+          },
+          {
+            "total": 165.0,
+            "per_task": 33.0
+          }
+        ]
+      },
+      {
+        "concurrency": 6,
+        "total": 185.0,
+        "per_task": 30.833333333333332,
+        "samples": 7,
+        "selected": [
+          {
+            "total": 221.0,
+            "per_task": 36.833333333333336
+          },
+          {
+            "total": 181.5,
+            "per_task": 30.25
+          },
+          {
+            "total": 185.0,
+            "per_task": 30.833333333333332
+          },
+          {
+            "total": 192.5,
+            "per_task": 32.083333333333336
+          },
+          {
+            "total": 179.5,
+            "per_task": 29.916666666666668
+          },
+          {
+            "total": 182.0,
+            "per_task": 30.333333333333332
+          },
+          {
+            "total": 192.5,
+            "per_task": 32.083333333333336
+          }
+        ]
+      },
+      {
+        "concurrency": 7,
+        "total": 183.5,
+        "per_task": 26.214285714285715,
+        "samples": 11,
+        "selected": [
+          {
+            "total": 212.5,
+            "per_task": 30.357142857142858
+          },
+          {
+            "total": 184.0,
+            "per_task": 26.285714285714285
+          },
+          {
+            "total": 180.5,
+            "per_task": 25.785714285714285
+          },
+          {
+            "total": 207.5,
+            "per_task": 29.642857142857142
+          },
+          {
+            "total": 183.5,
+            "per_task": 26.214285714285715
+          },
+          {
+            "total": 174.0,
+            "per_task": 24.857142857142858
+          },
+          {
+            "total": 175.5,
+            "per_task": 25.071428571428573
+          },
+          {
+            "total": 180.0,
+            "per_task": 25.714285714285715
+          },
+          {
+            "total": 196.0,
+            "per_task": 28.0
+          },
+          {
+            "total": 193.0,
+            "per_task": 27.571428571428573
+          },
+          {
+            "total": 177.0,
+            "per_task": 25.285714285714285
+          }
+        ]
+      },
+      {
+        "concurrency": 8,
+        "total": 201.5,
+        "per_task": 25.1875,
+        "samples": 13,
+        "selected": [
+          {
+            "total": 256.0,
+            "per_task": 32.0
+          },
+          {
+            "total": 194.0,
+            "per_task": 24.25
+          },
+          {
+            "total": 184.5,
+            "per_task": 23.0625
+          },
+          {
+            "total": 199.0,
+            "per_task": 24.875
+          },
+          {
+            "total": 201.5,
+            "per_task": 25.1875
+          },
+          {
+            "total": 202.5,
+            "per_task": 25.3125
+          },
+          {
+            "total": 190.0,
+            "per_task": 23.75
+          },
+          {
+            "total": 198.0,
+            "per_task": 24.75
+          },
+          {
+            "total": 196.5,
+            "per_task": 24.5625
+          },
+          {
+            "total": 203.5,
+            "per_task": 25.4375
+          },
+          {
+            "total": 234.0,
+            "per_task": 29.25
+          },
+          {
+            "total": 220.5,
+            "per_task": 27.5625
+          },
+          {
+            "total": 235.5,
+            "per_task": 29.4375
+          }
+        ]
+      },
+      {
+        "concurrency": 9,
+        "total": 209.25,
+        "per_task": 23.25,
+        "samples": 10,
+        "selected": [
+          {
+            "total": 254.5,
+            "per_task": 28.27777777777778
+          },
+          {
+            "total": 249.5,
+            "per_task": 27.72222222222222
+          },
+          {
+            "total": 208.0,
+            "per_task": 23.11111111111111
+          },
+          {
+            "total": 194.0,
+            "per_task": 21.555555555555557
+          },
+          {
+            "total": 213.5,
+            "per_task": 23.72222222222222
+          },
+          {
+            "total": 197.0,
+            "per_task": 21.88888888888889
+          },
+          {
+            "total": 210.5,
+            "per_task": 23.38888888888889
+          },
+          {
+            "total": 201.5,
+            "per_task": 22.38888888888889
+          },
+          {
+            "total": 212.5,
+            "per_task": 23.61111111111111
+          },
+          {
+            "total": 202.5,
+            "per_task": 22.5
+          }
+        ]
+      },
+      {
+        "concurrency": 10,
+        "total": 214.5,
+        "per_task": 21.450000000000003,
+        "samples": 12,
+        "selected": [
+          {
+            "total": 249.5,
+            "per_task": 24.95
+          },
+          {
+            "total": 266.5,
+            "per_task": 26.65
+          },
+          {
+            "total": 216.0,
+            "per_task": 21.6
+          },
+          {
+            "total": 213.0,
+            "per_task": 21.3
+          },
+          {
+            "total": 212.0,
+            "per_task": 21.2
+          },
+          {
+            "total": 212.5,
+            "per_task": 21.25
+          },
+          {
+            "total": 212.0,
+            "per_task": 21.2
+          },
+          {
+            "total": 224.5,
+            "per_task": 22.45
+          },
+          {
+            "total": 207.0,
+            "per_task": 20.7
+          },
+          {
+            "total": 208.5,
+            "per_task": 20.85
+          },
+          {
+            "total": 218.5,
+            "per_task": 21.85
+          },
+          {
+            "total": 220.0,
+            "per_task": 22.0
+          }
+        ]
+      },
+      {
+        "concurrency": 11,
+        "total": 230.0,
+        "per_task": 20.90909090909091,
+        "samples": 19,
+        "selected": [
+          {
+            "total": 305.0,
+            "per_task": 27.727272727272727
+          },
+          {
+            "total": 288.0,
+            "per_task": 26.181818181818183
+          },
+          {
+            "total": 267.0,
+            "per_task": 24.272727272727273
+          },
+          {
+            "total": 262.0,
+            "per_task": 23.818181818181817
+          },
+          {
+            "total": 230.0,
+            "per_task": 20.90909090909091
+          },
+          {
+            "total": 246.0,
+            "per_task": 22.363636363636363
+          },
+          {
+            "total": 217.5,
+            "per_task": 19.772727272727273
+          },
+          {
+            "total": 232.0,
+            "per_task": 21.09090909090909
+          },
+          {
+            "total": 226.5,
+            "per_task": 20.59090909090909
+          },
+          {
+            "total": 240.5,
+            "per_task": 21.863636363636363
+          },
+          {
+            "total": 221.5,
+            "per_task": 20.136363636363637
+          },
+          {
+            "total": 233.5,
+            "per_task": 21.227272727272727
+          },
+          {
+            "total": 199.0,
+            "per_task": 18.09090909090909
+          },
+          {
+            "total": 210.0,
+            "per_task": 19.09090909090909
+          },
+          {
+            "total": 215.0,
+            "per_task": 19.545454545454547
+          },
+          {
+            "total": 209.0,
+            "per_task": 19.0
+          },
+          {
+            "total": 199.5,
+            "per_task": 18.136363636363637
+          },
+          {
+            "total": 203.5,
+            "per_task": 18.5
+          },
+          {
+            "total": 231.5,
+            "per_task": 21.045454545454547
+          }
+        ]
+      },
+      {
+        "concurrency": 12,
+        "total": 229.75,
+        "per_task": 19.145833333333336,
+        "samples": 12,
+        "selected": [
+          {
+            "total": 275.0,
+            "per_task": 22.916666666666668
+          },
+          {
+            "total": 280.0,
+            "per_task": 23.333333333333332
+          },
+          {
+            "total": 262.0,
+            "per_task": 21.833333333333332
+          },
+          {
+            "total": 234.0,
+            "per_task": 19.5
+          },
+          {
+            "total": 230.0,
+            "per_task": 19.166666666666668
+          },
+          {
+            "total": 229.5,
+            "per_task": 19.125
+          },
+          {
+            "total": 225.0,
+            "per_task": 18.75
+          },
+          {
+            "total": 232.5,
+            "per_task": 19.375
+          },
+          {
+            "total": 218.5,
+            "per_task": 18.208333333333332
+          },
+          {
+            "total": 220.5,
+            "per_task": 18.375
+          },
+          {
+            "total": 223.5,
+            "per_task": 18.625
+          },
+          {
+            "total": 219.0,
+            "per_task": 18.25
+          }
+        ]
+      },
+      {
+        "concurrency": 13,
+        "total": 245.5,
+        "per_task": 18.884615384615383,
+        "samples": 12,
+        "selected": [
+          {
+            "total": 310.5,
+            "per_task": 23.884615384615383
+          },
+          {
+            "total": 294.0,
+            "per_task": 22.615384615384617
+          },
+          {
+            "total": 283.0,
+            "per_task": 21.76923076923077
+          },
+          {
+            "total": 258.0,
+            "per_task": 19.846153846153847
+          },
+          {
+            "total": 218.0,
+            "per_task": 16.76923076923077
+          },
+          {
+            "total": 213.5,
+            "per_task": 16.423076923076923
+          },
+          {
+            "total": 217.0,
+            "per_task": 16.692307692307693
+          },
+          {
+            "total": 230.5,
+            "per_task": 17.73076923076923
+          },
+          {
+            "total": 253.5,
+            "per_task": 19.5
+          },
+          {
+            "total": 239.0,
+            "per_task": 18.384615384615383
+          },
+          {
+            "total": 252.0,
+            "per_task": 19.384615384615383
+          },
+          {
+            "total": 216.0,
+            "per_task": 16.615384615384617
+          }
+        ]
+      },
+      {
+        "concurrency": 14,
+        "total": 234.75,
+        "per_task": 16.767857142857142,
+        "samples": 18,
+        "selected": [
+          {
+            "total": 301.0,
+            "per_task": 21.5
+          },
+          {
+            "total": 302.5,
+            "per_task": 21.607142857142858
+          },
+          {
+            "total": 293.0,
+            "per_task": 20.928571428571427
+          },
+          {
+            "total": 278.0,
+            "per_task": 19.857142857142858
+          },
+          {
+            "total": 247.0,
+            "per_task": 17.642857142857142
+          },
+          {
+            "total": 226.5,
+            "per_task": 16.178571428571427
+          },
+          {
+            "total": 252.5,
+            "per_task": 18.035714285714285
+          },
+          {
+            "total": 229.0,
+            "per_task": 16.357142857142858
+          },
+          {
+            "total": 228.5,
+            "per_task": 16.321428571428573
+          },
+          {
+            "total": 243.5,
+            "per_task": 17.392857142857142
+          },
+          {
+            "total": 236.5,
+            "per_task": 16.892857142857142
+          },
+          {
+            "total": 210.5,
+            "per_task": 15.035714285714286
+          },
+          {
+            "total": 213.5,
+            "per_task": 15.25
+          },
+          {
+            "total": 243.0,
+            "per_task": 17.357142857142858
+          },
+          {
+            "total": 233.0,
+            "per_task": 16.642857142857142
+          },
+          {
+            "total": 226.0,
+            "per_task": 16.142857142857142
+          },
+          {
+            "total": 226.0,
+            "per_task": 16.142857142857142
+          },
+          {
+            "total": 225.0,
+            "per_task": 16.071428571428573
+          }
+        ]
+      },
+      {
+        "concurrency": 15,
+        "total": 247.0,
+        "per_task": 16.466666666666665,
+        "samples": 15,
+        "selected": [
+          {
+            "total": 296.0,
+            "per_task": 19.733333333333334
+          },
+          {
+            "total": 282.0,
+            "per_task": 18.8
+          },
+          {
+            "total": 264.0,
+            "per_task": 17.6
+          },
+          {
+            "total": 257.5,
+            "per_task": 17.166666666666668
+          },
+          {
+            "total": 247.0,
+            "per_task": 16.466666666666665
+          },
+          {
+            "total": 258.0,
+            "per_task": 17.2
+          },
+          {
+            "total": 246.0,
+            "per_task": 16.4
+          },
+          {
+            "total": 282.5,
+            "per_task": 18.833333333333332
+          },
+          {
+            "total": 238.0,
+            "per_task": 15.866666666666667
+          },
+          {
+            "total": 260.0,
+            "per_task": 17.333333333333332
+          },
+          {
+            "total": 239.5,
+            "per_task": 15.966666666666667
+          },
+          {
+            "total": 224.0,
+            "per_task": 14.933333333333334
+          },
+          {
+            "total": 215.5,
+            "per_task": 14.366666666666667
+          },
+          {
+            "total": 231.0,
+            "per_task": 15.4
+          },
+          {
+            "total": 237.0,
+            "per_task": 15.8
+          }
+        ]
+      },
+      {
+        "concurrency": 16,
+        "total": 252.0,
+        "per_task": 15.75,
+        "samples": 13,
+        "selected": [
+          {
+            "total": 306.5,
+            "per_task": 19.15625
+          },
+          {
+            "total": 293.0,
+            "per_task": 18.3125
+          },
+          {
+            "total": 286.5,
+            "per_task": 17.90625
+          },
+          {
+            "total": 256.0,
+            "per_task": 16.0
+          },
+          {
+            "total": 258.5,
+            "per_task": 16.15625
+          },
+          {
+            "total": 240.5,
+            "per_task": 15.03125
+          },
+          {
+            "total": 251.5,
+            "per_task": 15.71875
+          },
+          {
+            "total": 252.0,
+            "per_task": 15.75
+          },
+          {
+            "total": 267.5,
+            "per_task": 16.71875
+          },
+          {
+            "total": 246.0,
+            "per_task": 15.375
+          },
+          {
+            "total": 245.0,
+            "per_task": 15.3125
+          },
+          {
+            "total": 229.5,
+            "per_task": 14.34375
+          },
+          {
+            "total": 247.5,
+            "per_task": 15.46875
+          }
+        ]
+      }
+    ],
+    "pass2": [
+      {
+        "concurrency": 1,
+        "total": 85.25,
+        "per_task": 85.25,
+        "samples": 14,
+        "selected": [
+          {
+            "total": 118.5,
+            "per_task": 118.5
+          },
+          {
+            "total": 77.5,
+            "per_task": 77.5
+          },
+          {
+            "total": 86.0,
+            "per_task": 86.0
+          },
+          {
+            "total": 96.0,
+            "per_task": 96.0
+          },
+          {
+            "total": 90.0,
+            "per_task": 90.0
+          },
+          {
+            "total": 84.0,
+            "per_task": 84.0
+          },
+          {
+            "total": 84.5,
+            "per_task": 84.5
+          },
+          {
+            "total": 76.0,
+            "per_task": 76.0
+          },
+          {
+            "total": 78.5,
+            "per_task": 78.5
+          },
+          {
+            "total": 76.0,
+            "per_task": 76.0
+          },
+          {
+            "total": 118.5,
+            "per_task": 118.5
+          },
+          {
+            "total": 80.5,
+            "per_task": 80.5
+          },
+          {
+            "total": 137.0,
+            "per_task": 137.0
+          },
+          {
+            "total": 126.5,
+            "per_task": 126.5
+          }
+        ]
+      },
+      {
+        "concurrency": 2,
+        "total": 133.25,
+        "per_task": 66.625,
+        "samples": 8,
+        "selected": [
+          {
+            "total": 138.0,
+            "per_task": 69.0
+          },
+          {
+            "total": 150.5,
+            "per_task": 75.25
+          },
+          {
+            "total": 134.5,
+            "per_task": 67.25
+          },
+          {
+            "total": 110.5,
+            "per_task": 55.25
+          },
+          {
+            "total": 132.0,
+            "per_task": 66.0
+          },
+          {
+            "total": 135.0,
+            "per_task": 67.5
+          },
+          {
+            "total": 115.5,
+            "per_task": 57.75
+          },
+          {
+            "total": 120.0,
+            "per_task": 60.0
+          }
+        ]
+      },
+      {
+        "concurrency": 3,
+        "total": 144.75,
+        "per_task": 48.25,
+        "samples": 8,
+        "selected": [
+          {
+            "total": 174.5,
+            "per_task": 58.166666666666664
+          },
+          {
+            "total": 135.5,
+            "per_task": 45.166666666666664
+          },
+          {
+            "total": 145.5,
+            "per_task": 48.5
+          },
+          {
+            "total": 144.0,
+            "per_task": 48.0
+          },
+          {
+            "total": 135.0,
+            "per_task": 45.0
+          },
+          {
+            "total": 143.5,
+            "per_task": 47.833333333333336
+          },
+          {
+            "total": 162.5,
+            "per_task": 54.166666666666664
+          },
+          {
+            "total": 167.0,
+            "per_task": 55.666666666666664
+          }
+        ]
+      },
+      {
+        "concurrency": 4,
+        "total": 161.0,
+        "per_task": 40.25,
+        "samples": 9,
+        "selected": [
+          {
+            "total": 185.5,
+            "per_task": 46.375
+          },
+          {
+            "total": 163.0,
+            "per_task": 40.75
+          },
+          {
+            "total": 176.0,
+            "per_task": 44.0
+          },
+          {
+            "total": 163.5,
+            "per_task": 40.875
+          },
+          {
+            "total": 160.0,
+            "per_task": 40.0
+          },
+          {
+            "total": 156.5,
+            "per_task": 39.125
+          },
+          {
+            "total": 155.0,
+            "per_task": 38.75
+          },
+          {
+            "total": 161.0,
+            "per_task": 40.25
+          },
+          {
+            "total": 157.5,
+            "per_task": 39.375
+          }
+        ]
+      },
+      {
+        "concurrency": 5,
+        "total": 168.5,
+        "per_task": 33.7,
+        "samples": 16,
+        "selected": [
+          {
+            "total": 203.5,
+            "per_task": 40.7
+          },
+          {
+            "total": 180.5,
+            "per_task": 36.1
+          },
+          {
+            "total": 183.0,
+            "per_task": 36.6
+          },
+          {
+            "total": 180.0,
+            "per_task": 36.0
+          },
+          {
+            "total": 168.0,
+            "per_task": 33.6
+          },
+          {
+            "total": 169.0,
+            "per_task": 33.8
+          },
+          {
+            "total": 163.5,
+            "per_task": 32.7
+          },
+          {
+            "total": 172.5,
+            "per_task": 34.5
+          },
+          {
+            "total": 164.5,
+            "per_task": 32.9
+          },
+          {
+            "total": 175.0,
+            "per_task": 35.0
+          },
+          {
+            "total": 159.5,
+            "per_task": 31.9
+          },
+          {
+            "total": 166.5,
+            "per_task": 33.3
+          },
+          {
+            "total": 178.5,
+            "per_task": 35.7
+          },
+          {
+            "total": 160.5,
+            "per_task": 32.1
+          },
+          {
+            "total": 164.5,
+            "per_task": 32.9
+          },
+          {
+            "total": 166.5,
+            "per_task": 33.3
+          }
+        ]
+      },
+      {
+        "concurrency": 6,
+        "total": 182.5,
+        "per_task": 30.416666666666668,
+        "samples": 8,
+        "selected": [
+          {
+            "total": 193.5,
+            "per_task": 32.25
+          },
+          {
+            "total": 225.5,
+            "per_task": 37.583333333333336
+          },
+          {
+            "total": 178.5,
+            "per_task": 29.75
+          },
+          {
+            "total": 187.5,
+            "per_task": 31.25
+          },
+          {
+            "total": 185.5,
+            "per_task": 30.916666666666668
+          },
+          {
+            "total": 178.0,
+            "per_task": 29.666666666666668
+          },
+          {
+            "total": 171.5,
+            "per_task": 28.583333333333332
+          },
+          {
+            "total": 179.5,
+            "per_task": 29.916666666666668
+          }
+        ]
+      },
+      {
+        "concurrency": 7,
+        "total": 187.0,
+        "per_task": 26.714285714285715,
+        "samples": 12,
+        "selected": [
+          {
+            "total": 221.5,
+            "per_task": 31.642857142857142
+          },
+          {
+            "total": 229.0,
+            "per_task": 32.714285714285715
+          },
+          {
+            "total": 189.0,
+            "per_task": 27.0
+          },
+          {
+            "total": 179.5,
+            "per_task": 25.642857142857142
+          },
+          {
+            "total": 193.0,
+            "per_task": 27.571428571428573
+          },
+          {
+            "total": 183.0,
+            "per_task": 26.142857142857142
+          },
+          {
+            "total": 184.0,
+            "per_task": 26.285714285714285
+          },
+          {
+            "total": 190.0,
+            "per_task": 27.142857142857142
+          },
+          {
+            "total": 176.5,
+            "per_task": 25.214285714285715
+          },
+          {
+            "total": 185.0,
+            "per_task": 26.428571428571427
+          },
+          {
+            "total": 189.0,
+            "per_task": 27.0
+          },
+          {
+            "total": 182.5,
+            "per_task": 26.071428571428573
+          }
+        ]
+      },
+      {
+        "concurrency": 8,
+        "total": 199.5,
+        "per_task": 24.9375,
+        "samples": 10,
+        "selected": [
+          {
+            "total": 245.5,
+            "per_task": 30.6875
+          },
+          {
+            "total": 252.5,
+            "per_task": 31.5625
+          },
+          {
+            "total": 199.0,
+            "per_task": 24.875
+          },
+          {
+            "total": 190.5,
+            "per_task": 23.8125
+          },
+          {
+            "total": 186.5,
+            "per_task": 23.3125
+          },
+          {
+            "total": 200.0,
+            "per_task": 25.0
+          },
+          {
+            "total": 192.5,
+            "per_task": 24.0625
+          },
+          {
+            "total": 213.5,
+            "per_task": 26.6875
+          },
+          {
+            "total": 199.0,
+            "per_task": 24.875
+          },
+          {
+            "total": 200.0,
+            "per_task": 25.0
+          }
+        ]
+      },
+      {
+        "concurrency": 9,
+        "total": 210.0,
+        "per_task": 23.333333333333332,
+        "samples": 11,
+        "selected": [
+          {
+            "total": 256.0,
+            "per_task": 28.444444444444443
+          },
+          {
+            "total": 231.0,
+            "per_task": 25.666666666666668
+          },
+          {
+            "total": 210.0,
+            "per_task": 23.333333333333332
+          },
+          {
+            "total": 215.0,
+            "per_task": 23.88888888888889
+          },
+          {
+            "total": 214.0,
+            "per_task": 23.77777777777778
+          },
+          {
+            "total": 190.0,
+            "per_task": 21.11111111111111
+          },
+          {
+            "total": 191.0,
+            "per_task": 21.22222222222222
+          },
+          {
+            "total": 199.0,
+            "per_task": 22.11111111111111
+          },
+          {
+            "total": 191.5,
+            "per_task": 21.27777777777778
+          },
+          {
+            "total": 211.5,
+            "per_task": 23.5
+          },
+          {
+            "total": 203.5,
+            "per_task": 22.61111111111111
+          }
+        ]
+      },
+      {
+        "concurrency": 10,
+        "total": 213.0,
+        "per_task": 21.3,
+        "samples": 9,
+        "selected": [
+          {
+            "total": 263.0,
+            "per_task": 26.3
+          },
+          {
+            "total": 274.0,
+            "per_task": 27.4
+          },
+          {
+            "total": 214.5,
+            "per_task": 21.45
+          },
+          {
+            "total": 212.5,
+            "per_task": 21.25
+          },
+          {
+            "total": 217.0,
+            "per_task": 21.7
+          },
+          {
+            "total": 213.0,
+            "per_task": 21.3
+          },
+          {
+            "total": 198.0,
+            "per_task": 19.8
+          },
+          {
+            "total": 209.5,
+            "per_task": 20.95
+          },
+          {
+            "total": 207.5,
+            "per_task": 20.75
+          }
+        ]
+      },
+      {
+        "concurrency": 11,
+        "total": 237.25,
+        "per_task": 21.56818181818182,
+        "samples": 12,
+        "selected": [
+          {
+            "total": 300.0,
+            "per_task": 27.272727272727273
+          },
+          {
+            "total": 278.5,
+            "per_task": 25.318181818181817
+          },
+          {
+            "total": 264.0,
+            "per_task": 24.0
+          },
+          {
+            "total": 232.0,
+            "per_task": 21.09090909090909
+          },
+          {
+            "total": 229.5,
+            "per_task": 20.863636363636363
+          },
+          {
+            "total": 246.5,
+            "per_task": 22.40909090909091
+          },
+          {
+            "total": 239.5,
+            "per_task": 21.772727272727273
+          },
+          {
+            "total": 237.0,
+            "per_task": 21.545454545454547
+          },
+          {
+            "total": 236.0,
+            "per_task": 21.454545454545453
+          },
+          {
+            "total": 237.5,
+            "per_task": 21.59090909090909
+          },
+          {
+            "total": 204.5,
+            "per_task": 18.59090909090909
+          },
+          {
+            "total": 221.0,
+            "per_task": 20.09090909090909
+          }
+        ]
+      },
+      {
+        "concurrency": 12,
+        "total": 225.5,
+        "per_task": 18.791666666666668,
+        "samples": 17,
+        "selected": [
+          {
+            "total": 260.5,
+            "per_task": 21.708333333333332
+          },
+          {
+            "total": 299.5,
+            "per_task": 24.958333333333332
+          },
+          {
+            "total": 240.0,
+            "per_task": 20.0
+          },
+          {
+            "total": 223.5,
+            "per_task": 18.625
+          },
+          {
+            "total": 219.5,
+            "per_task": 18.291666666666668
+          },
+          {
+            "total": 246.0,
+            "per_task": 20.5
+          },
+          {
+            "total": 225.5,
+            "per_task": 18.791666666666668
+          },
+          {
+            "total": 218.5,
+            "per_task": 18.208333333333332
+          },
+          {
+            "total": 239.0,
+            "per_task": 19.916666666666668
+          },
+          {
+            "total": 236.5,
+            "per_task": 19.708333333333332
+          },
+          {
+            "total": 221.5,
+            "per_task": 18.458333333333332
+          },
+          {
+            "total": 228.5,
+            "per_task": 19.041666666666668
+          },
+          {
+            "total": 233.5,
+            "per_task": 19.458333333333332
+          },
+          {
+            "total": 224.5,
+            "per_task": 18.708333333333332
+          },
+          {
+            "total": 216.5,
+            "per_task": 18.041666666666668
+          },
+          {
+            "total": 223.0,
+            "per_task": 18.583333333333332
+          },
+          {
+            "total": 212.0,
+            "per_task": 17.666666666666668
+          }
+        ]
+      },
+      {
+        "concurrency": 13,
+        "total": 239.0,
+        "per_task": 18.384615384615383,
+        "samples": 16,
+        "selected": [
+          {
+            "total": 267.5,
+            "per_task": 20.576923076923077
+          },
+          {
+            "total": 273.0,
+            "per_task": 21.0
+          },
+          {
+            "total": 252.0,
+            "per_task": 19.384615384615383
+          },
+          {
+            "total": 227.5,
+            "per_task": 17.5
+          },
+          {
+            "total": 220.5,
+            "per_task": 16.96153846153846
+          },
+          {
+            "total": 235.0,
+            "per_task": 18.076923076923077
+          },
+          {
+            "total": 248.0,
+            "per_task": 19.076923076923077
+          },
+          {
+            "total": 239.0,
+            "per_task": 18.384615384615383
+          },
+          {
+            "total": 245.5,
+            "per_task": 18.884615384615383
+          },
+          {
+            "total": 242.0,
+            "per_task": 18.615384615384617
+          },
+          {
+            "total": 252.0,
+            "per_task": 19.384615384615383
+          },
+          {
+            "total": 237.0,
+            "per_task": 18.23076923076923
+          },
+          {
+            "total": 223.0,
+            "per_task": 17.153846153846153
+          },
+          {
+            "total": 223.5,
+            "per_task": 17.192307692307693
+          },
+          {
+            "total": 239.0,
+            "per_task": 18.384615384615383
+          },
+          {
+            "total": 235.0,
+            "per_task": 18.076923076923077
+          }
+        ]
+      },
+      {
+        "concurrency": 14,
+        "total": 239.5,
+        "per_task": 17.107142857142858,
+        "samples": 17,
+        "selected": [
+          {
+            "total": 261.5,
+            "per_task": 18.678571428571427
+          },
+          {
+            "total": 299.5,
+            "per_task": 21.392857142857142
+          },
+          {
+            "total": 301.0,
+            "per_task": 21.5
+          },
+          {
+            "total": 268.5,
+            "per_task": 19.178571428571427
+          },
+          {
+            "total": 239.5,
+            "per_task": 17.107142857142858
+          },
+          {
+            "total": 239.0,
+            "per_task": 17.071428571428573
+          },
+          {
+            "total": 242.0,
+            "per_task": 17.285714285714285
+          },
+          {
+            "total": 243.5,
+            "per_task": 17.392857142857142
+          },
+          {
+            "total": 249.0,
+            "per_task": 17.785714285714285
+          },
+          {
+            "total": 228.5,
+            "per_task": 16.321428571428573
+          },
+          {
+            "total": 237.0,
+            "per_task": 16.928571428571427
+          },
+          {
+            "total": 235.0,
+            "per_task": 16.785714285714285
+          },
+          {
+            "total": 256.0,
+            "per_task": 18.285714285714285
+          },
+          {
+            "total": 226.5,
+            "per_task": 16.178571428571427
+          },
+          {
+            "total": 222.0,
+            "per_task": 15.857142857142858
+          },
+          {
+            "total": 225.0,
+            "per_task": 16.071428571428573
+          },
+          {
+            "total": 237.5,
+            "per_task": 16.964285714285715
+          }
+        ]
+      },
+      {
+        "concurrency": 15,
+        "total": 242.25,
+        "per_task": 16.15,
+        "samples": 16,
+        "selected": [
+          {
+            "total": 307.0,
+            "per_task": 20.466666666666665
+          },
+          {
+            "total": 279.5,
+            "per_task": 18.633333333333333
+          },
+          {
+            "total": 304.0,
+            "per_task": 20.266666666666666
+          },
+          {
+            "total": 255.0,
+            "per_task": 17.0
+          },
+          {
+            "total": 245.0,
+            "per_task": 16.333333333333332
+          },
+          {
+            "total": 248.0,
+            "per_task": 16.533333333333335
+          },
+          {
+            "total": 263.0,
+            "per_task": 17.533333333333335
+          },
+          {
+            "total": 234.5,
+            "per_task": 15.633333333333333
+          },
+          {
+            "total": 256.0,
+            "per_task": 17.066666666666666
+          },
+          {
+            "total": 229.5,
+            "per_task": 15.3
+          },
+          {
+            "total": 224.5,
+            "per_task": 14.966666666666667
+          },
+          {
+            "total": 239.5,
+            "per_task": 15.966666666666667
+          },
+          {
+            "total": 227.0,
+            "per_task": 15.133333333333333
+          },
+          {
+            "total": 216.5,
+            "per_task": 14.433333333333334
+          },
+          {
+            "total": 226.0,
+            "per_task": 15.066666666666666
+          },
+          {
+            "total": 227.5,
+            "per_task": 15.166666666666666
+          }
+        ]
+      },
+      {
+        "concurrency": 16,
+        "total": 268.0,
+        "per_task": 16.75,
+        "samples": 15,
+        "selected": [
+          {
+            "total": 310.5,
+            "per_task": 19.40625
+          },
+          {
+            "total": 300.5,
+            "per_task": 18.78125
+          },
+          {
+            "total": 309.5,
+            "per_task": 19.34375
+          },
+          {
+            "total": 268.0,
+            "per_task": 16.75
+          },
+          {
+            "total": 268.0,
+            "per_task": 16.75
+          },
+          {
+            "total": 244.0,
+            "per_task": 15.25
+          },
+          {
+            "total": 253.5,
+            "per_task": 15.84375
+          },
+          {
+            "total": 275.0,
+            "per_task": 17.1875
+          },
+          {
+            "total": 247.5,
+            "per_task": 15.46875
+          },
+          {
+            "total": 255.0,
+            "per_task": 15.9375
+          },
+          {
+            "total": 272.0,
+            "per_task": 17.0
+          },
+          {
+            "total": 274.5,
+            "per_task": 17.15625
+          },
+          {
+            "total": 258.0,
+            "per_task": 16.125
+          },
+          {
+            "total": 232.0,
+            "per_task": 14.5
+          },
+          {
+            "total": 237.5,
+            "per_task": 14.84375
+          }
+        ]
+      }
+    ]
+  },
+  "flyer_selected_pass": 2,
+  "pass_selection": "Owner selected whole pass2; no per-cell run mixing."
+}

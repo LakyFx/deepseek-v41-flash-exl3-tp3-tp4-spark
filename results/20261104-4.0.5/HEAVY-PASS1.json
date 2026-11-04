@@ -1,0 +1,2387 @@
+{
+  "version": "4.0.5",
+  "pass_number": 1,
+  "sampling": {
+    "reasoning_effort": "max",
+    "temperature": 0.6,
+    "top_p": 1,
+    "top_k": 0,
+    "min_p": 0,
+    "seed": 42,
+    "max_tokens": 65536
+  },
+  "correct": 135,
+  "total": 136,
+  "failures_retained": true,
+  "interrupted_before_unattempted_C16": true,
+  "cells": [
+    {
+      "concurrency": 1,
+      "summary": {
+        "correct": 1,
+        "total": 1,
+        "wave_elapsed_seconds": 45.84974178799894,
+        "task_median_seconds": 45.84936903999187,
+        "task_p95_seconds": 45.84936903999187,
+        "ttft_median_seconds": 0.14011290797498077,
+        "per_request_completion_tps_median": 97.8740521899598,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 1.3086224188007283,
+        "failures_retained": true,
+        "task_errors": 4,
+        "prefill_seconds_median": 0.12255937650000001,
+        "prefill_seconds_p95": 0.606732919,
+        "computed_prefill_tps_median": 336.00329832069053,
+        "computed_prefill_tps_p95": 1694.3204626086886,
+        "native_ttft_seconds_median": 0.129083285,
+        "native_ttft_seconds_p95": 0.608769969,
+        "native_decode_tps_median": 109.74621829602926,
+        "native_decode_tps_p95": 122.4677802884703,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.005180575499999937,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.01014960300000034,
+        "runtime_coverage_requests": 8,
+        "requests": 8,
+        "completion_tokens": 4486,
+        "aggregate_workflow_completion_tps": 97.84133617900112,
+        "computed_prefill_tokens": 1658
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 8,
+        "deltas": {
+          "generation_tokens_total": 4486.0,
+          "request_latency_seconds_count": 8.0,
+          "prefill_computed_tokens_total": 1658.0,
+          "prefill_duration_seconds_total": 1.6899489999999986,
+          "request_decode_seconds_sum": 44.08333499999935,
+          "prefix_cache_queries_total": 26190.0,
+          "prefix_cache_hits_total": 24532.0,
+          "mtp_drafted_total": 4041.0,
+          "mtp_accepted_total": 3202.0,
+          "decode_rounds_total": 1281.0
+        },
+        "computed_prefill_tps": 981.0946957570917,
+        "weighted_request_decode_tps": 101.76181089747557,
+        "prefix_token_hit_fraction": 0.9366933944253532,
+        "draft_acceptance_fraction": 0.7923781242266765,
+        "output_tokens_per_request_decode_round": 3.501951600312256,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 45.84936903999187,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: prompt_tokens"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "c599e190b9ff9e00b2d25d24f521faa216281d46c3f8d90d9b6f031a2d1b1a66"
+        }
+      ]
+    },
+    {
+      "concurrency": 2,
+      "summary": {
+        "correct": 2,
+        "total": 2,
+        "wave_elapsed_seconds": 34.25623469508719,
+        "task_median_seconds": 31.750266115996055,
+        "task_p95_seconds": 34.25577783503104,
+        "ttft_median_seconds": 0.43223833199590445,
+        "per_request_completion_tps_median": 55.499146588729495,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 3.5030119646281395,
+        "failures_retained": true,
+        "task_errors": 1,
+        "prefill_seconds_median": 0.165231088,
+        "prefill_seconds_p95": 0.58162324,
+        "computed_prefill_tps_median": 459.9618686769163,
+        "computed_prefill_tps_p95": 1778.6432805264642,
+        "native_ttft_seconds_median": 0.181412954,
+        "native_ttft_seconds_p95": 1.184594937,
+        "native_decode_tps_median": 71.6543737854691,
+        "native_decode_tps_p95": 91.98901062483472,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0036267619999996725,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006742539000001102,
+        "runtime_coverage_requests": 9,
+        "requests": 9,
+        "completion_tokens": 4037,
+        "aggregate_workflow_completion_tps": 117.84716084336499,
+        "computed_prefill_tokens": 3138
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 9,
+        "deltas": {
+          "generation_tokens_total": 4037.0,
+          "request_latency_seconds_count": 9.0,
+          "prefill_computed_tokens_total": 3138.0,
+          "prefill_duration_seconds_total": 2.660629,
+          "request_decode_seconds_sum": 59.58569299999999,
+          "prefix_cache_queries_total": 18936.0,
+          "prefix_cache_hits_total": 15798.0,
+          "mtp_drafted_total": 3276.0,
+          "mtp_accepted_total": 2721.0,
+          "decode_rounds_total": 1313.0
+        },
+        "computed_prefill_tps": 1179.4203551115168,
+        "weighted_request_decode_tps": 67.7511630182769,
+        "prefix_token_hit_fraction": 0.8342839036755386,
+        "draft_acceptance_fraction": 0.8305860805860806,
+        "output_tokens_per_request_decode_round": 3.0746382330540745,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 29.24475439696107,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "fe31e12c4721896c49481e6443e6fda82d831a78340e5bbd1bb040125ed81bab"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 34.25577783503104,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "73c23cb8a3f8f4cd54a63ecf252d9877c26846133a9a3a85200c113c332b8a85"
+        }
+      ]
+    },
+    {
+      "concurrency": 3,
+      "summary": {
+        "correct": 3,
+        "total": 3,
+        "wave_elapsed_seconds": 158.21227539295796,
+        "task_median_seconds": 50.60313038795721,
+        "task_p95_seconds": 158.21052224200685,
+        "ttft_median_seconds": 0.22542763396631926,
+        "per_request_completion_tps_median": 48.41963397596089,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 1.1377119730623115,
+        "failures_retained": true,
+        "task_errors": 5,
+        "prefill_seconds_median": 0.157750957,
+        "prefill_seconds_p95": 0.583846111,
+        "computed_prefill_tps_median": 418.4052744467758,
+        "computed_prefill_tps_p95": 1774.1852436187226,
+        "native_ttft_seconds_median": 0.193865053,
+        "native_ttft_seconds_p95": 1.822879228,
+        "native_decode_tps_median": 56.49726263815735,
+        "native_decode_tps_p95": 99.36254960577334,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0042979090000017095,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.014692012000004695,
+        "runtime_coverage_requests": 17,
+        "requests": 17,
+        "completion_tokens": 16491,
+        "aggregate_workflow_completion_tps": 104.23337859872544,
+        "computed_prefill_tokens": 4781
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 17,
+        "deltas": {
+          "generation_tokens_total": 16491.0,
+          "request_latency_seconds_count": 17.0,
+          "prefill_computed_tokens_total": 4781.0,
+          "prefill_duration_seconds_total": 4.311107,
+          "request_decode_seconds_sum": 238.08542900000066,
+          "prefix_cache_queries_total": 56073.0,
+          "prefix_cache_hits_total": 51292.0,
+          "mtp_drafted_total": 14218.0,
+          "mtp_accepted_total": 10887.0,
+          "decode_rounds_total": 5600.0
+        },
+        "computed_prefill_tps": 1108.9959029084641,
+        "weighted_request_decode_tps": 69.26505359553084,
+        "prefix_token_hit_fraction": 0.9147361475219803,
+        "draft_acceptance_fraction": 0.7657195104796737,
+        "output_tokens_per_request_decode_round": 2.9448214285714287,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 36.460483264992945,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "cce68617d1e095e30c7f2438e15a7f38b95071d303ba25e9c3a8d7b76d24eaf3"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 158.21052224200685,
+          "tool_errors": [
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "357827edf84f35708929ec64a05a07d6226b6dc553d533fbaa95d58176c5bc65"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 50.60313038795721,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "35d938c0997b77c5bfa7f22f7aaa83dcdaee21580388290775e11ef4075d437c"
+        }
+      ]
+    },
+    {
+      "concurrency": 4,
+      "summary": {
+        "correct": 4,
+        "total": 4,
+        "wave_elapsed_seconds": 63.26090757502243,
+        "task_median_seconds": 42.751712187950034,
+        "task_p95_seconds": 63.25849466701038,
+        "ttft_median_seconds": 0.4854748700163327,
+        "per_request_completion_tps_median": 41.041045034574864,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 3.7938121535069507,
+        "failures_retained": true,
+        "task_errors": 2,
+        "prefill_seconds_median": 0.169551829,
+        "prefill_seconds_p95": 0.59689351,
+        "computed_prefill_tps_median": 473.4859542341789,
+        "computed_prefill_tps_p95": 1810.762655459102,
+        "native_ttft_seconds_median": 0.21053031300000002,
+        "native_ttft_seconds_p95": 2.490995504,
+        "native_decode_tps_median": 42.7558166276279,
+        "native_decode_tps_p95": 105.73720644125527,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0037793129999992847,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006997191999999153,
+        "runtime_coverage_requests": 18,
+        "requests": 18,
+        "completion_tokens": 8113,
+        "aggregate_workflow_completion_tps": 128.24665833917453,
+        "computed_prefill_tokens": 6306
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 18,
+        "deltas": {
+          "generation_tokens_total": 8113.0,
+          "request_latency_seconds_count": 18.0,
+          "prefill_computed_tokens_total": 6306.0,
+          "prefill_duration_seconds_total": 5.399403999999997,
+          "request_decode_seconds_sum": 178.24962099999993,
+          "prefix_cache_queries_total": 37466.0,
+          "prefix_cache_hits_total": 31160.0,
+          "mtp_drafted_total": 6511.0,
+          "mtp_accepted_total": 5289.0,
+          "decode_rounds_total": 2817.0
+        },
+        "computed_prefill_tps": 1167.906680070616,
+        "weighted_request_decode_tps": 45.51482328256958,
+        "prefix_token_hit_fraction": 0.8316873965728927,
+        "draft_acceptance_fraction": 0.8123176163415758,
+        "output_tokens_per_request_decode_round": 2.8800141995030173,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 44.98225978994742,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "0e0158161bd89a67c138437350f217f14923bb63ad4d582c3fb4f8efb3304691"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 40.38902268407401,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "7e116a3ed78828ee619b4383a6e057dd9df08a2d08dc813bbe3059cb5e317cd4"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 63.25849466701038,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: ImportFrom"
+            },
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "5083c1d7fbb8a8dd41f92b167d5fb58cd04e7f95004e240e38f79873ab97550e"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 40.52116458595265,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "b8e7dad6325f8b3f3ea455194b8ee650cc77d07f7bb67db2103c50157b398407"
+        }
+      ]
+    },
+    {
+      "concurrency": 5,
+      "summary": {
+        "correct": 5,
+        "total": 5,
+        "wave_elapsed_seconds": 77.0913095040014,
+        "task_median_seconds": 54.541234554955736,
+        "task_p95_seconds": 77.08963183697779,
+        "ttft_median_seconds": 0.4529734350508079,
+        "per_request_completion_tps_median": 32.710902825090365,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 3.8914892214203287,
+        "failures_retained": true,
+        "task_errors": 3,
+        "prefill_seconds_median": 0.165308794,
+        "prefill_seconds_p95": 0.589295612,
+        "computed_prefill_tps_median": 441.5978015059501,
+        "computed_prefill_tps_p95": 1791.7438142113558,
+        "native_ttft_seconds_median": 0.220069946,
+        "native_ttft_seconds_p95": 2.472057099,
+        "native_decode_tps_median": 38.30406102695478,
+        "native_decode_tps_p95": 93.64058330237954,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.004000897000000947,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.007763350000000002,
+        "runtime_coverage_requests": 23,
+        "requests": 23,
+        "completion_tokens": 10445,
+        "aggregate_workflow_completion_tps": 135.4886830591178,
+        "computed_prefill_tokens": 7845
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 23,
+        "deltas": {
+          "generation_tokens_total": 10445.0,
+          "request_latency_seconds_count": 23.0,
+          "prefill_computed_tokens_total": 7845.0,
+          "prefill_duration_seconds_total": 6.680786000000012,
+          "request_decode_seconds_sum": 259.74420199999986,
+          "prefix_cache_queries_total": 50555.0,
+          "prefix_cache_hits_total": 42710.0,
+          "mtp_drafted_total": 8298.0,
+          "mtp_accepted_total": 6811.0,
+          "decode_rounds_total": 3625.0
+        },
+        "computed_prefill_tps": 1174.2630283322928,
+        "weighted_request_decode_tps": 40.21263966461898,
+        "prefix_token_hit_fraction": 0.8448224705765998,
+        "draft_acceptance_fraction": 0.8208001928175463,
+        "output_tokens_per_request_decode_round": 2.8813793103448275,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 54.541234554955736,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "44c3aae9b07a535581090faf0e796dce81c6a5da35774ac973da0a946bf6e92b"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 54.61568507703487,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "418fe2226d771426a06bafef5979cc658539c6a08ab874205e65e3963820b6a7"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 77.08963183697779,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "one merge_events function required"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "c12fadae80f6c821c26817326fc705edcdb331d044b44d171504a8a68f9d9424"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 45.189630966982804,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "9a39bddbf0b5d2490050947b614f32fac16b4598cd6958f521d45de724279872"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 43.3807600060245,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "c9cce3a5a5457c29ac4cd612cf50ff64d7547706656b5bb66c0ed8dde3aa752b"
+        }
+      ]
+    },
+    {
+      "concurrency": 6,
+      "summary": {
+        "correct": 6,
+        "total": 6,
+        "wave_elapsed_seconds": 62.29129482398275,
+        "task_median_seconds": 54.78725193801802,
+        "task_p95_seconds": 62.28969046706334,
+        "ttft_median_seconds": 0.591367440065369,
+        "per_request_completion_tps_median": 29.498611894737493,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.779298712882053,
+        "failures_retained": true,
+        "task_errors": 1,
+        "prefill_seconds_median": 0.177882052,
+        "prefill_seconds_p95": 0.591009969,
+        "computed_prefill_tps_median": 462.8812481812116,
+        "computed_prefill_tps_p95": 1784.4405458667186,
+        "native_ttft_seconds_median": 0.452453099,
+        "native_ttft_seconds_p95": 3.128428262,
+        "native_decode_tps_median": 32.080239051520536,
+        "native_decode_tps_p95": 54.85317799281722,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0038934130000000122,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006081989000001897,
+        "runtime_coverage_requests": 25,
+        "requests": 25,
+        "completion_tokens": 10057,
+        "aggregate_workflow_completion_tps": 161.45113098737446,
+        "computed_prefill_tokens": 9356
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 25,
+        "deltas": {
+          "generation_tokens_total": 10057.0,
+          "request_latency_seconds_count": 25.0,
+          "prefill_computed_tokens_total": 9356.0,
+          "prefill_duration_seconds_total": 7.805672999999999,
+          "request_decode_seconds_sum": 306.9094530000002,
+          "prefix_cache_queries_total": 45884.0,
+          "prefix_cache_hits_total": 36528.0,
+          "mtp_drafted_total": 7863.0,
+          "mtp_accepted_total": 6659.0,
+          "decode_rounds_total": 3387.0
+        },
+        "computed_prefill_tps": 1198.6154172740776,
+        "weighted_request_decode_tps": 32.76862247706653,
+        "prefix_token_hit_fraction": 0.7960944991718246,
+        "draft_acceptance_fraction": 0.8468777820170419,
+        "output_tokens_per_request_decode_round": 2.9692943607912605,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 45.77414266206324,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "76a029a18a740ecd1ac26e90fdf217588c45ab9c96c24b08baa04377af6cf312"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 49.09613436390646,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "7bcdf404dbe5cf948d3a8dd04785c3ec6484c7066e539ef077b80f67a6dfcb21"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 56.35952456400264,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "79a768337abfe70bab8830753c1e68e6f5f46972031891df5da53a76deaca932"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 53.21497931203339,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ac416aa485dae39538bc02c9aeb431dc36b204c0a25328b24ac08c488ea22a95"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 61.69321036397014,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "af2bcd7bd68d8e7b57653646b5e192311ad1649917dd2bc325673d9cdfc1727f"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 62.28969046706334,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "199219cc6a6fd5ed05302ad796d5a79fc28990b910e082b4a9ccb5c69dcfabfd"
+        }
+      ]
+    },
+    {
+      "concurrency": 7,
+      "summary": {
+        "correct": 7,
+        "total": 7,
+        "wave_elapsed_seconds": 90.02488451905083,
+        "task_median_seconds": 65.66815591906197,
+        "task_p95_seconds": 90.0215692599304,
+        "ttft_median_seconds": 0.5249309520004317,
+        "per_request_completion_tps_median": 28.124639595981073,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 4.665376714936198,
+        "failures_retained": true,
+        "task_errors": 0,
+        "prefill_seconds_median": 0.368866002,
+        "prefill_seconds_p95": 0.599117019,
+        "computed_prefill_tps_median": 767.2162749225123,
+        "computed_prefill_tps_p95": 1754.6199893242072,
+        "native_ttft_seconds_median": 0.473818332,
+        "native_ttft_seconds_p95": 3.822351722,
+        "native_decode_tps_median": 29.318360523556294,
+        "native_decode_tps_p95": 72.75734635170292,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.004042439000002673,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006693428000000001,
+        "runtime_coverage_requests": 29,
+        "requests": 29,
+        "completion_tokens": 13681,
+        "aggregate_workflow_completion_tps": 151.96909246914794,
+        "computed_prefill_tokens": 11185
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 29,
+        "deltas": {
+          "generation_tokens_total": 13681.0,
+          "request_latency_seconds_count": 29.0,
+          "prefill_computed_tokens_total": 11185.0,
+          "prefill_duration_seconds_total": 9.375272999999993,
+          "request_decode_seconds_sum": 455.91259699999955,
+          "prefix_cache_queries_total": 55663.0,
+          "prefix_cache_hits_total": 44478.0,
+          "mtp_drafted_total": 11136.0,
+          "mtp_accepted_total": 8950.0,
+          "decode_rounds_total": 4724.0
+        },
+        "computed_prefill_tps": 1193.0319255769948,
+        "weighted_request_decode_tps": 30.007944702611525,
+        "prefix_token_hit_fraction": 0.799058620627706,
+        "draft_acceptance_fraction": 0.8036997126436781,
+        "output_tokens_per_request_decode_round": 2.8960626587637597,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 72.80103784799576,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "cd78dfc220579e4cdfe8a8e015189603e4e21f8311293cc747b71eba6652d59f"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 60.78617433796171,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "479d8fbd80c49340729a6bede2c15fc278aa81fe682ba968c0c2dcddd8cdc3bd"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 72.91261777700856,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ae2b23ffc585feb784af3bdbf9869ebb865359ce758e74cbf1adebd1253ae96f"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 59.23727773595601,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "cf4e609bf6a60ef6b6ba98dc0b10404de040e9cd8dce2cb5866ceecf787916f4"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 65.66815591906197,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "7a682371b9cf5ce47d5eb874a186fc00419b4341a2ec2e4667d8bcb97f1142e3"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 90.0215692599304,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e02b7e345396e1d21413ea9be485e9306414703c5a4b26109c81cd11879f785b"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 60.430710994056426,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "5537dd33d6dc3b68da2c391237f8876e851f376dd0bf32618ca3334721b3fb44"
+        }
+      ]
+    },
+    {
+      "concurrency": 8,
+      "summary": {
+        "correct": 8,
+        "total": 8,
+        "wave_elapsed_seconds": 89.90962633199524,
+        "task_median_seconds": 77.28593156550778,
+        "task_p95_seconds": 89.90608688094653,
+        "ttft_median_seconds": 0.5713236359879375,
+        "per_request_completion_tps_median": 24.903067807419376,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.338694193073152,
+        "failures_retained": true,
+        "task_errors": 4,
+        "prefill_seconds_median": 0.16614447799999998,
+        "prefill_seconds_p95": 0.596953826,
+        "computed_prefill_tps_median": 449.8817204729977,
+        "computed_prefill_tps_p95": 1793.4643766827844,
+        "native_ttft_seconds_median": 0.2701464515,
+        "native_ttft_seconds_p95": 4.492654715,
+        "native_decode_tps_median": 25.556894698682264,
+        "native_decode_tps_p95": 59.4478166878611,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.00401802300000309,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006692376000000166,
+        "runtime_coverage_requests": 36,
+        "requests": 36,
+        "completion_tokens": 15380,
+        "aggregate_workflow_completion_tps": 171.06065976971894,
+        "computed_prefill_tokens": 12542
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 36,
+        "deltas": {
+          "generation_tokens_total": 15380.0,
+          "request_latency_seconds_count": 36.0,
+          "prefill_computed_tokens_total": 12542.0,
+          "prefill_duration_seconds_total": 10.65965,
+          "request_decode_seconds_sum": 574.760593,
+          "prefix_cache_queries_total": 70784.0,
+          "prefix_cache_hits_total": 58242.0,
+          "mtp_drafted_total": 12180.0,
+          "mtp_accepted_total": 10164.0,
+          "decode_rounds_total": 5206.0
+        },
+        "computed_prefill_tps": 1176.5864732894609,
+        "weighted_request_decode_tps": 26.758967450644274,
+        "prefix_token_hit_fraction": 0.8228130650994575,
+        "draft_acceptance_fraction": 0.8344827586206897,
+        "output_tokens_per_request_decode_round": 2.9542835190165193,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 65.35384716000408,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "2b17f67d04dca0a210d659e0254108f77271b64f593ce65fb28ef47e4368d1a6"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 83.61477092304267,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "64c293f645acdf5f7d9d62a6acefd739dabadf04537203901ce7d2bdfdc0ae3b"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 77.14738086995203,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e323bcc82204163ee74ba8d6e636904a9a89153da371404e525f22801d9dc366"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 77.42448226106353,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: ImportFrom"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "f4c38e621f67ec34535c8734a0cd98885e16edb3d99d366e000880db20d091a7"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 65.22992272907868,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "dad831e08a881d1196bdeef66e44ad663a29631ed046d6304d7012e9eaadc19a"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 65.71853846299928,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "baaa614864ae0c7def5c1b6716e088469c28a60f00b9671c5b228f3771163abb"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 89.90608688094653,
+          "tool_errors": [
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "671f290459dc4a159b599392289df9d6846b96f855f175eac33be8b322f65b93"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 84.93387613794766,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "6bc4e29c45486ff5af79a0042024494fb1b5ee593ae307ea32bcf0e877c16330"
+        }
+      ]
+    },
+    {
+      "concurrency": 9,
+      "summary": {
+        "correct": 9,
+        "total": 9,
+        "wave_elapsed_seconds": 107.86105743900407,
+        "task_median_seconds": 85.85762019897811,
+        "task_p95_seconds": 107.85853628499899,
+        "ttft_median_seconds": 0.8811557589797303,
+        "per_request_completion_tps_median": 22.92529611577283,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.00644081211027,
+        "failures_retained": true,
+        "task_errors": 1,
+        "prefill_seconds_median": 0.167300808,
+        "prefill_seconds_p95": 0.604473271,
+        "computed_prefill_tps_median": 448.29430829766227,
+        "computed_prefill_tps_p95": 1791.0837659470972,
+        "native_ttft_seconds_median": 0.270921211,
+        "native_ttft_seconds_p95": 5.180448156,
+        "native_decode_tps_median": 25.642734088962825,
+        "native_decode_tps_p95": 44.6955728469599,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0038016899999999687,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006169773000003431,
+        "runtime_coverage_requests": 37,
+        "requests": 37,
+        "completion_tokens": 18629,
+        "aggregate_workflow_completion_tps": 172.71293683111523,
+        "computed_prefill_tokens": 14012
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 37,
+        "deltas": {
+          "generation_tokens_total": 18629.0,
+          "request_latency_seconds_count": 37.0,
+          "prefill_computed_tokens_total": 14012.0,
+          "prefill_duration_seconds_total": 11.663069000000007,
+          "request_decode_seconds_sum": 739.5686750000004,
+          "prefix_cache_queries_total": 69778.0,
+          "prefix_cache_hits_total": 55766.0,
+          "mtp_drafted_total": 14347.0,
+          "mtp_accepted_total": 11950.0,
+          "decode_rounds_total": 6665.0
+        },
+        "computed_prefill_tps": 1201.3990485694624,
+        "weighted_request_decode_tps": 25.189006281262508,
+        "prefix_token_hit_fraction": 0.7991917223193556,
+        "draft_acceptance_fraction": 0.8329267442670941,
+        "output_tokens_per_request_decode_round": 2.7950487621905475,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 85.56762222095858,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "9043d56dc82a8ba61831158236d50815cda29bbe8bb4783f34afb2e022a79705"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 85.85762019897811,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "79f2f8a299849b0ebbfe4b6b8b7a37d9ed04a452f8611fd2828a876abf71afff"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 86.92926404101308,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "97a56629e5d97385027cd4e1f74df6d2f75e412fb3819513c4d5e011aa151f3e"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 65.1722974589793,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "b45dfeb5a88aeffa7fdfeda64025bef6c84f77279353104395e598bdcb1a800d"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 72.33182986197062,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "24441db2089458f507d65c4f12917eaefc4fdba9cf1cf121646780277e18d7a0"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 98.0807260510046,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "550dae10b27a889217559b24e2e058176455b013e62ce9cc39f530cfe4fe3ef1"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 107.85853628499899,
+          "tool_errors": [
+            {
+              "error": "provide a concise Czech explanation, 30 to180 words"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "782becf68a6226307036e72fc9f0306a050b75c02d5a11b496590704781af5f6"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 84.77606862597167,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "4dccb3b4b270f3791952d4f5fa69b90ab165b5afa2c9e1784973634427c4fe24"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 94.02790375507902,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "adccae3905922cfc49459b52d7d3b20733c3dd8bbf5bef1fa5df7c37b5449962"
+        }
+      ]
+    },
+    {
+      "concurrency": 10,
+      "summary": {
+        "correct": 10,
+        "total": 10,
+        "wave_elapsed_seconds": 116.10509719303809,
+        "task_median_seconds": 80.33091859251726,
+        "task_p95_seconds": 116.10221120901406,
+        "ttft_median_seconds": 0.9824833370512351,
+        "per_request_completion_tps_median": 21.51773512292061,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.1677317749661835,
+        "failures_retained": true,
+        "task_errors": 5,
+        "prefill_seconds_median": 0.167666707,
+        "prefill_seconds_p95": 0.591858061,
+        "computed_prefill_tps_median": 449.75392429549777,
+        "computed_prefill_tps_p95": 1788.4968027429643,
+        "native_ttft_seconds_median": 0.309374618,
+        "native_ttft_seconds_p95": 5.147575728,
+        "native_decode_tps_median": 22.582511283540324,
+        "native_decode_tps_p95": 66.16790385254343,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.003513437999998814,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.007279129000000495,
+        "runtime_coverage_requests": 45,
+        "requests": 45,
+        "completion_tokens": 19740,
+        "aggregate_workflow_completion_tps": 170.01837539638746,
+        "computed_prefill_tokens": 15687
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 45,
+        "deltas": {
+          "generation_tokens_total": 19740.0,
+          "request_latency_seconds_count": 45.0,
+          "prefill_computed_tokens_total": 15687.0,
+          "prefill_duration_seconds_total": 13.320013000000003,
+          "request_decode_seconds_sum": 793.0901670000003,
+          "prefix_cache_queries_total": 90405.0,
+          "prefix_cache_hits_total": 74718.0,
+          "mtp_drafted_total": 15788.0,
+          "mtp_accepted_total": 13177.0,
+          "decode_rounds_total": 6545.0
+        },
+        "computed_prefill_tps": 1177.7015532942796,
+        "weighted_request_decode_tps": 24.889982023948097,
+        "prefix_token_hit_fraction": 0.8264808362369338,
+        "draft_acceptance_fraction": 0.8346212313149227,
+        "output_tokens_per_request_decode_round": 3.016042780748663,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 72.83727366302628,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "8e6ffa8b862dd8fb0d6efd25dea2c046958e37713b1d0dea6c2f31889cb1468b"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 80.66243686003145,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "c2a7c8793d7f20781dbf9f0784f48e7bd33191a74acda366a7d07a26ed504ea0"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 79.99940032500308,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "04c7b22913ea0b7d4f3850355793131e808e66af4557c475189e92a437f5c6c9"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 87.27399959391914,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "f74447f9d35baad56e20866bc8dbd1775edb79f88592d506ddb963c21a2b1299"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 116.10221120901406,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "80dc901784b23d71630cebdd2b4da032c70d625a67ecd8fd7f75009a259ba869"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 78.16904669697396,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "98a364c1666d4392e07693df9c4882a58fea91caf344c176e4016533924f6502"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 77.4870278169401,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "fd0f4f6fdfd07e02ac3d2c6eb19239794c659456dbdf739248be5193e017055c"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 64.15399649599567,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "1c7f934b4d0e7185dcbd8f77b66e7928d36c5b9d38c4341f63164c2f694dd2c6"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 107.88019684294704,
+          "tool_errors": [
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "69f03e5df8d38075fc58cf6f54f1f0fe34a8b77e59168d3557230112e19fba3d"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 82.7412246359745,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ca9cd59d9a300702ea0dbc48607a2823420bbd76e89eaec326801792c5a67681"
+        }
+      ]
+    },
+    {
+      "concurrency": 11,
+      "summary": {
+        "correct": 11,
+        "total": 11,
+        "wave_elapsed_seconds": 196.800640158006,
+        "task_median_seconds": 128.4688951629214,
+        "task_p95_seconds": 196.79838573699817,
+        "ttft_median_seconds": 0.4046968605252914,
+        "per_request_completion_tps_median": 21.836450473731347,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 3.3536476277216556,
+        "failures_retained": true,
+        "task_errors": 12,
+        "prefill_seconds_median": 0.1638171655,
+        "prefill_seconds_p95": 0.586615393,
+        "computed_prefill_tps_median": 446.9810659436214,
+        "computed_prefill_tps_p95": 1764.363230115966,
+        "native_ttft_seconds_median": 0.286919425,
+        "native_ttft_seconds_p95": 5.900564894,
+        "native_decode_tps_median": 22.112040405353895,
+        "native_decode_tps_p95": 76.33965103132408,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0040095885000015485,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.011177243999999753,
+        "runtime_coverage_requests": 58,
+        "requests": 58,
+        "completion_tokens": 34647,
+        "aggregate_workflow_completion_tps": 176.05125660253364,
+        "computed_prefill_tokens": 17859
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 58,
+        "deltas": {
+          "generation_tokens_total": 34647.0,
+          "request_latency_seconds_count": 58.0,
+          "prefill_computed_tokens_total": 17859.0,
+          "prefill_duration_seconds_total": 15.971673999999979,
+          "request_decode_seconds_sum": 1457.3203389999999,
+          "prefix_cache_queries_total": 154999.0,
+          "prefix_cache_hits_total": 137140.0,
+          "mtp_drafted_total": 27119.0,
+          "mtp_accepted_total": 22509.0,
+          "decode_rounds_total": 12117.0
+        },
+        "computed_prefill_tps": 1118.1670750354674,
+        "weighted_request_decode_tps": 23.77445718199093,
+        "prefix_token_hit_fraction": 0.8847799018058181,
+        "draft_acceptance_fraction": 0.8300084811386851,
+        "output_tokens_per_request_decode_round": 2.859371131468185,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 95.7433494819561,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "2c8ce5dbae4584a054381b0cbb6362a614a14dd2346c6b0f040268fcc3a4d6d1"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 196.79838573699817,
+          "tool_errors": [
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "df1e5e9e7d94ad44717df60399d25a663cfb7b7b2768f17b80e13f16fcf59768"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 155.6193174450891,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "one merge_events function required"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "60c83bc5fdfaa2d3dff2a42ef976a27412bc483b09f1be1eaa52c66bb0b10e43"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 117.34713930799626,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "0ea4ccb6645222181e49a4e4f3f6fa1c5ac1e5c53b827b2d70efa52b39f52d40"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 93.144648190937,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "971074cf6333abea4b42976dbede32371744448a8a29bf41434cb964799ab563"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 184.0756092540687,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "one merge_events function required"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "f1f0aaf74d49c44054e1cda691c17d65921050be0a2816b53e815e88415b5e5e"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 108.96871291799471,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ca52cd111a465c1739b26a754d951429c78acbc2c046c67a5e030e89d05aeb77"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 125.55759864801075,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "e44974142e5b27a6bf1c305e8777517bea26465e6a5d77d9ae601033623a527a"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 145.30846594297327,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "267502ee352cfffeb474c81a6850b5219266a96f7bad595c6e399dcd3431e466"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 172.58669041306712,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "one merge_events function required"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "e630f5cf6873f1cf8e2dcd6719e38393a83e763f824dee1b188e3aa494949e16"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 128.4688951629214,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "b2bc7992bc420a82d3061816304b88e97270babc24d8139de302969f98a6546d"
+        }
+      ]
+    },
+    {
+      "concurrency": 12,
+      "summary": {
+        "correct": 12,
+        "total": 12,
+        "wave_elapsed_seconds": 131.8898553859908,
+        "task_median_seconds": 92.64741271198727,
+        "task_p95_seconds": 131.8856972930953,
+        "ttft_median_seconds": 0.5724931375007145,
+        "per_request_completion_tps_median": 18.960871032638828,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.459100685893068,
+        "failures_retained": true,
+        "task_errors": 7,
+        "prefill_seconds_median": 0.169680922,
+        "prefill_seconds_p95": 0.583872663,
+        "computed_prefill_tps_median": 450.7494391228311,
+        "computed_prefill_tps_p95": 1796.6813561711615,
+        "native_ttft_seconds_median": 0.311981579,
+        "native_ttft_seconds_p95": 6.565062565,
+        "native_decode_tps_median": 20.11901795217973,
+        "native_decode_tps_p95": 65.3958317829253,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0037496630000006803,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.007912332999996607,
+        "runtime_coverage_requests": 56,
+        "requests": 56,
+        "completion_tokens": 24154,
+        "aggregate_workflow_completion_tps": 183.1376638431405,
+        "computed_prefill_tokens": 19101
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 56,
+        "deltas": {
+          "generation_tokens_total": 24154.0,
+          "request_latency_seconds_count": 56.0,
+          "prefill_computed_tokens_total": 19101.0,
+          "prefill_duration_seconds_total": 16.41550700000002,
+          "request_decode_seconds_sum": 1130.4650199999996,
+          "prefix_cache_queries_total": 119977.0,
+          "prefix_cache_hits_total": 100876.0,
+          "mtp_drafted_total": 18396.0,
+          "mtp_accepted_total": 15614.0,
+          "decode_rounds_total": 8522.0
+        },
+        "computed_prefill_tps": 1163.5948862255657,
+        "weighted_request_decode_tps": 21.366428480909573,
+        "prefix_token_hit_fraction": 0.8407944856097419,
+        "draft_acceptance_fraction": 0.8487714720591433,
+        "output_tokens_per_request_decode_round": 2.834311194555269,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 81.92550656001549,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "0daaf92ccdd7cd320dfb5cc6250e221712127b50e2ed1a0be549e7b923a998f0"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 97.0154256169917,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "50d3046d32e45930416c205fa615336077e128219e7d46aa623cb971b5d80b20"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 113.12360318901483,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "5b753b761d50a51a1c42620484324f2f4a274658ab9a3124ab03f968396f5d3a"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 87.22856496705208,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "69a4664a57c4d89760cefa5174f996cdda04183a5711ae2c547f7ca4b5d40b79"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 131.35655775596388,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "ab3c603452f643d3205bbc1931c1a448cb430223d5f9f4e8940e7f719b9f7cb3"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 82.36370571993757,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "8aa4e662c7a54461b2907a73276aead36290193af664ad654382283c63366bcf"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 111.52924118505325,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "1f0751149ec6fa9f013014b7443eeac9a66528fb33ffc3033b3f5f51bdcc53c2"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 69.79259756603278,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "880c1d308a643c0300ccab1bc188d98a048b06a8fe3336e83efcd01eea1f628b"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 131.28452781098895,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "5f3f7eb467949bfa085f09317b5147b30c2e4d7736da5554db441ce4f2e17604"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 131.8856972930953,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "592ec7d696701336d8de19db8663db9770b96009324be344f7f72b984c998653"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 79.04264746594708,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e73f87192798cd7d55ab52ed9505aa86824063f7ea21b6bb1a88bb4006ecf32e"
+        },
+        {
+          "replica": 11,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 88.27939980698284,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "9bf5b3990385bf8e5e493ccd1e0826deae47be66056ef2676e141e57cb466c9b"
+        }
+      ]
+    },
+    {
+      "concurrency": 13,
+      "summary": {
+        "correct": 13,
+        "total": 13,
+        "wave_elapsed_seconds": 130.68146758596413,
+        "task_median_seconds": 110.61466330499388,
+        "task_p95_seconds": 130.6757994350046,
+        "ttft_median_seconds": 0.5638628860469908,
+        "per_request_completion_tps_median": 18.006701307391044,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.968711665155619,
+        "failures_retained": true,
+        "task_errors": 4,
+        "prefill_seconds_median": 0.172522643,
+        "prefill_seconds_p95": 0.587713066,
+        "computed_prefill_tps_median": 447.59068128954823,
+        "computed_prefill_tps_p95": 1795.6502337080865,
+        "native_ttft_seconds_median": 0.334450739,
+        "native_ttft_seconds_p95": 7.339912235,
+        "native_decode_tps_median": 18.31341135614198,
+        "native_decode_tps_p95": 36.36465075373254,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0037685439999961545,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.007361712999999992,
+        "runtime_coverage_requests": 57,
+        "requests": 57,
+        "completion_tokens": 25202,
+        "aggregate_workflow_completion_tps": 192.85060434006655,
+        "computed_prefill_tokens": 20550
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 57,
+        "deltas": {
+          "generation_tokens_total": 25202.0,
+          "request_latency_seconds_count": 57.0,
+          "prefill_computed_tokens_total": 20550.0,
+          "prefill_duration_seconds_total": 17.428426,
+          "request_decode_seconds_sum": 1343.1897819999995,
+          "prefix_cache_queries_total": 113638.0,
+          "prefix_cache_hits_total": 93088.0,
+          "mtp_drafted_total": 18829.0,
+          "mtp_accepted_total": 16025.0,
+          "decode_rounds_total": 9159.0
+        },
+        "computed_prefill_tps": 1179.108199443828,
+        "weighted_request_decode_tps": 18.76279907555164,
+        "prefix_token_hit_fraction": 0.8191626040585016,
+        "draft_acceptance_fraction": 0.8510807796484147,
+        "output_tokens_per_request_decode_round": 2.7516104378207227,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 121.42740262497682,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "80fbf1a7eb3aca8d4aacc65b33d7b47d90e38453eb1b9d48b6b4b1603d95baf8"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 118.79211883503012,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "2fd754a271b6becd034882a19ccb57546018060a4767e1666fdcba4b9dc1d922"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 110.61466330499388,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "0e5dfcfa655beeaba0838ed01b9902c7e870a96318235ba665b88574f47a4a1b"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 100.22558824392036,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "a524d638af423841ded9385397c32ff82aafbdff7494dabb0c552d4f2ad5821c"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 94.86708410701249,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "1e4a9acb53a62b28fac6d6f6e43e64f43e1f1f6ffb7a7f7809f9b2c394b7981d"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 127.06841696298216,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "7565f78aa55016649154af8e3f6a4d4aafcbb9856d659b0d430b5b0839d7725b"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 129.14605293201748,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "c735f1215be7a313eff333ea86a715d9723ac315376e18979051703ab6fb0ada"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 98.41249093599617,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "9fe793384ce3269f616aba8ffb46bd69cd81d6fce98bd54963172824aa72c149"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 70.22971358895302,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ea4119ad8c9147a8bce3ca9cb1746eeff254c0dae254a46d3b308eebce4f943c"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 130.6757994350046,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: ImportFrom"
+            },
+            {
+              "error": "one merge_events function required"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "daba2678f4d0b4320c41d5a7497eaebbfcbb6ea7e7db5bd436db90a29c10a3f4"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 129.42943935701624,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "53a7a23daf76ae01de9d5f40bd7a8853c4f5c213471ae49c176a964d16f7297d"
+        },
+        {
+          "replica": 11,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 102.60456366906874,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e472003a6f0885f3fafe5569f718ad665d6f97ddfdd25a60c0f34696989787c0"
+        },
+        {
+          "replica": 12,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 92.88201215607114,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "9dff5d40ae9a24316600ebc2fbce249aa4261c52f454b5262409ac2cb09ef1bb"
+        }
+      ]
+    },
+    {
+      "concurrency": 14,
+      "summary": {
+        "correct": 14,
+        "total": 14,
+        "wave_elapsed_seconds": 142.39314651000313,
+        "task_median_seconds": 127.46776236849837,
+        "task_p95_seconds": 142.3905209689401,
+        "ttft_median_seconds": 0.9262321529677138,
+        "per_request_completion_tps_median": 16.879246385674243,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.899160321883819,
+        "failures_retained": true,
+        "task_errors": 5,
+        "prefill_seconds_median": 0.17426416849999998,
+        "prefill_seconds_p95": 0.593371816,
+        "computed_prefill_tps_median": 454.3644482137885,
+        "computed_prefill_tps_p95": 1767.9596808333345,
+        "native_ttft_seconds_median": 0.4459253815,
+        "native_ttft_seconds_p95": 7.428730359,
+        "native_decode_tps_median": 17.433451833125634,
+        "native_decode_tps_p95": 36.40238433622012,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.0035088419999986242,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.006894228000007274,
+        "runtime_coverage_requests": 62,
+        "requests": 62,
+        "completion_tokens": 28325,
+        "aggregate_workflow_completion_tps": 198.9210906159038,
+        "computed_prefill_tokens": 22169
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 62,
+        "deltas": {
+          "generation_tokens_total": 28325.0,
+          "request_latency_seconds_count": 62.0,
+          "prefill_computed_tokens_total": 22169.0,
+          "prefill_duration_seconds_total": 18.905389999999983,
+          "request_decode_seconds_sum": 1624.9450980000001,
+          "prefix_cache_queries_total": 124185.0,
+          "prefix_cache_hits_total": 102016.0,
+          "mtp_drafted_total": 20941.0,
+          "mtp_accepted_total": 17896.0,
+          "decode_rounds_total": 10405.0
+        },
+        "computed_prefill_tps": 1172.6285466737274,
+        "weighted_request_decode_tps": 17.43135816395441,
+        "prefix_token_hit_fraction": 0.8214840761766719,
+        "draft_acceptance_fraction": 0.8545914712764433,
+        "output_tokens_per_request_decode_round": 2.7222489187890435,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 104.84785847901367,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "630ca79ade4b492e79c187384a53d3fee262259037243a559b0f4ea862cacbaf"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 140.5233629370341,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "ae975ae4f6c3c4a015a8fbc80e1bca4c7afd760dd6e526bbb8754626fef06a32"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 104.51473654294387,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "bc5cc1279618f249c4630db3a07a5521a83d9e80549542e055cc8a178765eea4"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 139.69061014300678,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "2a8d21611655064b1fb27f201468ec908f9409d3e3babaf608b014f12d7d2778"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 129.22183088795282,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "edef1ae41b3264bf114b9a97a2dfbdd9739f2087a01c04509495eabf45c4a454"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 128.3463464169763,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "c3740cb1c3d20ea612c37fcdd43741ee918c35358c13a592c1e2f7e949add3f1"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 123.1613129050238,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "429abe61860fb3f62b76fda0aec5fcf7f87591276560514ca95cc76637111c38"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 110.59945902705658,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "053be1b31673c72246720a0e5c61bf803cbc7f8b39a6b21d9478e8e8cbfe2ef1"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 128.1593003839953,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "10cb6a03e15c96c589b05bd9d9456dfe994729ad52227f0661adae981ad1bb6a"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 112.3450025850907,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "d7cf14dea067a40f055ed0c8321a9df9f475121fb2b1fd54fc5cec1bd367bc52"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 142.3905209689401,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "8a751eb24bfb523d361a43c9712601f6c9876e2fe8bc84aac5ce17afcbe7cab0"
+        },
+        {
+          "replica": 11,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 135.66269902791828,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "eab65985c926194682ec338ef1b15844c5c7dfe39ffff552165489903df2dd3a"
+        },
+        {
+          "replica": 12,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 126.77622435300145,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "85a33567d885d3823100ab2f53dcc33a965b59514152702c3bd7c8e1063cf27a"
+        },
+        {
+          "replica": 13,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 97.40476644795854,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "4850e35c3d4f1a513febe512501933a1be6c359e45f3774129351f1921d813ca"
+        }
+      ]
+    },
+    {
+      "concurrency": 15,
+      "summary": {
+        "correct": 14,
+        "total": 15,
+        "wave_elapsed_seconds": 234.53304670599755,
+        "task_median_seconds": 129.27564849203918,
+        "task_p95_seconds": 234.52822440606542,
+        "ttft_median_seconds": 0.5311220980365761,
+        "per_request_completion_tps_median": 16.997307024013043,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 3.58158482055194,
+        "failures_retained": true,
+        "task_errors": 12,
+        "prefill_seconds_median": 0.164622231,
+        "prefill_seconds_p95": 0.583953186,
+        "computed_prefill_tps_median": 445.6517841586976,
+        "computed_prefill_tps_p95": 1792.282013463363,
+        "native_ttft_seconds_median": 0.309075527,
+        "native_ttft_seconds_p95": 7.319745569,
+        "native_decode_tps_median": 17.459439685268826,
+        "native_decode_tps_p95": 92.96154701788714,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.003818816500004374,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.012600862999999962,
+        "runtime_coverage_requests": 80,
+        "requests": 80,
+        "completion_tokens": 38114,
+        "aggregate_workflow_completion_tps": 162.51014744109125,
+        "computed_prefill_tokens": 24770
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 80,
+        "deltas": {
+          "generation_tokens_total": 38114.0,
+          "request_latency_seconds_count": 80.0,
+          "prefill_computed_tokens_total": 24770.0,
+          "prefill_duration_seconds_total": 22.279848000000015,
+          "request_decode_seconds_sum": 1920.421907,
+          "prefix_cache_queries_total": 231822.0,
+          "prefix_cache_hits_total": 207052.0,
+          "mtp_drafted_total": 28663.0,
+          "mtp_accepted_total": 23700.0,
+          "decode_rounds_total": 14382.0
+        },
+        "computed_prefill_tps": 1111.7670102596742,
+        "weighted_request_decode_tps": 19.846680493006897,
+        "prefix_token_hit_fraction": 0.8931507794773577,
+        "draft_acceptance_fraction": 0.8268499459233157,
+        "output_tokens_per_request_decode_round": 2.6501182033096926,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 135.3760298519628,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "c030520e095b1d4b95ee92feb3ffb22fc679658118ab22ed19ad3dc46ee3fd08"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 98.73381132201757,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "71de831e86a6e51916d5ed9e41d13b69ba424fdd16b495238022fa8f593d64d6"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 144.02783987403382,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: ImportFrom"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "ee62c63a33e562e811031bc42ab229c23a420e5d2f9ab5e78bcaf257b9da03d7"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 127.28524959902279,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "45751c5f6d4035f287f0b2518ef7f32defe25f00e5e03b81aff9b3de69afdc3a"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 127.13699016103055,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "8ddcd2333e00e9f87cc33a6e84e86487a8f5299558b80b25539671b704e63462"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 123.84489562991075,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "f5503212d614228cb70ee5515f4976922c299fb5093fd806820362b2d2b2ff96"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 102.73946995695587,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ac640c501bd868231acea24cb37791d1e92b516869fefc9a67f89dcc58ac1d04"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 113.54357267601881,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "f79ba6c77946e075bbe2d6100eaa5516efb79cf5f9b4d332cad3dfb0763f0972"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 129.27564849203918,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "b0ae1d1bb0cf1ae94b551ef26771e270beee20a47c6abcef0f4695ffdd1abd68"
+        },
+        {
+          "replica": 9,
+          "correct": false,
+          "finished": false,
+          "elapsed_seconds": 234.52822440606542,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "unsupported pure-function syntax: Raise"
+            }
+          ],
+          "failure": "ValueError: protocol_loop_guard_not_completed",
+          "initial_token_sha256": "fad7feb7188d568b940acac54a162306746f80c956930c7236c00d92f49461fd"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 140.40042747394182,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "9ec332f54e537a28db42548e161a4576463ad9bf32b2d0183712e2519e8a0967"
+        },
+        {
+          "replica": 11,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 133.9182544440264,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "2e3aad0dc006c1dfdae89eb4709e6b60b8c1f2db19f770ef4fb8b6c83d557dfc"
+        },
+        {
+          "replica": 12,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 183.76852769800462,
+          "tool_errors": [
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "unknown tool or invalid arguments"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            },
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "728654c8882c98cc9090c59b8b4c69faff549578e5eff85677a68604f2bc4228"
+        },
+        {
+          "replica": 13,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 108.03339666500688,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "c8378491767e618976386f96734c14f642bb4dd3680c0690d9fe9a0349883346"
+        },
+        {
+          "replica": 14,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 135.8189959350275,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "abcce09960494be17653884c6a08aea9687151d28bb38fa167575b325be38a34"
+        }
+      ]
+    },
+    {
+      "concurrency": 16,
+      "summary": {
+        "correct": 16,
+        "total": 16,
+        "wave_elapsed_seconds": 162.11541262594983,
+        "task_median_seconds": 133.61383735499112,
+        "task_p95_seconds": 162.1092928739963,
+        "ttft_median_seconds": 1.1146517439628951,
+        "per_request_completion_tps_median": 15.560809791190266,
+        "rate_scope": "individual request completion tokens / complete request wall time including queue/prefill/delivery; reasoning and tools included; native decode rate separate",
+        "correct_tasks_per_minute": 5.921707161890989,
+        "failures_retained": true,
+        "task_errors": 3,
+        "prefill_seconds_median": 0.2441533835,
+        "prefill_seconds_p95": 0.591294812,
+        "computed_prefill_tps_median": 542.654632668262,
+        "computed_prefill_tps_p95": 1815.200193935705,
+        "native_ttft_seconds_median": 0.4848810845,
+        "native_ttft_seconds_p95": 8.725108811,
+        "native_decode_tps_median": 15.66591527698909,
+        "native_decode_tps_p95": 33.22105604818,
+        "post_prefill_first_token_upper_bound_seconds_median": 0.003445443500002199,
+        "post_prefill_first_token_upper_bound_seconds_p95": 0.007044196999999031,
+        "runtime_coverage_requests": 70,
+        "requests": 70,
+        "completion_tokens": 31879,
+        "aggregate_workflow_completion_tps": 196.64385688950296,
+        "computed_prefill_tokens": 26848
+      },
+      "native": {
+        "coverage_verified": true,
+        "expected_requests": 70,
+        "deltas": {
+          "generation_tokens_total": 31879.0,
+          "request_latency_seconds_count": 70.0,
+          "prefill_computed_tokens_total": 26848.0,
+          "prefill_duration_seconds_total": 22.077551,
+          "request_decode_seconds_sum": 1967.1150289999987,
+          "prefix_cache_queries_total": 143458.0,
+          "prefix_cache_hits_total": 116610.0,
+          "mtp_drafted_total": 23153.0,
+          "mtp_accepted_total": 19742.0,
+          "decode_rounds_total": 12116.0
+        },
+        "computed_prefill_tps": 1216.0769099797346,
+        "weighted_request_decode_tps": 16.205966367002944,
+        "prefix_token_hit_fraction": 0.8128511480712125,
+        "draft_acceptance_fraction": 0.8526756791776444,
+        "output_tokens_per_request_decode_round": 2.6311488940244305,
+        "decode_round_scope": "sum of finished-request rounds; NOT unique shared GPU rounds",
+        "decode_rate_scope": "summed request decode time, NOT aggregate GPU throughput"
+      },
+      "tasks": [
+        {
+          "replica": 0,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 111.07183060899843,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "26a297e080957e4667e4dd1163a7da65a848f0e1098f05cd1e26ebacee095f5c"
+        },
+        {
+          "replica": 1,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 116.52475478104316,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "5fa71814199b462d360ff1867d7c7ff19984c201abd86ab3e6610f78ade7c042"
+        },
+        {
+          "replica": 2,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 134.55035594000947,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "cc5ae533c90a0bc1e30229946613c87d740fa4521c4ba5f29339add74e263682"
+        },
+        {
+          "replica": 3,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 158.3091840799898,
+          "tool_errors": [
+            {
+              "error": "incorrect accounting: requests"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "29fff071c1590ea1ccb02a69eae1f75887fb87c5b21d51024797233cc1772758"
+        },
+        {
+          "replica": 4,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 162.1092928739963,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: ImportFrom"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "93aa0526773cb928e25afbd03c87e4756aab6d5242fca46803096291f451d2cc"
+        },
+        {
+          "replica": 5,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 124.02776743902359,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "d0bbefe2ca04fb9274062d5923313d80983c7b31b612fc0b1e71b19291b11e59"
+        },
+        {
+          "replica": 6,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 137.9913742269855,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "ff46c7ad72ea31c79106f5c539ec0882d5b9bf3ed8e28bb74b4048f904dc744b"
+        },
+        {
+          "replica": 7,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 146.14430998801254,
+          "tool_errors": [
+            {
+              "error": "unsupported pure-function syntax: Import"
+            }
+          ],
+          "failure": null,
+          "initial_token_sha256": "1886557787b7b7fbe20416a68d5bcc987965acd515d94dcb49c00f7da639c396"
+        },
+        {
+          "replica": 8,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 124.02946060092654,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "fe07e5476e741c8190c821fec5186fb9c89c57d6031df09e847cb8b9912394a6"
+        },
+        {
+          "replica": 9,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 142.80005015106872,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "7c336cd4f9f7597583f28864b4effe910b45d578adad663197512862aea1548c"
+        },
+        {
+          "replica": 10,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 93.44326085993089,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "5650c8fd1c5eced73e710e38ec0ea8b88313977329b38f61fb172b0481e7f801"
+        },
+        {
+          "replica": 11,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 140.88830367999617,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "33928578a10bd17583e6b8bf00f31ebd144726fb80138abd0bbe66f7354a9aa4"
+        },
+        {
+          "replica": 12,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 135.016852520057,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e0dc5a5eeb0d2679e3a626a6c46f4a56a0cf8b27b02d5eab505753b3461d0f7c"
+        },
+        {
+          "replica": 13,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 130.76376704708673,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "58e8f2253bab3c331da5764b3821bea424c89edac20903e0cd0ac4012ed9f6e0"
+        },
+        {
+          "replica": 14,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 132.67731876997277,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "e89f0a5c9a7ff5bc544ebc2929cecbda92f1fcb61cabd3be8cf97a9d3a198175"
+        },
+        {
+          "replica": 15,
+          "correct": true,
+          "finished": true,
+          "elapsed_seconds": 111.86355300492141,
+          "tool_errors": [],
+          "failure": null,
+          "initial_token_sha256": "29d4169cc00c7dbbe80ceb67e7bb3a7cfdd899e8220c95a8e49db8d30665f0ce"
+        }
+      ]
+    }
+  ]
+}

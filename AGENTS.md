@@ -1,3 +1,17 @@
+# Current TP4: 4.0.5; current TP3: 1.3.0
+
+Read docs/DS41F-4.0.5.md and docs/BENCHMARK-4.0.5.md. Source recipe v405;
+stage with tensorfold.tp4.v405.build and launch with tensorfold.tp4.v405.launch.
+Upgrade all four ranks together. Preserve balanced401a-v1, C16/adaptive R48,
+9M physical KV/3.5 GiB snapshots, 8K logical/2K physical prefill, 320MiB moves,
+all 3 smart controllers, B cubins and patched NCCL. Image-cache integration is
+attributed to hteak issue2. Current gateway defaults to TP4; select the explicit
+v130 gateway profile for TP3. Keep MAX/8192/32768/C2 vision and both JSON flags.
+The flyer uses TP4 pass 2; its TP3 heavy panel is labeled historical 1.2.5/K2a.
+Preserve failures, source labels, earlier recipes and operator-owned state.
+Publication does not authorize a model deployment or benchmark.
+
+
 # Current TP3: 1.3.0
 
 Read docs/DS41F-1.3.0.md. Exact native source is v130 (identical to qualified
