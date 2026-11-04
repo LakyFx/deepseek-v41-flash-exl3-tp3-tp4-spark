@@ -1,6 +1,6 @@
 {
   "schema": "ds41f.gateway-source/v1",
-  "source_revision": "16a3835df49b287c91dd87f2955bf959ffa6c800",
+  "source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2",
   "modules": {
     "__init__.py": {
       "production_sha256": "c86d50d5a8404a3be0ce18898bb095fa4924937b9c8a2a68a926a95880d4f92a",
@@ -8,8 +8,8 @@
       "adaptation": null
     },
     "app.py": {
-      "production_sha256": "204e96ac43d8f3ae75b5c8523c4a70693ecc3d5f6325156c19828c31102719c9",
-      "public_sha256": "204e96ac43d8f3ae75b5c8523c4a70693ecc3d5f6325156c19828c31102719c9",
+      "production_sha256": "85661fdeafebbbf95d49186dc79b770937a9ebfd8a3d965619b07550dc93af1e",
+      "public_sha256": "85661fdeafebbbf95d49186dc79b770937a9ebfd8a3d965619b07550dc93af1e",
       "adaptation": null
     },
     "auxiliary_vision.py": {
@@ -37,14 +37,24 @@
       "public_sha256": "cd1d68b7dd2ae95af6e4e9ab689150b9ee52318c17acf57d2f8a97bb948d6dc0",
       "adaptation": null
     },
+    "client_json.py": {
+      "production_sha256": "0370fc55175766a7dade2c2bfcb3328b8f7dcce43d503edeccbe2ea723e4e730",
+      "public_sha256": "0370fc55175766a7dade2c2bfcb3328b8f7dcce43d503edeccbe2ea723e4e730",
+      "adaptation": null
+    },
+    "client_json_worker.py": {
+      "production_sha256": "0f3ff8628b64abc70f7ee91cf9b436420e8ee3925e20bfeb589061d438e3aa29",
+      "public_sha256": "0f3ff8628b64abc70f7ee91cf9b436420e8ee3925e20bfeb589061d438e3aa29",
+      "adaptation": null
+    },
     "compaction.py": {
       "production_sha256": "0443c2599b743cdfe11bf4a52983de81676868b2f6935dd18775904187ac56ae",
       "public_sha256": "0443c2599b743cdfe11bf4a52983de81676868b2f6935dd18775904187ac56ae",
       "adaptation": null
     },
     "config.py": {
-      "production_sha256": "a178ea8594e8451aa147111a31cb765ff60f397139ab881913bea6bf5b992f3b",
-      "public_sha256": "a178ea8594e8451aa147111a31cb765ff60f397139ab881913bea6bf5b992f3b",
+      "production_sha256": "d331f73d15bf62c864387998a53390b95b91fe946f6010c748d8f9965ab02725",
+      "public_sha256": "d331f73d15bf62c864387998a53390b95b91fe946f6010c748d8f9965ab02725",
       "adaptation": null
     },
     "custom_tools.py": {
@@ -58,8 +68,8 @@
       "adaptation": null
     },
     "engine.py": {
-      "production_sha256": "1966e4a11ed3c06b0f922fcd9dd742a0c7c38f877c93d0ddd372fe1239a45c1e",
-      "public_sha256": "1966e4a11ed3c06b0f922fcd9dd742a0c7c38f877c93d0ddd372fe1239a45c1e",
+      "production_sha256": "9f6c83af6a740b2fc61a4f55581b79a8654f5188065dc2a971cf421c0ff4cdd2",
+      "public_sha256": "9f6c83af6a740b2fc61a4f55581b79a8654f5188065dc2a971cf421c0ff4cdd2",
       "adaptation": null
     },
     "internal_json.py": {
@@ -68,9 +78,9 @@
       "adaptation": null
     },
     "lan_bridge.py": {
-      "production_sha256": "adb88ce049635c97133c0f9c747345e514b6e9b65f56ec5e55a68afe771a91f5",
+      "production_sha256": "7dd7587ff9ec2049ef301c6259fe8f60bfe5e1cba0e8f67dfd846ebc01ca2052",
       "public_sha256": "7dd7587ff9ec2049ef301c6259fe8f60bfe5e1cba0e8f67dfd846ebc01ca2052",
-      "adaptation": "Operator-owned optional bridge default replaced with loopback; logic unchanged."
+      "adaptation": "Operator bridge default replaced by loopback; logic unchanged."
     },
     "media_admission.py": {
       "production_sha256": "8ed780b895b4f95c251b3006e0c0c36f2a96df8fd12226bc59b3e5b1a395fee5",
@@ -88,8 +98,8 @@
       "adaptation": null
     },
     "metrics.py": {
-      "production_sha256": "559cf4619b53ab9c50c24f0820e252cec509a54ee7f955c673edb338a00d2038",
-      "public_sha256": "559cf4619b53ab9c50c24f0820e252cec509a54ee7f955c673edb338a00d2038",
+      "production_sha256": "bdf4e65a8330972c5095b446b22854bef6e4813d698929e9a14fc65233c3e763",
+      "public_sha256": "bdf4e65a8330972c5095b446b22854bef6e4813d698929e9a14fc65233c3e763",
       "adaptation": null
     },
     "policy.py": {
@@ -123,9 +133,9 @@
       "adaptation": null
     },
     "tailscale_bridge.py": {
-      "production_sha256": "21d1f4bb78f58aa19d649dab8566bb512b9aba2ae5ec24c02973e41d92ce7bb1",
+      "production_sha256": "8c7d71b121806e9d40387321109b98d1a13269bf51b7489363392d80aebf8fad",
       "public_sha256": "8c7d71b121806e9d40387321109b98d1a13269bf51b7489363392d80aebf8fad",
-      "adaptation": "Operator-owned optional bridge default replaced with loopback; logic unchanged."
+      "adaptation": "Operator bridge default replaced by loopback; logic unchanged."
     },
     "test_media_admission.py": {
       "production_sha256": "4a1a3176e990959636efbd5cf484d2eeb8e6a5d0f86d95a9ce14522da27945eb",
@@ -163,8 +173,8 @@
       "adaptation": null
     },
     "vision_jobs.py": {
-      "production_sha256": "2ff779f61643f6d4bb394ddf9833c81618339451acd9bf3fb1134514fee1dea4",
-      "public_sha256": "2ff779f61643f6d4bb394ddf9833c81618339451acd9bf3fb1134514fee1dea4",
+      "production_sha256": "576c3abcb7cdfdfc6bf0d86d5ad870935c6819e3585d8f5d92347529ecaf8b74",
+      "public_sha256": "576c3abcb7cdfdfc6bf0d86d5ad870935c6819e3585d8f5d92347529ecaf8b74",
       "adaptation": null
     },
     "vision_jobs_operator.py": {
@@ -183,8 +193,8 @@
       "adaptation": null
     },
     "vision_result.py": {
-      "production_sha256": "26997b6cf565688b95cae58f1af335904a5a3a29cc950c55ec37638a53997705",
-      "public_sha256": "26997b6cf565688b95cae58f1af335904a5a3a29cc950c55ec37638a53997705",
+      "production_sha256": "d9f3364f8e4fb48b98d878a86260c9d1e4946e575000d8c7eaf947bb76efc05c",
+      "public_sha256": "d9f3364f8e4fb48b98d878a86260c9d1e4946e575000d8c7eaf947bb76efc05c",
       "adaptation": null
     },
     "vision_storage.py": {
@@ -193,7 +203,7 @@
       "adaptation": null
     }
   },
-  "production_release": "4.0.4",
-  "release": "4.0.4",
-  "recipe_version": "4.0.4"
+  "production_release": "1.3.0",
+  "release": "1.3.0",
+  "recipe_version": "1.3.0"
 }

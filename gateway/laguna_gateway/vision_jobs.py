@@ -48,10 +48,15 @@ def contaminated(body):
 
 def standalone(body):
     messages = body.get('messages')
+    # A gateway-owned late formatting instruction is not another agent turn.
+    # Preserve standalone-image privacy (no reasoning exposed) and job policy.
+    from .client_json import META
+    metadata = body.get('metadata')
+    format_turn = int(isinstance(metadata, dict) and META in metadata)
     return (not body.get('tools') and not body.get('tool_choice')
             and body.get('n', 1) == 1 and isinstance(messages, list)
             and all(isinstance(m, dict) and m.get('role') in {'system','developer','user'} for m in messages)
-            and sum(m.get('role') == 'user' for m in messages) == 1 and has_images(body))
+            and sum(m.get('role') == 'user' for m in messages) == 1 + format_turn and has_images(body))
 
 
 def error(code, message, identity=None):

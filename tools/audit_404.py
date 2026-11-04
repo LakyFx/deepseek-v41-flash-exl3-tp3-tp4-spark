@@ -49,10 +49,18 @@ def audit():
     require(parity['native_source_commit']==spec['source_commit']==payload['source_commit'],'Native revision')
     require(parity['native_binaries']==profile['historical_native_binaries'],'Production binaries')
     gm=load(ROOT/'gateway/source-manifest.json')
+    historical = None
+    if gm['release'] != '4.0.4':
+        archive = ROOT/'gateway/history/4.0.4.tar.gz'
+        require(patch.digest(archive.read_bytes()) == load(ROOT/'gateway/history/FILES.json')['files']['4.0.4.tar.gz'], 'Historical gateway archive')
+        with tarfile.open(archive) as stream:
+            historical = {m.name:stream.extractfile(m).read() for m in stream if m.isfile()}
+        gm = json.loads(historical['source-manifest.json'])
     require(gm['source_revision']==parity['gateway_source_commit'],'Gateway revision')
-    require(set(gm['modules'])=={p.name for p in (ROOT/'gateway/laguna_gateway').glob('*.py')},'Gateway completeness')
+    names = ({p.name for p in (ROOT/'gateway/laguna_gateway').glob('*.py')} if historical is None else {Path(n).name for n in historical if n.startswith('laguna_gateway/')})
+    require(set(gm['modules'])==names,'Gateway completeness')
     for name,r in gm['modules'].items():
-        require(patch.digest((ROOT/'gateway/laguna_gateway'/name).read_bytes())==r['public_sha256'],'Gateway '+name)
+        require(patch.digest((ROOT/'gateway/laguna_gateway'/name).read_bytes() if historical is None else historical['laguna_gateway/'+name])==r['public_sha256'],'Gateway '+name)
         if not r['adaptation']:require(r['production_sha256']==r['public_sha256'],'Gateway production parity '+name)
     short=load(evidence/'SHORT-DECODE.json');cells=short['cells'];cs=(1,3,6,12,16)
     require(len(cells)==140,'Short cell count')

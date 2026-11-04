@@ -14,6 +14,9 @@ HERE = Path(__file__).resolve().parent
 
 
 def command(config, variant, rank, *, benchmark=False, validate_files=False):
+    if variant == '1.3.0':
+        from tensorfold.tp3.v130.launch import command as current
+        return current(config, variant, rank, benchmark=benchmark, validate_files=validate_files)
     if variant not in {p.stem for p in (HERE/'profiles').glob('*.json')}:
         raise ValueError('Unknown launcher profile')
     if len(config['ranks']) != 3 or config['ranks'][rank].get('rank') != rank:
@@ -176,7 +179,13 @@ def main():
     argv, env = command(json.loads(args.config.read_text()), args.variant, args.rank,
                         benchmark=args.benchmark, validate_files=args.run)
     if args.run:
-        os.execvpe(argv[0], argv, {**os.environ, **env})
+        if args.variant == '1.3.0':
+            from tensorfold.tp3.v130.launch import clean_environment
+            if args.rank == 0: Path(env['TF_DS_GRAPH_STATS_PATH']).parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+            inherited = clean_environment(os.environ, env)
+        else:
+            inherited = {**os.environ, **env}
+        os.execvpe(argv[0], argv, inherited)
     print(json.dumps({'variant': args.variant, 'rank': args.rank, 'argv': argv, 'environment': env,
                       'shell_command': 'env ' + ' '.join(shlex.quote(k + '=' + v) for k, v in env.items())
                       + ' ' + shlex.join(argv), 'started': False}, indent=2))

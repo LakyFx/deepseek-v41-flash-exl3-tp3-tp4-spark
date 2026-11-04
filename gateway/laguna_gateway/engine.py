@@ -18,6 +18,7 @@ import httpx
 from tokenizers import Tokenizer
 
 from .cache import TTLCache
+from .client_json import ACTIVE as CLIENT_JSON_ACTIVE
 from .chat_checkpoint import evidence_items
 from .chat_images import (
     NOTE_SCHEMA,
@@ -3820,7 +3821,7 @@ class GatewayEngine:
         data: dict[str, Any],
         prepared: PreparedRequest,
     ) -> tuple[dict[str, Any], bool, int]:
-        if not self.settings.enforce_czech:
+        if CLIENT_JSON_ACTIVE.get() or not self.settings.enforce_czech:
             return data, False, 0
         message = self._first_message(data)
         if message is None or message.get("tool_calls"):
@@ -3884,6 +3885,8 @@ class GatewayEngine:
         data: dict[str, Any],
         prepared: PreparedRequest,
     ) -> tuple[dict[str, Any], int, bool]:
+        if CLIENT_JSON_ACTIVE.get():
+            return data, 0, False
         choices = data.get("choices")
         if not isinstance(choices, list) or not choices:
             return data, 0, False

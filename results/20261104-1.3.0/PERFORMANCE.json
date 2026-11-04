@@ -1,0 +1,48 @@
+{
+  "version": "1.3.0",
+  "scope": "Native engine direct, greedy/thinking off; one screening pass, bypasses JSON gateway",
+  "decode": [
+    {
+      "concurrency": 1,
+      "kind": "code",
+      "median_tps": 104.15451619817742
+    },
+    {
+      "concurrency": 1,
+      "kind": "prose",
+      "median_tps": 80.01282527611903
+    },
+    {
+      "concurrency": 6,
+      "kind": "code",
+      "median_tps": 32.936145308780624
+    },
+    {
+      "concurrency": 6,
+      "kind": "prose",
+      "median_tps": 29.78664534717268
+    },
+    {
+      "concurrency": 12,
+      "kind": "code",
+      "median_tps": 20.523243246954294
+    },
+    {
+      "concurrency": 12,
+      "kind": "prose",
+      "median_tps": 18.245230759470353
+    }
+  ],
+  "cold_prefill": [
+    {
+      "prompt_tokens": 32768,
+      "cached_tokens": 0,
+      "tps": 3478.53855
+    },
+    {
+      "prompt_tokens": 65536,
+      "cached_tokens": 0,
+      "tps": 3537.11536
+    }
+  ]
+}

@@ -1,3 +1,15 @@
+# Current TP3: 1.3.0
+
+Read docs/DS41F-1.3.0.md. Exact native source is v130 (identical to qualified
+v129); stage/install with tensorfold.tp3.v130.build and launch with
+tensorfold.tp3.v130.launch. Preserve original TP3 triangle, C12/R48/7M/3 GiB,
+AF logical4K/physical2K, all3 smart controllers, MAX8K/32K/C2 vision and NVMe
+companion. Image cache includes hteak issue2 with preserved credit. Use matching
+JSON gateway profile and pinned dependencies. TP4 remains4.0.4; use its explicit
+gateway profile instead of the package's new TP3 default. Historical results
+must keep labels and failures. Source publication does not authorize deployment.
+
+
 # Current TP4: 4.0.4
 
 Read docs/DS41F-4.0.4.md and docs/BENCHMARK-4.0.4.md. Source recipe v404;

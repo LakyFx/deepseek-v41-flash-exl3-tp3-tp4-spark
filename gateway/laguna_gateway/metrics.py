@@ -14,6 +14,11 @@ from prometheus_client import (
 class GatewayMetrics:
     def __init__(self) -> None:
         self.registry = CollectorRegistry(auto_describe=True)
+        self.client_json = Counter(
+            "laguna_gateway_client_json_total",
+            "Client JSON compatibility outcomes; no prompts, schemas or output retained.",
+            ("api", "format", "outcome"), registry=self.registry,
+        )
         self.active = Gauge(
             "laguna_gateway_active_requests",
             "Requests currently holding an upstream inference slot.",

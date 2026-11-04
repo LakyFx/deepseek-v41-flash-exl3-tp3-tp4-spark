@@ -1,0 +1,47 @@
+{
+  "version": "1.3.0",
+  "native_version": "1.2.9",
+  "source_tree_sha256": "e909cd073cc19f6fb9fda98882e72bad8911aee7b1336c1fa2ebc0fc8bf99a30",
+  "linux_gateway_passed": 199,
+  "live_json_passed": 11,
+  "live_json_repairs": 0,
+  "native_heavy": {
+    "tasks": 78,
+    "correct": 77,
+    "seconds": 1322.27,
+    "tool_errors": 45,
+    "recovered_errors": 35,
+    "guard_failure_tasks": 1
+  },
+  "single_image_checks_passed": 6,
+  "multi_image_checks_passed": 4,
+  "weight_bytes_per_rank": 85892651432,
+  "multi_image": [
+    {
+      "case": "primer",
+      "cached": 0,
+      "new": 11502
+    },
+    {
+      "case": "new-second",
+      "cached": 11374,
+      "new": 1753
+    },
+    {
+      "case": "same",
+      "cached": 12998,
+      "new": 164
+    },
+    {
+      "case": "second-changed",
+      "cached": 11374,
+      "new": 1753
+    }
+  ],
+  "image_cache_credit": "hteak issue #2; LakyFx integration/namespace and additional regressions",
+  "caveats": [
+    "Heavy result is inherited 1.2.9 native, not rerun under 1.3.0.",
+    "No universal visual-answer or unconstrained JSON success guarantee.",
+    "Emergency swap retained; late cold-page reclaim observed in baseline, not solved by JSON update."
+  ]
+}

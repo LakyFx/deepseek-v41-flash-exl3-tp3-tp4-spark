@@ -1,3 +1,9 @@
+## Current three-Spark release: 1.3.0
+
+Use [1.3.0](DS41F-1.3.0.md), source v130 and the versioned TP3 launcher. Native
+source v129 is also preserved as its qualified intermediate. TP4 4.0.4 remains
+separate. Both versions retain their own topology, capacities and evidence.
+
 # Current TP4 recipe: 4.0.4
 
 **[4.0.4](DS41F-4.0.4.md)**, qualified as B: source v404, exact ARM64 payload,

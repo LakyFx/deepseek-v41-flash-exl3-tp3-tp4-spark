@@ -249,12 +249,25 @@ async def collect(engine, row, on_backend, dispatch=None, on_hold=None):
             from .vision_recovery import RecoveryRequired
             raise RecoveryRequired('vision_output_incomplete')
         response = result.result(row['id'])
+        # Validate BEFORE persisting a durable result or making it available to
+        # job polling. Public JSON requests and direct image jobs use one policy.
+        from .client_json import META, Contract, JsonContractError, documents
+        contract = (body.get('metadata') or {}).get(META)
+        if engine.settings.tensorfold_client_json and contract and response['status_code'] == 200:
+            try:
+                texts = documents(response['data'], api='responses' if responses else 'chat_completions')
+                if texts is not None:
+                    await engine.client_json_validator.check(Contract(**contract), texts)
+                response['headers']['X-DGX-JSON-Validation'] = 'tool_calls' if texts is None else contract['mode']
+            except JsonContractError as exc:
+                response = {'status_code': exc.status, 'data': error('client_json_' + exc.reason,
+                    'Image generation completed but did not satisfy the requested JSON contract; no invalid JSON answer was published.', row['id']), 'headers': {}}
         if row.get('attempt'):
             response['_termination']={'kind':'terminal_stream','attempt':row['attempt']}
         result_status = response['status_code']
         outcome = 'success'
         headers = engine._responses_headers if responses else engine._response_headers
-        response['headers'] = headers(handle.prepared,queue_wait_seconds=handle.queue_wait_seconds)
+        response['headers'] = {**headers(handle.prepared,queue_wait_seconds=handle.queue_wait_seconds), **response['headers']}
         return response
     except GatewayError as exc:
         if handle is None and exc.status_code in {400,401,403,404,413,422,429}:

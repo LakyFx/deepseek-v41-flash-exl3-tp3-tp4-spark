@@ -1,0 +1,13 @@
+{
+  "native_source_sha256": "e909cd073cc19f6fb9fda98882e72bad8911aee7b1336c1fa2ebc0fc8bf99a30",
+  "binaries": {
+    "tensorfold-native": "1ac317853b5e73f1c80b048f9a4b4dc3e7f75466af9798ea88f7f39392649f58",
+    "tf-dsv41-check": "a6222857b73af3fd6287e574c252b5394121c1143dda7c91c1c3a45600a2b927",
+    "tf-dsv41-lanes": "a483a76497bc36a566db9e4216a8e998184607dea8491184cf0c4ecac5ab57f8"
+  },
+  "gateway_source_commit": "43a32ca791c5f60e560d72eec718254dc04283f2",
+  "image_patch_sha256": "c0af0ad93728295751081d671951f997715b21e7ff789f74de5a1f01f42a2247",
+  "native_unchanged_from_129": true,
+  "weights_unchanged": true,
+  "sampling_unchanged": true
+}

@@ -1,3 +1,9 @@
+## 2026-11-04 — TP3 1.3.0
+
+Published qualified TP3 1.2.9 native transfer plus 1.3.0 JSON gateway. Includes
+hteak issue #2 image-cache integration and credits. Earlier recipes, source and
+benchmarks preserved. See [release](DS41F-1.3.0.md).
+
 # 4.0.4 - 3 November 2026
 
 Promoted unchanged qualified B to production. A compatibility/recovery baseline

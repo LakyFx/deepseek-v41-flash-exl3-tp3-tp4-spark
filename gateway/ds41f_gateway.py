@@ -8,8 +8,8 @@ from pathlib import Path
 from laguna_gateway.app import create_app as _create_app
 from laguna_gateway.config import Settings
 
-SOURCE_REVISION = '16a3835df49b287c91dd87f2955bf959ffa6c800'
-RECIPE_VERSION = '4.0.4'
+SOURCE_REVISION = '43a32ca791c5f60e560d72eec718254dc04283f2'
+RECIPE_VERSION = '1.3.0'
 # Preserve the production job namespace and implicit deduplication identities.
 VISION_JOBS_REVISION = 'd021774d38c0e7c684e6da44f39f22e735deb14b'
 
@@ -30,11 +30,14 @@ def production_settings():
     vision = os.environ.get('LAGUNA_GATEWAY_VISION_UPSTREAM', upstream).rstrip('/')
     language = os.environ.get('LAGUNA_GATEWAY_ENFORCE_CZECH')
     internal_json = os.environ.get('LAGUNA_GATEWAY_TENSORFOLD_INTERNAL_JSON')
+    client_json = os.environ.get('LAGUNA_GATEWAY_TENSORFOLD_CLIENT_JSON')
     settings = replace(settings, api_key=key, upstream_base_url=upstream, vision_upstream_base_url=vision,
         local_tokenizer_path=os.environ.get('LAGUNA_GATEWAY_LOCAL_TOKENIZER_PATH', ''),
         enforce_czech=settings.enforce_czech if language is None else language.lower() in ('1','true','yes','on'),
         tensorfold_internal_json=settings.tensorfold_internal_json if internal_json is None
-            else internal_json.lower() in ('1','true','yes','on'))
+            else internal_json.lower() in ('1','true','yes','on'),
+        tensorfold_client_json=settings.tensorfold_client_json if client_json is None
+            else client_json.lower() in ('1','true','yes','on'))
     settings.validate()
     return settings
 

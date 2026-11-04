@@ -1,3 +1,11 @@
+## Image-bearing prefix cache, TP3 1.3.0
+
+Primary patch: GitHub **hteak**, issue #2, original patch preserved with SHA256
+in tensorfold/tp3/v130. LakyFx integration adds isolation/regressions and TP3
+GPU qualification. Related earlier work: Thomas Kempka/thkempka image-keyed
+cache and Mauvis Ledford/krunkosaurus restored image rows. Existing TensorFold
+Apache-2.0 headers/licenses remain. See tensorfold/tp3/v130/IMAGE-CACHE-CREDITS.txt.
+
 ## TensorFold 4.0.4 selective backports
 
 Long-history accumulation, thinking selectors, fatal-CUDA supervision and

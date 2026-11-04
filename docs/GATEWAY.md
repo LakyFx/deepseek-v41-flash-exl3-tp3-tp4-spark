@@ -1,3 +1,11 @@
+## 1.3.0 explicit JSON compatibility
+
+The current package defaults to TP3 C12. Use an explicit `DS41F_GATEWAY_PROFILE`
+for TP4 C16. New explicit JSON requests are validated with bounded CPU workers
+and at most one correction; accepted schemas, tool/SSE behavior and limits are
+documented in [1.3.0](DS41F-1.3.0.md). Preserve credentials and the durable jobs
+database. Install into an independent venv; do not upgrade unrelated packages.
+
 **Current TP4 gateway package: 4.0.4.** Use the matching
 [4.0.4 profile and upgrade notes](DS41F-4.0.4.md#gateway).
 Gateway-owned JSON requests use strict validated instructions on this native
