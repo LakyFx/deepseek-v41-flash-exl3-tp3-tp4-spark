@@ -44,14 +44,18 @@ def audit():
     for key,value in old['runtime_environment'].items():
         if key not in {'DS41F_RECIPE_VERSION','TF_DS_GRAPH_PROFILE_ID'}:
             assert profile['runtime_environment'][key]==value,key
-    gm=load(ROOT/'gateway/source-manifest.json')
+    frozen=ROOT/'gateway/history/4.0.5.tar.gz'
+    assert patch.digest(frozen.read_bytes())==load(ROOT/'gateway/history/FILES.json')['files'][frozen.name]
+    with tarfile.open(frozen) as stream:
+        historical={m.name:stream.extractfile(m).read() for m in stream if m.isfile()}
+    gm=json.loads(historical['source-manifest.json'])
     assert gm['release']=='4.0.5'
-    assert set(gm['modules'])=={p.name for p in (ROOT/'gateway/laguna_gateway').glob('*.py')}
-    for name,r in gm['modules'].items():
-        assert patch.digest((ROOT/'gateway/laguna_gateway'/name).read_bytes())==r['public_sha256']
-        if not r['adaptation']:assert r['production_sha256']==r['public_sha256']
+    assert set(gm['modules'])=={Path(n).name for n in historical if n.startswith('laguna_gateway/') and n.endswith('.py')}
+    for name,record in gm['modules'].items():
+        assert patch.digest(historical['laguna_gateway/'+name])==record['public_sha256']
+        if not record['adaptation']:assert record['production_sha256']==record['public_sha256']
     gp=load(folder/'gateway-profile.json')
-    assert gp==load(ROOT/'gateway/laguna_gateway/production-settings.json')
+    assert gp==json.loads(historical['laguna_gateway/production-settings.json'])
     assert gp['max_concurrency']==16 and gp['max_admitted_tokens']==8000000
     assert gp['tensorfold_client_json'] and gp['tensorfold_internal_json']
     assert patch.digest((folder/'imgcache-1.2.8.diff.txt').read_bytes())=='c0af0ad93728295751081d671951f997715b21e7ff789f74de5a1f01f42a2247'

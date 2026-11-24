@@ -8,8 +8,8 @@ from pathlib import Path
 from laguna_gateway.app import create_app as _create_app
 from laguna_gateway.config import Settings
 
-SOURCE_REVISION = '43a32ca791c5f60e560d72eec718254dc04283f2'
-RECIPE_VERSION = '4.0.5'
+SOURCE_REVISION = 'a2e527858feafdd5843132a8179de1da046086ba'
+RECIPE_VERSION = '4.0.7'
 # Preserve the production job namespace and implicit deduplication identities.
 VISION_JOBS_REVISION = 'd021774d38c0e7c684e6da44f39f22e735deb14b'
 

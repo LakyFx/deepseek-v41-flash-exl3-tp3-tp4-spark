@@ -1,3 +1,7 @@
+## TP4 gateway 4.0.7
+
+The default gateway uses the v407 TP4 capacity profile. Its DeepSeek checkpoint path retains user instructions and source evidence across long Chat and Responses histories, sizes internal output to the available context, and validates evidence during repair. TP3 operators can select their v130 profile explicitly. [4.0.7 gateway installation](DS41F-4.0.7.md#upgrade-from-405)
+
 ## 4.0.5 / 1.3.0 JSON and image compatibility
 
 The current package defaults to TP4 C16. Use

@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import json
 import logging
+import re
 import time
 import uuid
 from collections.abc import AsyncIterator
@@ -2045,6 +2046,8 @@ class GatewayEngine:
         except TimeoutError:
             observation = CheckpointObservation.failed("enforce_timeout")
         except Exception as exc:
+            if isinstance(exc, GatewayError) and exc.code == "context_length_exceeded":
+                raise
             logger.warning(
                 "Responses checkpoint enforce generation failed: type=%s error=%s",
                 type(exc).__name__,
@@ -3069,24 +3072,37 @@ class GatewayEngine:
             evidence_items([current_user])[0],
         )
 
-    def _responses_checkpoint_plan(
+    def _checkpoint_material(
         self,
         body: dict[str, Any],
         old_items: list[dict[str, Any]],
         current_user: dict[str, Any],
-    ) -> tuple[str, int]:
-        material = build_checkpoint_material(
+    ) -> CheckpointMaterial:
+        return build_checkpoint_material(
             body=body,
             old_items=old_items,
             current_user=current_user,
             max_chunk_chars=self.settings.compact_chunk_chars,
             max_task_chars=self.settings.responses_checkpoint_task_chars,
             model=self.settings.served_model,
+            preserve_user_history=self.settings.deepseek_v41_vllm,
         )
+
+    def _checkpoint_output_budget(self) -> int:
+        configured = self.settings.responses_checkpoint_max_tokens
+        return max(16_384, configured) if self.settings.deepseek_v41_vllm else configured
+
+    def _responses_checkpoint_plan(
+        self,
+        body: dict[str, Any],
+        old_items: list[dict[str, Any]],
+        current_user: dict[str, Any],
+    ) -> tuple[str, int]:
+        material = self._checkpoint_material(body, old_items, current_user)
         item = checkpoint_planning_item(material)
         return (
             "\n".join(part.get("text", "") for part in item["content"]),
-            self.settings.responses_checkpoint_max_tokens,
+            self._checkpoint_output_budget(),
         )
 
     async def _chat_checkpoint(
@@ -3108,6 +3124,8 @@ class GatewayEngine:
                 timeout=self.settings.responses_checkpoint_timeout_seconds,
             )
         except (TimeoutError, RuntimeError, ValueError) as exc:
+            if isinstance(exc, GatewayError) and exc.code == "context_length_exceeded":
+                raise
             raise GatewayError(
                 503,
                 "validated Chat checkpoint generation failed",
@@ -3274,7 +3292,7 @@ class GatewayEngine:
     ) -> str:
         """Run one thinking-off checkpoint model pass at the requested priority."""
 
-        budget = output_budget or self.settings.responses_checkpoint_max_tokens
+        budget = output_budget or self._checkpoint_output_budget()
         body = {
             "model": self.settings.served_model,
             "messages": [
@@ -3284,15 +3302,25 @@ class GatewayEngine:
             "temperature": 0.0,
             "max_tokens": budget,
             "stream": False,
-            # Strict bounded generation prevents a long evidence pass from
-            # consuming the complete token budget and returning truncated JSON.
             "response_format": checkpoint_response_format(material),
         }
         self._apply_internal_thinking(body, enabled=False)
         body = prepare_internal_json(body, enabled=self.settings.tensorfold_internal_json)
-        admission_tokens = (
-            await self.token_count(body) + budget
-        )
+        prompt_tokens = await self.token_count(body)
+        if self.settings.deepseek_v41_vllm:
+            available = (
+                self.settings.chat_context_limit()
+                - self.settings.compact_safety_tokens
+                - prompt_tokens
+            )
+            if available <= 0:
+                raise GatewayError(
+                    400, "checkpoint input exceeds the available model context",
+                    code="context_length_exceeded",
+                )
+            budget = min(budget, available)
+            body["max_tokens"] = budget
+        admission_tokens = prompt_tokens + budget
         try:
             async with self.gate.slot(
                 priority=priority,
@@ -3346,7 +3374,7 @@ class GatewayEngine:
 
         last_error: TypeError | ValueError | None = None
         ds = self.settings.deepseek_v41_vllm
-        budget = max(16_384, self.settings.responses_checkpoint_max_tokens) if ds else None
+        budget = self._checkpoint_output_budget()
         partial_key = ""
         if ds and purpose == "responses_checkpoint_extract":
             partial_key = hashlib.sha256(json.dumps(
@@ -3365,8 +3393,15 @@ class GatewayEngine:
                     "The previous attempt was not parseable. Return one compact "
                     "JSON object only; omit optional prose and Markdown."
                 )
+                if ds and re.fullmatch(
+                    r"Internal JSON [a-z ]+ at \$[a-z0-9_.\[\]]*", str(last_error)
+                ):
+                    resolved_system += (
+                        f"\nValidator: {last_error}. Correct that field using the supplied schema "
+                        "and evidence IDs from this input."
+                    )
             if ds and attempt and str(last_error).endswith("_truncated_at_output_limit"):
-                budget = min(32_768, int(budget) * 2)
+                budget = min(32_768, budget * 2)
                 resolved_system += (
                     "\nThe prior output reached its token limit. Deduplicate repeated "
                     "claims and citations; keep concise supported facts. Exact source "
@@ -3516,14 +3551,7 @@ class GatewayEngine:
         # queue priority and the outer timeout.
         if require_idle and (self.gate.active or self.gate.waiting):
             return CheckpointObservation.not_run("busy")
-        material = build_checkpoint_material(
-            body=body,
-            old_items=old_items,
-            current_user=current_user,
-            max_chunk_chars=self.settings.compact_chunk_chars,
-            max_task_chars=self.settings.responses_checkpoint_task_chars,
-            model=self.settings.served_model,
-        )
+        material = self._checkpoint_material(body, old_items, current_user)
         cached = self.responses_checkpoint_cache.get(material.cache_key)
         if cached is not None:
             return replace(cached, cache_hit=True)

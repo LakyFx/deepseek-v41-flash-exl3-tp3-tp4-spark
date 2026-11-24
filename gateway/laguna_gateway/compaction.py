@@ -13,7 +13,7 @@ from typing import Any
 from .cache import TTLCache
 from .config import Settings
 from .policy import coalesce_instruction_messages
-from .responses_checkpoint import checkpoint_sample_selected
+from .responses_checkpoint import checkpoint_sample_selected, responses_user_item_is_query
 
 logger = logging.getLogger(__name__)
 
@@ -243,15 +243,10 @@ def _responses_user_content_is_query(content: Any) -> bool:
 
 
 def _latest_responses_user_query_index(items: list[dict[str, Any]]) -> int | None:
-    """Return the latest real user query that Qwen can use as the live turn."""
+    """Return the latest genuine user turn, excluding tool-response wrappers."""
 
     for index in range(len(items) - 1, -1, -1):
-        item = items[index]
-        if str(item.get("type") or "") != "message":
-            continue
-        if str(item.get("role") or "") != "user":
-            continue
-        if _responses_user_content_is_query(item.get("content")):
+        if responses_user_item_is_query(items[index]):
             return index
     return None
 

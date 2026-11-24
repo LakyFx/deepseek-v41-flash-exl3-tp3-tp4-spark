@@ -1,0 +1,25 @@
+TP3 1.2.9 image-bearing prefix-cache extension, 2026-11-03
+
+Primary contribution: GitHub user hteak, issue #2 and clean v128 patch.
+https://github.com/LakyFx/deepseek-v41-flash-exl3-tp3-tp4-spark/issues/2
+https://github.com/user-attachments/files/34329283/imgcache-1.2.8.diff.txt
+Original patch SHA256:
+c0af0ad93728295751081d671951f997715b21e7ff789f74de5a1f01f42a2247
+
+The original diff is preserved byte-for-byte in patches/. It introduces the
+image content keys, consistent host lookup/keep/report keys, backend restoration
+and skipping of fully restored image spans, and expanded history lengths.
+LakyFx integration adds namespace isolation, multi-image/order/payload-kind and
+allocation-failure regressions, source/build identities and the TP3 qualification
+gate. Do not present the original contribution as exclusively LakyFx work.
+
+Related earlier community work was identified in the Mia recipe audit dated
+2026-10-28: image-keyed cache (Thomas Kempka / thkempka, patch 0027) and skipping
+fully restored images (Mauvis Ledford / krunkosaurus, patch 0030). This integration
+uses hteak's supplied clean patch, not a verbatim application of those Mia files.
+
+TensorFold source remains under its existing Apache-2.0 LICENSE. Existing source
+headers and notices are preserved. No prefill-yield/interleaving is introduced.
+No model token IDs, sampling, smart-controller budgets or topology are changed.
+Own CPU/build results and later GPU results must be reported separately from the
+reporter's test/performance claims. TP4 production 4.0.4 is unchanged.

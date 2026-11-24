@@ -1,8 +1,21 @@
+## TP4 4.0.7 for four DGX Sparks
+
+**Current releases are TP4 4.0.7 and TP3 1.3.0.** TP4 4.0.7 ships the adaptive speculation controller, whole-prompt prefill updates and the DeepSeek gateway fix for long conversations.
+
+| Concurrent requests | 4.0.5 aggregate decode | 4.0.7 aggregate decode | Change |
+|---|---:|---:|---:|
+| C8 | 196.5 tok/s | 216.5 tok/s | +10.2% |
+| C10 | 205 tok/s | 247.5 tok/s | +20.7% |
+| C12 | 214 tok/s | 270 tok/s | +26.2% |
+| C16 | — | 280.5 tok/s | — |
+
+These medians come from production traffic. The full C1–C16 table includes sampling time at each concurrency and matched prefill figures. [4.0.7 results and upgrade instructions](docs/DS41F-4.0.7.md) · [Machine-readable measurements](results/20261124-4.0.7/PRODUCTION.json) · [TP3 1.3.0](docs/DS41F-1.3.0.md)
+
 ## Compatibility update: TP4 4.0.5 + TP3 1.3.0
 
 [![LakyFX DeepSeek1017 TP3 and TP4 compatibility update](assets/LakyFX-TP3-1.3.0-TP4-4.0.5-X.png)](assets/LakyFX-TP3-1.3.0-TP4-4.0.5-X-4K.png)
 
-**Current TP4: 4.0.5. Current TP3: 1.3.0.** Same Smart KV Cache Controller,
+**2026-11-04 release pairing: TP4 4.0.5 and TP3 1.3.0.** Same Smart KV Cache Controller,
 Smart Adaptive Speculation and Smart CUDA Graph Controller; new image-aware
 prefix-cache reuse and validated JSON compatibility on both topologies.
 The tested 4.0.4/B kernels and TP4 compute settings are preserved.

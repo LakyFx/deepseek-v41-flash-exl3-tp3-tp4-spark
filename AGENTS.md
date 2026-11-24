@@ -1,4 +1,8 @@
-# Current TP4: 4.0.5; current TP3: 1.3.0
+# Current TP4 4.0.7 and TP3 1.3.0
+
+Use docs/DS41F-4.0.7.md, the native source recipe v407 and the versioned TP4 stager and launcher. Production speed results for 4.0.7 are in results/20261124-4.0.7/PRODUCTION.json. Preserve the measured binaries, both runtime cubins, whole-prompt prefill, all four ranks and operator-owned topology. The default gateway ships the DeepSeek checkpoint fix. Older release contracts follow.
+
+# 2026-11-04 TP4 4.0.5 and TP3 1.3.0
 
 Read docs/DS41F-4.0.5.md and docs/BENCHMARK-4.0.5.md. Source recipe v405;
 stage with tensorfold.tp4.v405.build and launch with tensorfold.tp4.v405.launch.

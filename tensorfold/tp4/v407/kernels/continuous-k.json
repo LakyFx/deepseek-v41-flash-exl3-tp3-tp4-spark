@@ -1,0 +1,19 @@
+{
+  "source": "continuous-k.cu",
+  "sha256": "1f5242392d57761d1708fab087a3edb970521d7f093dc47c72186451c1816700",
+  "output": "tp4_mma.cubin",
+  "cubin_sha256": "9e69540ba5240208cc80abddb3a6ac7b4887ff20cbc5645cd81fd2531f923e9b",
+  "nvcc_flags": [
+    "-arch=sm_121",
+    "-O3",
+    "-std=c++17",
+    "-DTF_TP4_GU_CTAS=1",
+    "-DTF_TP4_DOWN_CTAS=2",
+    "--fmad=true",
+    "--ftz=false",
+    "--prec-div=true",
+    "--prec-sqrt=true",
+    "--cubin"
+  ],
+  "source_license": "ExLlamaV3 MIT, see licenses/exllamav3-MIT.txt"
+}

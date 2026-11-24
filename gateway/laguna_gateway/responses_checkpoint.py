@@ -168,6 +168,7 @@ class CheckpointMaterial:
     serving_evidence_complete: bool
     serving_evidence_chars: int
     cache_key: str
+    preserve_user_history: bool = False
 
     @property
     def allowed_evidence_ids(self) -> tuple[str, ...]:
@@ -252,22 +253,21 @@ def _without_binary(value: Any) -> Any:
 
 
 def checkpoint_response_format(material: CheckpointMaterial) -> dict[str, Any]:
-    """Strict, size-bounded schema for every model-authored checkpoint pass."""
+    """Use the same evidence contract for extraction, reconciliation and repair."""
 
     evidence_ids = list(material.allowed_evidence_ids)
     evidence_item: dict[str, Any] = {"type": "string", "maxLength": 96}
     if evidence_ids:
         evidence_item["enum"] = evidence_ids
+    text_item: dict[str, Any] = {"type": "string"}
+    citations: dict[str, Any] = {"type": "array", "items": evidence_item}
+    # DeepSeek bounds each generation in tokens and validates its complete JSON.
+    if not material.preserve_user_history:
+        text_item["maxLength"] = 384
+        citations["maxItems"] = 32
     claim = {
         "type": "object",
-        "properties": {
-            "text": {"type": "string", "maxLength": 384},
-            "evidence_ids": {
-                "type": "array",
-                "items": evidence_item,
-                "maxItems": 32,
-            },
-        },
+        "properties": {"text": text_item, "evidence_ids": citations},
         "required": ["text", "evidence_ids"],
         "additionalProperties": False,
     }
@@ -305,8 +305,9 @@ def checkpoint_response_format(material: CheckpointMaterial) -> dict[str, Any]:
         properties[field] = {
             "type": "array",
             "items": claim,
-            "maxItems": 4,
         }
+        if not material.preserve_user_history:
+            properties[field]["maxItems"] = 4
     schema = {
         "type": "object",
         "properties": properties,
@@ -352,7 +353,7 @@ def responses_content_text(content: Any) -> str:
 
 
 def responses_user_item_is_query(item: dict[str, Any]) -> bool:
-    if str(item.get("type") or "") != "message":
+    if item.get("type", "message") != "message":
         return False
     if str(item.get("role") or "") != "user":
         return False
@@ -532,15 +533,15 @@ def _serving_evidence_ledger(
     contract_records: list[dict[str, Any]],
     evidence_records: list[dict[str, Any]],
     critical_evidence_ids: list[str],
-    max_chars: int,
+    max_chars: int | None,
 ) -> tuple[str, bool, int]:
     """Keep selected critical evidence exact or point at exact outer fields.
 
     Top-level instructions and the current user item are already retained
     verbatim outside the checkpoint message, so compact location records are
-    sufficient for those two contracts.  Prior user contracts and compacted
-    tool outputs must fit byte-for-byte in the serving ledger.  Enforce mode
-    fails closed when the bounded ledger cannot contain every selected record.
+    sufficient for those two contracts. The remaining records keep their exact
+    text. With no character limit, the compactor fits the rendered ledger using
+    its token counter.
     """
 
     by_id = {
@@ -570,7 +571,7 @@ def _serving_evidence_ledger(
             serving_record = record
         encoded = _canonical_json(serving_record)
         needed = len(encoded) + (1 if lines else 0)
-        if total + needed > max_chars:
+        if max_chars is not None and total + needed > max_chars:
             complete = False
             continue
         lines.append(encoded)
@@ -586,6 +587,7 @@ def build_checkpoint_material(
     max_chunk_chars: int,
     max_task_chars: int,
     model: str,
+    preserve_user_history: bool = False,
 ) -> CheckpointMaterial:
     """Build bounded model input without discarding deterministic fingerprints."""
 
@@ -652,6 +654,7 @@ def build_checkpoint_material(
 
     evidence_records: list[dict[str, Any]] = []
     source_ids: list[str] = []
+    instruction_source_ids: list[str] = []
     critical_source_ids: list[str] = []
     critical_source_texts: list[str] = []
     cleaned_old_items: list[dict[str, Any]] = []
@@ -675,6 +678,14 @@ def build_checkpoint_material(
             }
         )
         encoded = _canonical_json(cleaned)
+        if preserve_user_history and (
+            responses_user_item_is_query(item)
+            or (
+                item.get("type", "message") == "message"
+                and item.get("role") in {"system", "developer"}
+            )
+        ):
+            instruction_source_ids.append(evidence_id)
         completed_media_output = (
             str(cleaned.get("type") or "") in _TOOL_OUTPUT_TYPES
             and str(cleaned.get("call_id") or "") in historical_media_call_ids
@@ -728,33 +739,33 @@ def build_checkpoint_material(
         for record in contract_records
         if record.get("kind") == "current_user"
     ]
-    prior_user_ids = [
-        str(record["evidence_id"])
-        for record in contract_records
-        if record.get("kind") == "prior_user"
-    ]
-    # Pin the live contract and a bounded recent user ledger. Then prefer the
-    # newest completed outputs/errors because they describe the current state.
-    critical_ids = list(
-        dict.fromkeys(
-            instruction_ids
-            + current_user_ids
-            + prior_user_ids[:1]
-            + prior_user_ids[-7:]
+    ledger_limit = max(4_000, int(max_task_chars))
+    if preserve_user_history:
+        # The live tail already contains the other user messages. Quote every
+        # compacted instruction in source order, including later corrections.
+        # The compactor token-counts this ledger in both the plan and the final request.
+        critical_ids = instruction_ids + current_user_ids + instruction_source_ids
+    else:
+        prior_user_ids = [
+            str(record["evidence_id"])
+            for record in contract_records
+            if record.get("kind") == "prior_user"
+        ]
+        critical_ids = list(
+            dict.fromkeys(instruction_ids + current_user_ids + prior_user_ids[:1] + prior_user_ids[-7:])
         )
-    )
-    for evidence_id in reversed(critical_source_ids):
-        if evidence_id not in critical_ids:
-            critical_ids.append(evidence_id)
-        if len(critical_ids) >= _PRIORITY_CRITICAL_EVIDENCE:
-            break
-    critical_ids = critical_ids[:_PRIORITY_CRITICAL_EVIDENCE]
+        for evidence_id in reversed(critical_source_ids):
+            if evidence_id not in critical_ids:
+                critical_ids.append(evidence_id)
+            if len(critical_ids) >= _PRIORITY_CRITICAL_EVIDENCE:
+                break
+        critical_ids = critical_ids[:_PRIORITY_CRITICAL_EVIDENCE]
     serving_evidence_jsonl, serving_evidence_complete, serving_evidence_chars = (
         _serving_evidence_ledger(
             contract_records,
             evidence_records,
             critical_ids,
-            max(4_000, int(max_task_chars)),
+            None if preserve_user_history else ledger_limit,
         )
     )
     if serving_evidence_complete:
@@ -765,7 +776,6 @@ def build_checkpoint_material(
         selected_ids = set(critical_ids)
         by_id = {record["evidence_id"]: record for record in evidence_records}
         extra_lines: list[str] = []
-        ledger_limit = max(4_000, int(max_task_chars))
         for evidence_id in reversed(critical_source_ids):
             if evidence_id in selected_ids:
                 continue
@@ -802,6 +812,7 @@ def build_checkpoint_material(
         _canonical_json(
             {
                 "model": model,
+                "preserve_user_history": preserve_user_history,
                 "prompt_version": CHECKPOINT_PROMPT_VERSION,
                 "task_fingerprint": task_fingerprint,
                 "source_digest": source_digest,
@@ -828,6 +839,7 @@ def build_checkpoint_material(
         serving_evidence_complete=serving_evidence_complete,
         serving_evidence_chars=serving_evidence_chars,
         cache_key=cache_key,
+        preserve_user_history=preserve_user_history,
     )
 
 

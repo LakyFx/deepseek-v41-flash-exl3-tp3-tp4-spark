@@ -1,0 +1,298 @@
+{
+  "version": "4.0.7",
+  "reference": "4.0.5",
+  "source": "Production DGX monitor, benchmark intervals excluded",
+  "cutoff": "2026-11-24T09:40:19.137838+01:00",
+  "covered_hours": {
+    "4.0.5": 40.499,
+    "4.0.7": 21.1535
+  },
+  "method": "Positive native aggregate tok/s within C, duration-weighted median. Standardized groups average individual C medians with 4.0.5 duration weights, min 300s per included C in all versions.",
+  "decode": [
+    {
+      "concurrency": 1,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 93.0,
+        "4.0.7": 91.0
+      },
+      "delta_percent": -2.15,
+      "sampled_seconds": {
+        "4.0.5": 5121.4,
+        "4.0.7": 303.19
+      },
+      "samples": {
+        "4.0.5": 2560,
+        "4.0.7": 152
+      }
+    },
+    {
+      "concurrency": 2,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 131.5,
+        "4.0.7": 132.5
+      },
+      "delta_percent": 0.76,
+      "sampled_seconds": {
+        "4.0.5": 5618.5,
+        "4.0.7": 811.51
+      },
+      "samples": {
+        "4.0.5": 2810,
+        "4.0.7": 406
+      }
+    },
+    {
+      "concurrency": 3,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 154.5,
+        "4.0.7": 160.5
+      },
+      "delta_percent": 3.88,
+      "sampled_seconds": {
+        "4.0.5": 14372.97,
+        "4.0.7": 2301.1
+      },
+      "samples": {
+        "4.0.5": 7183,
+        "4.0.7": 1150
+      }
+    },
+    {
+      "concurrency": 4,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 167.0,
+        "4.0.7": 175.5
+      },
+      "delta_percent": 5.09,
+      "sampled_seconds": {
+        "4.0.5": 27940.88,
+        "4.0.7": 6287.33
+      },
+      "samples": {
+        "4.0.5": 13955,
+        "4.0.7": 3135
+      }
+    },
+    {
+      "concurrency": 5,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 176.5,
+        "4.0.7": 185.5
+      },
+      "delta_percent": 5.1,
+      "sampled_seconds": {
+        "4.0.5": 32844.5,
+        "4.0.7": 11416.01
+      },
+      "samples": {
+        "4.0.5": 16414,
+        "4.0.7": 5702
+      }
+    },
+    {
+      "concurrency": 6,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 185.0,
+        "4.0.7": 196.5
+      },
+      "delta_percent": 6.22,
+      "sampled_seconds": {
+        "4.0.5": 23656.41,
+        "4.0.7": 15555.85
+      },
+      "samples": {
+        "4.0.5": 11823,
+        "4.0.7": 7766
+      }
+    },
+    {
+      "concurrency": 7,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 191.5,
+        "4.0.7": 205.5
+      },
+      "delta_percent": 7.31,
+      "sampled_seconds": {
+        "4.0.5": 13580.93,
+        "4.0.7": 13050.81
+      },
+      "samples": {
+        "4.0.5": 6793,
+        "4.0.7": 6509
+      }
+    },
+    {
+      "concurrency": 8,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 196.5,
+        "4.0.7": 216.5
+      },
+      "delta_percent": 10.18,
+      "sampled_seconds": {
+        "4.0.5": 6058.61,
+        "4.0.7": 7149.57
+      },
+      "samples": {
+        "4.0.5": 3024,
+        "4.0.7": 3573
+      }
+    },
+    {
+      "concurrency": 9,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 198.5,
+        "4.0.7": 233.0
+      },
+      "delta_percent": 17.38,
+      "sampled_seconds": {
+        "4.0.5": 1807.57,
+        "4.0.7": 3754.21
+      },
+      "samples": {
+        "4.0.5": 905,
+        "4.0.7": 1873
+      }
+    },
+    {
+      "concurrency": 10,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 205.0,
+        "4.0.7": 247.5
+      },
+      "delta_percent": 20.73,
+      "sampled_seconds": {
+        "4.0.5": 1054.72,
+        "4.0.7": 2672.74
+      },
+      "samples": {
+        "4.0.5": 525,
+        "4.0.7": 1334
+      }
+    },
+    {
+      "concurrency": 11,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 210.5,
+        "4.0.7": 260.0
+      },
+      "delta_percent": 23.52,
+      "sampled_seconds": {
+        "4.0.5": 1062.78,
+        "4.0.7": 2090.43
+      },
+      "samples": {
+        "4.0.5": 531,
+        "4.0.7": 1048
+      }
+    },
+    {
+      "concurrency": 12,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 214.0,
+        "4.0.7": 270.0
+      },
+      "delta_percent": 26.17,
+      "sampled_seconds": {
+        "4.0.5": 612.53,
+        "4.0.7": 1415.31
+      },
+      "samples": {
+        "4.0.5": 306,
+        "4.0.7": 705
+      }
+    },
+    {
+      "concurrency": 13,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 218.0,
+        "4.0.7": 272.5
+      },
+      "delta_percent": 25.0,
+      "sampled_seconds": {
+        "4.0.5": 514.57,
+        "4.0.7": 965.31
+      },
+      "samples": {
+        "4.0.5": 258,
+        "4.0.7": 483
+      }
+    },
+    {
+      "concurrency": 14,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": 228.5,
+        "4.0.7": 280.0
+      },
+      "delta_percent": 22.54,
+      "sampled_seconds": {
+        "4.0.5": 70.05,
+        "4.0.7": 525.03
+      },
+      "samples": {
+        "4.0.5": 35,
+        "4.0.7": 262
+      }
+    },
+    {
+      "concurrency": 15,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": null,
+        "4.0.7": 283.5
+      },
+      "delta_percent": null,
+      "sampled_seconds": {
+        "4.0.5": 0,
+        "4.0.7": 343.07
+      },
+      "samples": {
+        "4.0.5": 0,
+        "4.0.7": 171
+      }
+    },
+    {
+      "concurrency": 16,
+      "median_aggregate_decode_tok_s": {
+        "4.0.5": null,
+        "4.0.7": 280.5
+      },
+      "delta_percent": null,
+      "sampled_seconds": {
+        "4.0.5": 0,
+        "4.0.7": 689.6
+      },
+      "samples": {
+        "4.0.5": 0,
+        "4.0.7": 342
+      }
+    }
+  ],
+  "standardized_decode": {
+    "concurrency": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "tok_s": {
+      "4.0.5": 171.45427251420608,
+      "4.0.7": 181.33831778506013
+    }
+  },
+  "standardized_prefill": {
+    "matched_buckets": 62,
+    "requests": {
+      "4.0.5": 14926,
+      "4.0.7": 8039
+    },
+    "tok_s": {
+      "4.0.5": 3085.543963295522,
+      "4.0.7": 3109.348407319115
+    }
+  }
+}

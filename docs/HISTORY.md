@@ -1,3 +1,7 @@
+## 2026-11-24 — TP4 4.0.7
+
+Published the four-Spark production runtime and both matching CUDA kernels, with the DeepSeek Chat and Responses checkpoint fix. [Production results and upgrade](DS41F-4.0.7.md)
+
 ## 2026-11-04 — TP4 4.0.5
 
 Published the exact owner-approved production candidate: 4.0.4/B compute plus

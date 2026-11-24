@@ -1,4 +1,8 @@
-## Current four-Spark release: 4.0.5
+## Current four-Spark release 4.0.7
+
+Use the v407 source recipe, stager, launcher and gateway profile for TP4. TP3 uses v130. [TP4 4.0.7 installation](DS41F-4.0.7.md)
+
+## Four-Spark release 4.0.5
 
 Use [TP4 4.0.5](DS41F-4.0.5.md), exact source v405 and the versioned TP4
 stager/launcher. TP3 remains [1.3.0](DS41F-1.3.0.md), source v130. Each keeps its

@@ -1,6 +1,6 @@
 {
   "schema": "ds41f.gateway-source/v1",
-  "source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2",
+  "source_revision": "a2e527858feafdd5843132a8179de1da046086ba",
   "modules": {
     "__init__.py": {
       "production_sha256": "c86d50d5a8404a3be0ce18898bb095fa4924937b9c8a2a68a926a95880d4f92a",
@@ -48,8 +48,8 @@
       "adaptation": null
     },
     "compaction.py": {
-      "production_sha256": "0443c2599b743cdfe11bf4a52983de81676868b2f6935dd18775904187ac56ae",
-      "public_sha256": "0443c2599b743cdfe11bf4a52983de81676868b2f6935dd18775904187ac56ae",
+      "production_sha256": "7393a4097e6848d1b29e5033f41ce4d42c0870edb930c59f875e504b867b3382",
+      "public_sha256": "7393a4097e6848d1b29e5033f41ce4d42c0870edb930c59f875e504b867b3382",
       "adaptation": null
     },
     "config.py": {
@@ -68,8 +68,8 @@
       "adaptation": null
     },
     "engine.py": {
-      "production_sha256": "9f6c83af6a740b2fc61a4f55581b79a8654f5188065dc2a971cf421c0ff4cdd2",
-      "public_sha256": "9f6c83af6a740b2fc61a4f55581b79a8654f5188065dc2a971cf421c0ff4cdd2",
+      "production_sha256": "fa44e7191f92d2f43fa4015196da0de25bb8727cdaf3b28b1072627ef6719181",
+      "public_sha256": "fa44e7191f92d2f43fa4015196da0de25bb8727cdaf3b28b1072627ef6719181",
       "adaptation": null
     },
     "internal_json.py": {
@@ -123,8 +123,8 @@
       "adaptation": null
     },
     "responses_checkpoint.py": {
-      "production_sha256": "27af0fdba0073abf1343e0c747a581449c5e6ed4d799414301072d4688285494",
-      "public_sha256": "27af0fdba0073abf1343e0c747a581449c5e6ed4d799414301072d4688285494",
+      "production_sha256": "12d690c1af977265f8d632ad1fa01741ae5d9d56d81f6e3b708f975f7e17f7a5",
+      "public_sha256": "12d690c1af977265f8d632ad1fa01741ae5d9d56d81f6e3b708f975f7e17f7a5",
       "adaptation": null
     },
     "stream_validation.py": {
@@ -203,9 +203,10 @@
       "adaptation": null
     }
   },
-  "production_release": "4.0.5",
-  "release": "4.0.5",
-  "recipe_version": "4.0.5",
-  "packaging_source_revision": "2ec1aafd4563025a307814b5d8c668bf23c8f182",
-  "module_source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2"
+  "production_release": "4.0.7",
+  "release": "4.0.7",
+  "recipe_version": "4.0.7",
+  "packaging_source_revision": "a2e527858feafdd5843132a8179de1da046086ba",
+  "module_source_revision": "a2e527858feafdd5843132a8179de1da046086ba",
+  "base_module_source_revision": "43a32ca791c5f60e560d72eec718254dc04283f2"
 }
