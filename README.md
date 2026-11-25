@@ -1,5 +1,7 @@
 ## TP4 4.0.7 for four DGX Sparks
 
+![LakyFX DeepSeek 1017 TP4 4.0.7 production benchmark on four DGX Sparks](assets/4.0.7/tp4-production-benchmark.png)
+
 **Current releases are TP4 4.0.7 and TP3 1.3.0.** TP4 4.0.7 ships the adaptive speculation controller, whole-prompt prefill updates and the DeepSeek gateway fix for long conversations.
 
 | Concurrent requests | 4.0.5 aggregate decode | 4.0.7 aggregate decode | Change |
